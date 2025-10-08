@@ -1,0 +1,436 @@
+/* Importa fontes decorativas e modernas para títulos e texto */
+@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset de margens, preenchimento e box-sizing para todos os elementos */
+/* Reset e Variáveis */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variáveis globais de cor, sombra, transição e espaçamento para uso em todo o CSS */
+:root {
+    --primary-color: #73905c;
+    --secondary-color: #5d7053;
+    --accent-color: #4fc16e;
+    --text-dark: #2d3748;
+    --text-light: #718096;
+    --white: #ffffff;
+    --bg-light: #f7fafc;
+    --error-color: #e53e3e;
+    --success-color: #38a169;
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Estilização geral do body: fonte, fundo gradiente, altura mínima e cor do texto */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+}
+
+/* Barra de navegação superior fixa no topo da página */
+/* Top Navigation */
+.top-nav {
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Container da navegação: centraliza conteúdo com largura máxima e espaçamento interno */
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+/* Marca da navegação: logo e nome da empresa lado a lado */
+.nav-brand a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+/* Logo: imagem circular pequena e responsiva */
+.logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Nome da marca: fonte decorativa Lily Script e cor verde principal */
+.brand-name {
+    font-family: 'Lily Script One', cursive;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+/* Menu de navegação: lista horizontal sem marcadores com espaçamento uniforme */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Links do menu: texto escuro, peso médio, padding, bordas arredondadas e transição suave */
+.nav-menu a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: var(--transition);
+}
+
+/* Efeito hover e link ativo: fundo verde, texto branco e elevação sutil */
+.nav-menu a:hover,
+.nav-menu a.active {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Container do formulário de cadastro: centralizado, fundo branco, sombra e bordas arredondadas */
+/* Form Container */
+.form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Barra decorativa no topo do formulário com gradiente de cor verde */
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+/* Cabeçalho do formulário: título, subtítulo e fundo suave em gradiente */
+.form-header {
+    text-align: center;
+    padding: 2.5rem 2rem 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+}
+
+/* Título do formulário: fonte decorativa, grande, cor verde e espaçamento inferior */
+.form-header h2 {
+    font-family: 'Lily Script One', cursive;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Subtítulo do formulário: cor clara e tamanho menor */
+.form-header p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Corpo do formulário: espaçamento interno onde ficam os campos de entrada */
+.form-body {
+    padding: 0 2rem 2rem;
+}
+
+/* Grupo de input: cada campo do formulário (label + input) */
+/* Input Groups */
+.input-group {
+    position: relative;
+    margin-bottom: 1.2rem;
+}
+
+/* Label dos inputs: texto acima do campo, negrito, cor escura e tamanho pequeno */
+.input-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+    background: #f8f9fa;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(79, 193, 110, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Estados de validação */
+.input-group.success input {
+    border-color: var(--success-color);
+    background: #f0fff4;
+}
+
+.input-group.error input {
+    border-color: var(--error-color);
+    background: #fef2f2;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.75rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* Grid Layout para Inputs */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 568px) {
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+/* Botões */
+.btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 193, 110, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Links */
+.form-footer {
+    padding: 1.5rem 2rem;
+    background: #f8f9fa;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+}
+
+.form-footer p {
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.form-footer a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Termos */
+.terms-container {
+    margin: 1rem 0;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+.terms-container a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.terms-container a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.page-footer {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.page-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin: 0 0.8rem;
+}
+
+.page-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .form-container {
+        margin: 1.5rem 1rem;
+    }
+
+    .form-header {
+        padding: 2rem 1.5rem 1rem;
+    }
+
+    .form-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .form-body {
+        padding: 0 1.5rem 1.5rem;
+    }
+
+    .form-footer {
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-container {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Notificações */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    color: var(--white);
+    font-weight: 500;
+    z-index: 1000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+}
+
+.notification.success {
+    background: var(--success-color);
+}
+
+.notification.error {
+    background: var(--error-color);
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+/* Indicador de Força da Senha */
+.password-strength {
+    margin-top: 0.5rem;
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.password-strength.weak .password-strength-bar {
+    width: 33%;
+    background: var(--error-color);
+}
+
+.password-strength.medium .password-strength-bar {
+    width: 66%;
+    background: #f6ad55;
+}
+
+.password-strength.strong .password-strength-bar {
+    width: 100%;
+    background: var(--success-color);
+}

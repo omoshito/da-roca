@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Define a codificação de caracteres para UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Configuração para responsividade em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título exibido na aba do navegador -->
+    <title>Início - Da Roça</title>
+
+    <!-- CSS customizado para página inicial -->
+    <link rel="stylesheet" href="../CSS/inicio.css">
+
+    <!-- Preconexão para otimizar carregamento do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Importa fontes: Lily Script One (decorativa) e Poppins (diversos pesos) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lily+Script+One&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Biblioteca de ícones Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- ========== SEÇÃO HERO (CABEÇALHO PRINCIPAL) ========== -->
+    <!-- Cabeçalho principal com imagem de fundo e navegação -->
+    <header class="hero-header">
+        <!-- ========== BARRA DE NAVEGAÇÃO ========== -->
+        <nav class="navbar">
+            <!-- Logo e marca -->
+            <div class="nav-brand">
+                <img src="../Imagens/daRoca.png" alt="DaRoça Logo" class="logo">
+                <span class="brand-name">DaRoça</span>
+            </div>
+            <!-- Menu de navegação -->
+            <ul class="nav-menu">
+                <!-- Link ativo (página atual) -->
+                <li><a href="Pagina_inicio.html" class="active">Início</a></li>
+                <li><a href="Catalogo.html">Catálogo</a></li>
+                <!-- Link com âncora para seção sobre (smooth scroll) -->
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="Cadastro.html">Cadastro</a></li>
+                <!-- Link de login com estilo de botão -->
+                <li><a href="Login.html" class="btn-login">Login</a></li>
+            </ul>
+            <!-- Menu hamburger para mobile (3 linhas) -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <!-- ========== CONTEÚDO HERO ========== -->
+        <!-- Texto principal da página inicial -->
+        <div class="hero-content">
+            <!-- Título principal com palavra destacada (span) -->
+            <h1 class="hero-title">Bem-vindos ao nosso mundo <span>DaRoça</span></h1>
+            <!-- Subtítulo descritivo -->
+            <p class="hero-subtitle">Do campo direto para sua mesa, com frescor e qualidade garantidos</p>
+            <!-- Call-to-action (CTA) para o catálogo -->
+            <a href="Catalogo.html" class="hero-cta">
+                <i class='bx bx-leaf'></i>
+                Explorar Produtos
+            </a>
+        </div>
+    </header>
+
+    <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+    <main class="main-content">
+        <!-- ========== SEÇÃO DE RECURSOS/BENEFÍCIOS ========== -->
+        <!-- Mostra os principais benefícios do serviço -->
+        <section class="features-section">
+            <div class="container">
+                <!-- Grade com 3 cards de benefícios -->
+                <div class="features-grid">
+                    <!-- Card 1: Produtos Orgânicos -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class='bx bx-leaf'></i>
+                        </div>
+                        <h3>100% Orgânico</h3>
+                        <p>Produtos cultivados sem agrotóxicos, direto do produtor</p>
+                    </div>
+                    <!-- Card 2: Entrega Rápida -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class='bx bx-time'></i>
+                        </div>
+                        <h3>Entrega Rápida</h3>
+                        <p>Receba seus produtos frescos em até 24 horas</p>
+                    </div>
+                    <!-- Card 3: Qualidade Garantida -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class='bx bx-shield-check'></i>
+                        </div>
+                        <h3>Qualidade Garantida</h3>
+                        <p>Selecionamos apenas os melhores produtos para você</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SEÇÃO CALL-TO-ACTION (CTA) ========== -->
+        <!-- Convida o usuário a visitar o catálogo -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Conheça nosso catálogo</h2>
+                    <p>Oferecemos uma vasta variedade de produtos naturais, desde frutas até verduras das mais frescas
+                    </p>
+                    <!-- Botão que leva ao catálogo de produtos -->
+                    <a href="Catalogo.html" class="cta-button">
+                        <i class='bx bx-store'></i>
+                        Ver Produtos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SEÇÃO SOBRE NÓS ========== -->
+        <!-- Seção com ID "sobre" para navegação por âncora -->
+        <section id="sobre" class="about-section">
+            <div class="container">
+                <!-- Título da seção -->
+                <h2 class="section-title">Um pouco sobre nós</h2>
+                <div class="about-content">
+                    <!-- ========== TEXTO SOBRE A EMPRESA ========== -->
+                    <div class="about-text">
+                        <h3>O que é a DaRoça?</h3>
+                        <!-- História e missão da empresa -->
+                        <p>Fundada em 2019 por Nathália, a DaRoça nasceu da paixão pelo campo e pelo desejo de levar
+                            praticidade à vida moderna. Nossa missão é entregar produtos frescos diretamente na casa dos
+                            nossos clientes, garantindo qualidade, frescor e conveniência.</p>
+                        <!-- Descrição do modelo de negócio -->
+                        <p>Funcionamos no modelo de assinaturas: o cliente escolhe seus produtos favoritos, define a
+                            frequência – semanal, quinzenal ou mensal – e o melhor dia para receber sua cesta.</p>
+                        <!-- ========== ESTATÍSTICAS ========== -->
+                        <!-- Números impressionantes sobre a empresa -->
+                        <div class="stats">
+                            <!-- Clientes satisfeitos -->
+                            <div class="stat">
+                                <span class="stat-number">1000+</span>
+                                <span class="stat-label">Clientes Satisfeitos</span>
+                            </div>
+                            <!-- Variedade de produtos -->
+                            <div class="stat">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Produtos Frescos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ========== IMAGEM ILUSTRATIVA ========== -->
+                    <div class="about-image">
+                        <img src="../Imagens/pote2.webp" alt="Produtos DaRoça">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== RODAPÉ ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- ========== SEÇÃO 1: SOBRE A EMPRESA ========== -->
+                <div class="footer-section">
+                    <h3>DaRoça</h3>
+                    <p>Do campo direto para sua mesa, com frescor e qualidade garantidos desde 2019.</p>
+                    <!-- Ícones de redes sociais -->
+                    <div class="social-icons">
+                        <a href="#"><i class='bx bxl-instagram'></i></a>
+                        <a href="#"><i class='bx bxl-facebook'></i></a>
+                        <a href="#"><i class='bx bxl-whatsapp'></i></a>
+                    </div>
+                </div>
+                <!-- ========== SEÇÃO 2: LINKS RÁPIDOS ========== -->
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <a href="Pagina_inicio.html">Início</a><br>
+                    <a href="Catalogo.html">Catálogo</a><br>
+                    <a href="#sobre">Sobre Nós</a><br>
+                    <a href="Cadastro.html">Cadastro</a>
+                </div>
+                <!-- ========== SEÇÃO 3: INFORMAÇÕES DE CONTATO ========== -->
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p>📧 contato@daroca.com.br</p>
+                    <p>📱 (11) 99999-9999</p>
+                    <p>📍 São Paulo, SP</p>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 DaRoça. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS JAVASCRIPT ========== -->
+    <script>
+        // ========== MENU MOBILE (HAMBURGER) ==========
+        // Seleciona elementos do menu mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navbar = document.querySelector('.navbar');
+
+        // Adiciona evento de clique no ícone hamburger
+        // Toggle (alterna) a classe 'active' que mostra/esconde o menu
+        hamburger?.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // ========== EFEITO DE SCROLL NA NAVBAR ==========
+        // Adiciona fundo opaco à navbar quando o usuário rola a página
+        window.addEventListener('scroll', () => {
+            // Se rolar mais de 100px, adiciona classe 'scrolled'
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ========== SMOOTH SCROLL (ROLAGEM SUAVE) ==========
+        // Para todos os links que começam com # (âncoras)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Previne comportamento padrão (pulo instantâneo)
+                e.preventDefault();
+                // Seleciona o elemento alvo usando o href
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Rola suavemente até o elemento
+                    target.scrollIntoView({
+                        behavior: 'smooth', // Animação suave
+                        block: 'start' // Alinha ao topo
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

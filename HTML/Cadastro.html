@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Define a codificação de caracteres para UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Configuração para responsividade em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título exibido na aba do navegador -->
+    <title>Cadastro - DaRoça</title>
+
+    <!-- CSS customizado para página de cadastro -->
+    <link rel="stylesheet" href="../CSS/cadastro.css">
+    <!-- Biblioteca de ícones Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Script de validação de formulário (defer = carrega após HTML) -->
+    <script src="../JS/forms-interaction.js" defer></script>
+</head>
+
+<body>
+    <!-- ========== BARRA DE NAVEGAÇÃO ========== -->
+    <!-- Navegação principal fixa no topo -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <!-- Logo e marca -->
+            <div class="nav-brand">
+                <a href="Pagina_inicio.html">
+                    <img src="../Imagens/daRoca.png" alt="DaRoça Logo" class="logo">
+                    <span class="brand-name">DaRoça</span>
+                </a>
+            </div>
+            <!-- Menu de navegação -->
+            <ul class="nav-menu">
+                <li><a href="Pagina_inicio.html">Início</a></li>
+                <li><a href="Catalogo.html">Catálogo</a></li>
+                <li><a href="Pagina_inicio.html#sobre">Sobre</a></li>
+                <!-- Link ativo (página atual) -->
+                <li><a href="Cadastro.html" class="active">Cadastro</a></li>
+                <li><a href="Login.html">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== FORMULÁRIO DE CADASTRO ========== -->
+    <!-- Container centralizado do formulário -->
+    <div class="form-container">
+        <!-- ========== CABEÇALHO DO FORMULÁRIO ========== -->
+        <div class="form-header">
+            <h2>Junte-se ao DaRoça!</h2>
+            <p>Crie sua conta e tenha acesso aos melhores produtos frescos</p>
+        </div>
+
+        <!-- ========== CORPO DO FORMULÁRIO ========== -->
+        <div class="form-body">
+            <!-- Formulário com validação JavaScript -->
+            <form id="form-usuario">
+                <!-- ========== CAMPO NOME COMPLETO ========== -->
+                <div class="input-group">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                    <!-- Span para mensagens de erro (manipulado por JavaScript) -->
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- ========== LINHA COM E-MAIL E TELEFONE ========== -->
+                <!-- input-row organiza dois campos lado a lado -->
+                <div class="input-row">
+                    <!-- Campo de e-mail -->
+                    <div class="input-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <!-- Campo de telefone (opcional) -->
+                    <div class="input-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999">
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <!-- ========== LINHA COM DATA DE NASCIMENTO E CEP ========== -->
+                <div class="input-row">
+                    <!-- Campo de data de nascimento -->
+                    <div class="input-group">
+                        <label for="idade">Data de nascimento</label>
+                        <input type="date" id="idade" name="idade" required>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <!-- Campo de CEP (opcional) -->
+                    <div class="input-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep" placeholder="00000-000">
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <!-- ========== CAMPO DE SENHA COM INDICADOR DE FORÇA ========== -->
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite uma senha segura" required>
+                    <!-- Indicador visual da força da senha (barra colorida) -->
+                    <div class="password-strength">
+                        <div class="password-strength-bar"></div>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- ========== CAMPO CONFIRMAR SENHA ========== -->
+                <div class="input-group">
+                    <label for="confirmar-senha">Confirmar senha</label>
+                    <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua senha"
+                        required>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- ========== TERMOS E CONDIÇÕES ========== -->
+                <!-- Aviso sobre termos de uso e política de privacidade -->
+                <div class="terms-container">
+                    <p>Ao criar uma conta, você concorda com nossos
+                        <a href="#">Termos de Uso</a> e
+                        <a href="#">Política de Privacidade</a>.
+                    </p>
+                </div>
+
+                <!-- Botão de submissão do formulário -->
+                <button type="submit" class="btn-primary">Criar conta</button>
+            </form>
+        </div>
+
+        <!-- ========== RODAPÉ DO FORMULÁRIO ========== -->
+        <!-- Link para login caso o usuário já tenha conta -->
+        <div class="form-footer">
+            <p>Já tem uma conta?</p>
+            <a href="Login.html">Fazer login</a>
+        </div>
+    </div>
+
+    <!-- ========== RODAPÉ DA PÁGINA ========== -->
+    <footer class="page-footer">
+        <div>
+            <!-- Copyright -->
+            <span>© 2025 DaRoça - Todos os direitos reservados</span>
+            <!-- Links legais e redes sociais -->
+            <div>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+                <!-- Links de redes sociais (abrem em nova aba) -->
+                <a href="#" onclick="window.open('https://instagram.com', '_blank')">Instagram</a>
+                <a href="#" onclick="window.open('https://facebook.com', '_blank')">Facebook</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

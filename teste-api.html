@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste da API - Da Roça</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+        }
+        
+        .test-section h2 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste da API - Da Roça</h1>
+        <div id="status" class="status">Verificando conexão...</div>
+        
+        <!-- Teste de Produtos -->
+        <div class="test-section">
+            <h2>📦 Produtos</h2>
+            <button onclick="testarListarProdutos()">Listar Produtos</button>
+            <div id="produtos-result" class="result" style="display: none;"></div>
+        </div>
+        
+        <!-- Teste de Cadastro de Cliente -->
+        <div class="test-section">
+            <h2>👤 Cadastrar Cliente</h2>
+            <div class="form-group">
+                <label>CPF (11 dígitos):</label>
+                <input type="text" id="cadastro-cpf" placeholder="12345678901" maxlength="11">
+                
+                <label>Nome:</label>
+                <input type="text" id="cadastro-nome" placeholder="João Silva">
+                
+                <label>Telefone (mínimo 9 dígitos):</label>
+                <input type="text" id="cadastro-telefone" placeholder="987654321">
+                
+                <label>Email:</label>
+                <input type="email" id="cadastro-email" placeholder="joao@email.com">
+                
+                <label>Senha:</label>
+                <input type="password" id="cadastro-senha" placeholder="senha123">
+            </div>
+            <button onclick="testarCadastrarCliente()">Cadastrar Cliente</button>
+            <div id="cadastro-result" class="result" style="display: none;"></div>
+        </div>
+        
+        <!-- Teste de Atualização de Cliente -->
+        <div class="test-section">
+            <h2>✏️ Atualizar Cliente</h2>
+            <div class="form-group">
+                <label>CPF do cliente a atualizar:</label>
+                <input type="text" id="atualizar-cpf" placeholder="12345678901" maxlength="11">
+                
+                <label>Nome:</label>
+                <input type="text" id="atualizar-nome" placeholder="João Silva Atualizado">
+                
+                <label>Telefone:</label>
+                <input type="text" id="atualizar-telefone" placeholder="987654321">
+                
+                <label>Email:</label>
+                <input type="email" id="atualizar-email" placeholder="joao.novo@email.com">
+                
+                <label>Senha:</label>
+                <input type="password" id="atualizar-senha" placeholder="novaSenha123">
+            </div>
+            <button onclick="testarAtualizarCliente()">Atualizar Cliente</button>
+            <div id="atualizar-result" class="result" style="display: none;"></div>
+        </div>
+        
+        <!-- Teste de Exclusão de Cliente -->
+        <div class="test-section">
+            <h2>🗑️ Excluir Cliente</h2>
+            <div class="form-group">
+                <label>CPF do cliente a excluir:</label>
+                <input type="text" id="excluir-cpf" placeholder="12345678901" maxlength="11">
+            </div>
+            <button onclick="testarExcluirCliente()">Excluir Cliente</button>
+            <div id="excluir-result" class="result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        const API_URL = 'http://localhost:8090/daroca';
+        
+        // Verificar conexão ao carregar
+        window.onload = async function() {
+            try {
+                const response = await fetch('http://localhost:8090/');
+                const data = await response.json();
+                document.getElementById('status').className = 'status success';
+                document.getElementById('status').textContent = '✅ API Conectada: ' + data.mensagem;
+            } catch (error) {
+                document.getElementById('status').className = 'status error';
+                document.getElementById('status').textContent = '❌ Erro ao conectar na API. Certifique-se de que o servidor está rodando.';
+            }
+        };
+        
+        async function testarListarProdutos() {
+            const resultDiv = document.getElementById('produtos-result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Carregando...';
+            
+            try {
+                const response = await fetch(`${API_URL}/produtos`);
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = 'Erro: ' + error.message;
+            }
+        }
+        
+        async function testarCadastrarCliente() {
+            const resultDiv = document.getElementById('cadastro-result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Enviando...';
+            
+            const cliente = {
+                cpf: document.getElementById('cadastro-cpf').value,
+                nome: document.getElementById('cadastro-nome').value,
+                telefone: document.getElementById('cadastro-telefone').value,
+                email: document.getElementById('cadastro-email').value,
+                senha: document.getElementById('cadastro-senha').value
+            };
+            
+            try {
+                const response = await fetch(`${API_URL}/clientes`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(cliente)
+                });
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = 'Erro: ' + error.message;
+            }
+        }
+        
+        async function testarAtualizarCliente() {
+            const resultDiv = document.getElementById('atualizar-result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Enviando...';
+            
+            const cpf = document.getElementById('atualizar-cpf').value;
+            const cliente = {
+                nome: document.getElementById('atualizar-nome').value,
+                telefone: document.getElementById('atualizar-telefone').value,
+                email: document.getElementById('atualizar-email').value,
+                senha: document.getElementById('atualizar-senha').value
+            };
+            
+            try {
+                const response = await fetch(`${API_URL}/clientes/${cpf}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(cliente)
+                });
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = 'Erro: ' + error.message;
+            }
+        }
+        
+        async function testarExcluirCliente() {
+            const resultDiv = document.getElementById('excluir-result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Enviando...';
+            
+            const cpf = document.getElementById('excluir-cpf').value;
+            
+            try {
+                const response = await fetch(`${API_URL}/clientes/${cpf}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = 'Erro: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
