@@ -1,5 +1,7 @@
 # Projeto Integrado - DaRoça
 
+LINK: https://omoshito.github.io/da-roca/
+
 ## 🌿 Descrição do Projeto
 O **DaRoça** é uma landing page desenvolvida para uma empresa fictícia que oferece um serviço de assinatura de produtos frescos e naturais, entregues diretamente do campo à mesa do cliente.  
 
