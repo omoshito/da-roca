@@ -1,71 +1,15 @@
 // produto-detalhes.js
 
-// Mock data (same as catalogo.js)
-const mockProducts = [
-    {
-        id: 1,
-        name: "Alface Manteiga",
-        description: "Alface fresca e orgânica, ideal para saladas e sanduíches",
-        price: 3.50,
-        image: "../Imagens/Alface Manteiga.webp",
-        category: "vegetais"
-    },
-    {
-        id: 2,
-        name: "Banana Nanica",
-        description: "Bananas doces e nutritivas, fonte de potássio",
-        price: 4.20,
-        image: "../Imagens/Banana Nanica.jpg",
-        category: "frutas"
-    },
-    {
-        id: 3,
-        name: "Cenoura Orgânica",
-        description: "Cenouras orgânicas, crocantes e doces",
-        price: 2.80,
-        image: "../Imagens/cenoura.avif",
-        category: "vegetais"
-    },
-    {
-        id: 4,
-        name: "Feijão Preto",
-        description: "Feijão preto de alta qualidade, rico em proteínas",
-        price: 7.50,
-        image: "../Imagens/Feijão Preto.webp",
-        category: "graos"
-    },
-    {
-        id: 5,
-        name: "Mix de Berries",
-        description: "Mistura de mirtilo e framboesa, antioxidantes naturais",
-        price: 12.50,
-        image: "../Imagens/Mirtilo e Framboesa.avif",
-        category: "frutas"
-    },
-    {
-        id: 6,
-        name: "Morango Orgânico",
-        description: "Morangos orgânicos, doces e suculentos",
-        price: 8.90,
-        image: "../Imagens/Morango Orgânico.webp",
-        category: "frutas"
-    },
-    {
-        id: 7,
-        name: "Queijo Minas",
-        description: "Queijo minas fresco, sabor tradicional",
-        price: 15.80,
-        image: "../Imagens/Queijo Minas.jpg",
-        category: "laticinios"
-    },
-    {
-        id: 8,
-        name: "Tomate Orgânico",
-        description: "Tomates orgânicos, perfeitos para saladas e molhos",
-        price: 5.60,
-        image: "../Imagens/Tomate Orgânico.jpg",
-        category: "vegetais"
-    }
+// Fallback (mock) caso a API não responda
+const fallbackProducts = [
+    { id: 1, nome: "Alface Manteiga", descricao: "Alface fresca e orgânica, ideal para saladas e sanduíches", preco: 3.50, imagem: "../Imagens/Alface Manteiga.webp", categoria: "vegetais" },
+    { id: 2, nome: "Banana Nanica", descricao: "Bananas doces e nutritivas, fonte de potássio", preco: 4.20, imagem: "../Imagens/Banana Nanica.jpg", categoria: "frutas" },
+    { id: 3, nome: "Cenoura Orgânica", descricao: "Cenouras orgânicas, crocantes e doces", preco: 2.80, imagem: "../Imagens/cenoura.avif", categoria: "vegetais" },
+    { id: 4, nome: "Feijão Preto", descricao: "Feijão preto de alta qualidade, rico em proteínas", preco: 7.50, imagem: "../Imagens/Feijão Preto.webp", categoria: "graos" },
+    { id: 5, nome: "Mix de Berries", descricao: "Mistura de mirtilo e framboesa, antioxidantes naturais", preco: 12.50, imagem: "../Imagens/Mirtilo e Framboesa.avif", categoria: "frutas" },
+    { id: 6, nome: "Morango Orgânico", descricao: "Morangos orgânicos, doces e suculentos", preco: 8.90, imagem: "../Imagens/Morango Orgânico.webp", categoria: "frutas" },
+    { id: 7, nome: "Queijo Minas", descricao: "Queijo minas fresco, sabor tradicional", preco: 15.80, imagem: "../Imagens/Queijo Minas.jpg", categoria: "laticinios" },
+    { id: 8, nome: "Tomate Orgânico", descricao: "Tomates orgânicos, perfeitos para saladas e molhos", preco: 5.60, imagem: "../Imagens/Tomate Orgânico.jpg", categoria: "vegetais" }
 ];
 
 // Cart management
@@ -80,9 +24,9 @@ const cartManager = {
         } else {
             cart.push({
                 id: product.id,
-                nome: product.name,
-                preco: product.price,
-                imagem: product.image,
+                nome: product.nome,
+                preco: Number(product.preco || 0),
+                imagem: product.imagem,
                 quantidade: 1
             });
         }
@@ -127,17 +71,32 @@ const cartManager = {
 class ProductDetails {
     constructor() {
         this.currentProduct = null;
-        this.products = mockProducts;
+        this.products = [];
         this.init();
     }
 
-    init() {
-        this.loadProduct();
+    async init() {
+        await this.loadProducts();
+        this.loadProductFromUrl();
         this.setupEventListeners();
         this.updateCartDisplay();
     }
 
-    loadProduct() {
+    async loadProducts() {
+        try {
+            if (typeof ProductAPI !== 'undefined') {
+                this.products = await ProductAPI.getProducts();
+            }
+        } catch (e) {
+            console.error('Erro ao carregar produtos da API, usando fallback.', e);
+        } finally {
+            if (!Array.isArray(this.products) || this.products.length === 0) {
+                this.products = fallbackProducts;
+            }
+        }
+    }
+
+    loadProductFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
 
@@ -163,17 +122,17 @@ class ProductDetails {
         container.innerHTML = `
             <div class="product-content">
                 <div class="product-image-section">
-                    <img src="${this.currentProduct.image}" alt="${this.currentProduct.name}" class="product-main-image">
-                    <div class="product-badge">${this.currentProduct.category}</div>
+                    <img src="${this.currentProduct.imagem}" alt="${this.currentProduct.nome}" class="product-main-image">
+                    <div class="product-badge">${this.currentProduct.categoria}</div>
                 </div>
                 
                 <div class="product-info-section">
-                    <div class="product-category">${this.currentProduct.category}</div>
-                    <h1>${this.currentProduct.name}</h1>
-                    <div class="product-price">R$ ${this.currentProduct.price.toFixed(2).replace('.', ',')}</div>
+                    <div class="product-category">${this.currentProduct.categoria}</div>
+                    <h1>${this.currentProduct.nome}</h1>
+                    <div class="product-price">R$ ${Number(this.currentProduct.preco || 0).toFixed(2).replace('.', ',')}</div>
                     
                     <div class="product-description">
-                        <p>${this.currentProduct.description}</p>
+                        <p>${this.currentProduct.descricao || ''}</p>
                     </div>
                     
                     <div class="product-features">
@@ -204,7 +163,7 @@ class ProductDetails {
 
     loadRelatedProducts() {
         const relatedProducts = this.products
-            .filter(p => p.category === this.currentProduct.category && p.id !== this.currentProduct.id)
+            .filter(p => p.categoria === this.currentProduct.categoria && p.id !== this.currentProduct.id)
             .slice(0, 3);
 
         const container = document.getElementById('related-products');
@@ -216,11 +175,11 @@ class ProductDetails {
 
         container.innerHTML = relatedProducts.map(product => `
             <div class="related-product-card" onclick="productDetails.goToProduct(${product.id})">
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.imagem}" alt="${product.nome}">
                 <div class="related-card-info">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <div class="related-card-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
+                    <h3>${product.nome}</h3>
+                    <p>${product.descricao || ''}</p>
+                    <div class="related-card-price">R$ ${Number(product.preco || 0).toFixed(2).replace('.', ',')}</div>
                 </div>
             </div>
         `).join('');
@@ -236,12 +195,14 @@ class ProductDetails {
 
         cartManager.addItem(product);
         this.updateCartDisplay();
-        this.showNotification(`${product.name} adicionado ao carrinho!`);
+        this.showNotification(`${product.nome} adicionado ao carrinho!`);
     }
 
     updateCartDisplay() {
         const cartCount = document.getElementById('cart-count');
         const totalItems = cartManager.getTotalItems();
+
+        if (!cartCount) return;
 
         if (totalItems > 0) {
             cartCount.textContent = totalItems;
@@ -253,6 +214,7 @@ class ProductDetails {
 
     showNotification(message) {
         const notification = document.getElementById('cart-notification');
+        if (!notification) return;
         notification.textContent = message;
         notification.classList.add('show');
 
@@ -281,25 +243,31 @@ class ProductDetails {
         const cartModal = document.getElementById('cart-modal');
         const closeCart = document.querySelector('.close-cart');
 
-        cartBtn.addEventListener('click', () => {
-            this.openCartModal();
-        });
+        if (cartBtn) {
+            cartBtn.addEventListener('click', () => {
+                this.openCartModal();
+            });
+        }
 
-        closeCart.addEventListener('click', () => {
-            cartModal.style.display = 'none';
-        });
-
-        cartModal.addEventListener('click', (e) => {
-            if (e.target === cartModal) {
+        if (closeCart && cartModal) {
+            closeCart.addEventListener('click', () => {
                 cartModal.style.display = 'none';
-            }
-        });
+            });
+
+            cartModal.addEventListener('click', (e) => {
+                if (e.target === cartModal) {
+                    cartModal.style.display = 'none';
+                }
+            });
+        }
 
         // Checkout button
         const checkoutBtn = document.querySelector('.checkout-btn');
-        checkoutBtn.addEventListener('click', () => {
-            alert('Funcionalidade de checkout em desenvolvimento!');
-        });
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', () => {
+                alert('Funcionalidade de checkout em desenvolvimento!');
+            });
+        }
     }
 
     openCartModal() {
@@ -308,6 +276,8 @@ class ProductDetails {
         const cartTotal = document.getElementById('cart-total');
 
         const items = cartManager.getItems();
+
+        if (!cartItems || !cartTotal || !modal) return;
 
         if (items.length === 0) {
             cartItems.innerHTML = `
