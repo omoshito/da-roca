@@ -180,7 +180,27 @@ body {
     background: #f8f9fa;
 }
 
+.input-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
 .input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(79, 193, 110, 0.1);
+    transform: translateY(-1px);
+}
+
+.input-group select:focus {
     outline: none;
     border-color: var(--accent-color);
     background: var(--white);
