@@ -14,93 +14,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTotal = document.getElementById('cart-total'); // Total do carrinho
     const cartCount = document.getElementById('cart-count'); // Contador de itens no botão do carrinho
 
-    // Dados mockados de produtos - substitua por uma API real futuramente
+    // Fallback local (mock) — usado apenas se a API não retornar produtos
     const mockProducts = [
-        {
-            id: 1,
-            nome: "Alface Manteiga",
-            descricao: "Alface fresca e crocante, ideal para saladas",
-            valor: "R$ 3,50",
-            preco: 3.50,
-            imagem: "../Imagens/Alface Manteiga.webp",
-            categoria: "vegetais"
-        },
-        {
-            id: 2,
-            nome: "Banana Nanica",
-            descricao: "Bananas doces e nutritivas, perfeitas para vitaminas",
-            valor: "R$ 4,80",
-            preco: 4.80,
-            imagem: "../Imagens/Banana Nanica.jpg",
-            categoria: "frutas"
-        },
-        {
-            id: 3,
-            nome: "Cenoura",
-            descricao: "Cenouras frescas, ricas em vitamina A",
-            valor: "R$ 2,90",
-            preco: 2.90,
-            imagem: "../Imagens/cenoura.avif",
-            categoria: "vegetais"
-        },
-        {
-            id: 4,
-            nome: "Feijão Preto",
-            descricao: "Feijão preto de alta qualidade, rico em proteínas",
-            valor: "R$ 7,20",
-            preco: 7.20,
-            imagem: "../Imagens/Feijão Preto.webp",
-            categoria: "graos"
-        },
-        {
-            id: 5,
-            nome: "Mix de Berries",
-            descricao: "Mistura de mirtilo e framboesa, antioxidantes naturais",
-            valor: "R$ 12,50",
-            preco: 12.50,
-            imagem: "../Imagens/Mirtilo e Framboesa.avif",
-            categoria: "frutas"
-        },
-        {
-            id: 6,
-            nome: "Morango Orgânico",
-            descricao: "Morangos orgânicos, doces e suculentos",
-            valor: "R$ 8,90",
-            preco: 8.90,
-            imagem: "../Imagens/Morango Orgânico.webp",
-            categoria: "frutas"
-        },
-        {
-            id: 7,
-            nome: "Queijo Minas",
-            descricao: "Queijo minas fresco, sabor tradicional",
-            valor: "R$ 15,80",
-            preco: 15.80,
-            imagem: "../Imagens/Queijo Minas.jpg",
-            categoria: "laticinios"
-        },
-        {
-            id: 8,
-            nome: "Tomate Orgânico",
-            descricao: "Tomates orgânicos, perfeitos para saladas e molhos",
-            valor: "R$ 5,60",
-            preco: 5.60,
-            imagem: "../Imagens/Tomate Orgânico.jpg",
-            categoria: "vegetais"
-        }
+        { id: 1, nome: "Alface Manteiga", descricao: "Alface fresca e crocante, ideal para saladas", valor: "R$ 3,50", preco: 3.50, imagem: "../Imagens/Alface Manteiga.webp", categoria: "vegetais" },
+        { id: 2, nome: "Banana Nanica", descricao: "Bananas doces e nutritivas, perfeitas para vitaminas", valor: "R$ 4,80", preco: 4.80, imagem: "../Imagens/Banana Nanica.jpg", categoria: "frutas" },
+        { id: 3, nome: "Cenoura", descricao: "Cenouras frescas, ricas em vitamina A", valor: "R$ 2,90", preco: 2.90, imagem: "../Imagens/cenoura.avif", categoria: "vegetais" },
+        { id: 4, nome: "Feijão Preto", descricao: "Feijão preto de alta qualidade, rico em proteínas", valor: "R$ 7,20", preco: 7.20, imagem: "../Imagens/Feijão Preto.webp", categoria: "graos" },
+        { id: 5, nome: "Mix de Berries", descricao: "Mistura de mirtilo e framboesa, antioxidantes naturais", valor: "R$ 12,50", preco: 12.50, imagem: "../Imagens/Mirtilo e Framboesa.avif", categoria: "frutas" },
+        { id: 6, nome: "Morango Orgânico", descricao: "Morangos orgânicos, doces e suculentos", valor: "R$ 8,90", preco: 8.90, imagem: "../Imagens/Morango Orgânico.webp", categoria: "frutas" },
+        { id: 7, nome: "Queijo Minas", descricao: "Queijo minas fresco, sabor tradicional", valor: "R$ 15,80", preco: 15.80, imagem: "../Imagens/Queijo Minas.jpg", categoria: "laticinios" },
+        { id: 8, nome: "Tomate Orgânico", descricao: "Tomates orgânicos, perfeitos para saladas e molhos", valor: "R$ 5,60", preco: 5.60, imagem: "../Imagens/Tomate Orgânico.jpg", categoria: "vegetais" }
     ];
 
-    // Inicializa o array de produtos com os dados mockados
-    // Renderiza os produtos na tela e atualiza o display do carrinho
-    products = mockProducts;
-    renderProducts(products);
-    updateCartDisplay();
+    // Inicialização assíncrona: busca produtos na API real com fallback para mocks
+    (async function init() {
+        try {
+            if (typeof ProductAPI !== 'undefined') {
+                products = await ProductAPI.getProducts();
+            }
+        } catch (e) {
+            console.error('Erro carregando produtos da API, usando mocks.', e);
+        } finally {
+            if (!Array.isArray(products) || products.length === 0) {
+                products = mockProducts;
+            }
+            if (productList) renderProducts(products);
+            updateCartDisplay();
+        }
+    })();
 
     /**
      * Renderiza os produtos filtrados na grade de produtos
      * @param {Array} filteredProducts - Array de produtos a serem exibidos
      */
     function renderProducts(filteredProducts) {
+        if (!productList) return;
         productList.innerHTML = '';
 
         // Se não houver produtos, exibe mensagem de "nenhum produto encontrado"
@@ -118,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${product.imagem}" alt="${product.nome}" loading="lazy">
                 <div class="product-info">
                     <h3>${product.nome}</h3>
-                    <p>${product.descricao}</p>
-                    <div class="product-price">${product.valor} / kg</div>
+                    <p>${product.descricao || ''}</p>
+                    <div class="product-price">${product.valor || `R$ ${Number(product.preco||0).toFixed(2).replace('.', ',')}`} / kg</div>
                     <div class="product-actions">
                         <button class="add-to-cart-btn" data-id="${product.id}">
                             <i class='bx bx-cart-add'></i> Adicionar
@@ -132,30 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             productList.appendChild(productCard);
         });
-
-        // Adiciona event listeners aos botões dos produtos (adicionar ao carrinho e detalhes)
-        addProductEventListeners();
-    }
-
-    /**
-     * Adiciona event listeners aos botões de produtos
-     */
-    function addProductEventListeners() {
-        // Botões de adicionar ao carrinho
-        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const productId = parseInt(e.target.closest('.add-to-cart-btn').dataset.id);
-                addToCart(productId);
-            });
-        });
-
-        // Botões de detalhes
-        document.querySelectorAll('.details-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const productId = parseInt(e.target.closest('.details-btn').dataset.id);
-                showProductDetails(productId);
-            });
-        });
     }
 
     // Event listener para botões de filtro de categoria (Todos, Frutas, Vegetais, etc.)
@@ -167,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Obtém a categoria selecionada e o termo de busca atual
             const filterCategory = btn.dataset.filter;
-            const searchTerm = searchInput.value.toLowerCase();
+            const searchTerm = (searchInput?.value || '').toLowerCase();
 
             // Filtra e renderiza os produtos
             filterAndSearchProducts(filterCategory, searchTerm);
@@ -175,13 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Event listener para o campo de busca (filtra produtos enquanto o usuário digita)
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
-        // Obtém a categoria ativa no momento
-        const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            // Obtém a categoria ativa no momento
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
 
-        filterAndSearchProducts(activeFilter, searchTerm);
-    });
+            filterAndSearchProducts(activeFilter, searchTerm);
+        });
+    }
 
     /**
      * Função combinada que filtra produtos por categoria E termo de busca
@@ -194,8 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const matchesCategory = category === 'all' || product.categoria === category;
             // Verifica se o produto corresponde ao termo de busca (nome ou descrição)
             const matchesSearch = searchTerm === '' ||
-                product.nome.toLowerCase().includes(searchTerm) ||
-                product.descricao.toLowerCase().includes(searchTerm);
+                (product.nome || '').toLowerCase().includes(searchTerm) ||
+                (product.descricao || '').toLowerCase().includes(searchTerm);
 
             // Retorna true apenas se ambas as condições forem satisfeitas
             return matchesCategory && matchesSearch;
@@ -223,8 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cart.push({
                 id: product.id,
                 nome: product.nome,
-                preco: product.preco,
-                valor: product.valor,
+                preco: Number(product.preco || 0),
+                valor: product.valor || `R$ ${Number(product.preco||0).toFixed(2).replace('.', ',')}`,
                 imagem: product.imagem,
                 quantidade: 1
             });
@@ -281,6 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCartDisplay() {
         // Soma total de todos os itens (considerando quantidades)
         const totalItems = cart.reduce((sum, item) => sum + item.quantidade, 0);
+        if (!cartCount) return;
+
         cartCount.textContent = totalItems;
 
         // Mostra ou esconde o contador conforme há itens ou não
@@ -303,6 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * Renderiza os itens do carrinho no modal
      */
     function renderCartItems() {
+        if (!cartItemsContainer || !cartTotal) return;
+
         // Se o carrinho estiver vazio, exibe mensagem
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = '<p class="empty-cart">Seu carrinho está vazio</p>';
@@ -335,14 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Exibe os detalhes de um produto em um alert (temporário)
+     * Redireciona para a página de detalhes do produto
      * @param {number} productId - ID do produto
      */
-    function showProductDetails(productId) {
-        const product = products.find(p => p.id === productId);
-        if (!product) return;
-
-        alert(`${product.nome}\n\n${product.descricao}\n\nPreço: ${product.valor}/kg`);
+    function goToProductDetails(productId) {
+        window.location.href = `Produto_detalhes.html?id=${productId}`;
     }
 
     /**
@@ -370,51 +297,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event listener delegado para cliques nos botões dos produtos
-    productList.addEventListener('click', (e) => {
-        // Verifica se o clique foi no botão de adicionar ao carrinho
-        if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
-            const btn = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
-            const productId = parseInt(btn.dataset.id);
-            addToCart(productId);
-        }
+    if (productList) {
+        productList.addEventListener('click', (e) => {
+            // Verifica se o clique foi no botão de adicionar ao carrinho
+            if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+                const btn = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
+                const productId = parseInt(btn.dataset.id);
+                addToCart(productId);
+            }
 
-        // Verifica se o clique foi no botão de detalhes
-        if (e.target.classList.contains('details-btn') || e.target.closest('.details-btn')) {
-            const btn = e.target.classList.contains('details-btn') ? e.target : e.target.closest('.details-btn');
-            const productId = parseInt(btn.dataset.id);
-            goToProductDetails(productId);
-        }
-    });
+            // Verifica se o clique foi no botão de detalhes
+            if (e.target.classList.contains('details-btn') || e.target.closest('.details-btn')) {
+                const btn = e.target.classList.contains('details-btn') ? e.target : e.target.closest('.details-btn');
+                const productId = parseInt(btn.dataset.id);
+                goToProductDetails(productId);
+            }
+        });
+    }
 
     // Event listener para abrir o modal do carrinho
-    document.getElementById('cart-btn').addEventListener('click', () => {
-        cartModal.style.display = 'flex';
-        renderCartItems();
-    });
+    const cartBtn = document.getElementById('cart-btn');
+    if (cartBtn && cartModal) {
+        cartBtn.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+            renderCartItems();
+        });
+    }
 
     // Event listener para fechar o modal do carrinho
-    document.getElementById('close-cart').addEventListener('click', () => {
-        cartModal.style.display = 'none';
-    });
+    const closeCartBtn = document.getElementById('close-cart');
+    if (closeCartBtn && cartModal) {
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+    }
 
     // Event listener para botão de finalizar compra (checkout)
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-        if (cart.length === 0) {
-            alert('Seu carrinho está vazio!');
-            return;
-        }
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
 
-        // Placeholder para futura integração com sistema de pagamento
-        alert('Funcionalidade de checkout em desenvolvimento!');
-        // Aqui você implementaria a integração com sistema de pagamento
-    });
+            // Placeholder para futura integração com sistema de pagamento
+            alert('Funcionalidade de checkout em desenvolvimento!');
+            // Aqui você implementaria a integração com sistema de pagamento
+        });
+    }
 
     // Fecha o modal ao clicar fora dele (no fundo escuro)
-    cartModal.addEventListener('click', (e) => {
-        if (e.target === cartModal) {
-            cartModal.style.display = 'none';
-        }
-    });
+    if (cartModal) {
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+    }
 
     // Torna as funções globais para permitir chamadas inline nos botões HTML
     window.updateCartQuantity = updateCartQuantity;
