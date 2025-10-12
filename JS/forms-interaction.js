@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Efeitos nos inputs
-    const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="date"]');
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="tel"], select');
     inputs.forEach(input => {
         // Efeito de foco
         input.addEventListener('focus', function () {
