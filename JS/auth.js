@@ -2,6 +2,30 @@
 class AuthAPI {
     static API_URL = 'http://localhost:8090/daroca';
 
+    // Login do cliente
+    static async login(email, senha) {
+        try {
+            const response = await fetch(`${this.API_URL}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.mensagem || 'Credenciais inválidas');
+            }
+
+            // Salva sessão (ajuste conforme payload retornado pelo backend)
+            this.salvarSessao(data);
+            return data;
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            throw error;
+        }
+    }
+
     // Cadastrar novo cliente
     static async cadastrarCliente(clienteData) {
         try {
@@ -89,6 +113,11 @@ class AuthAPI {
     // Verificar se está logado
     static estaLogado() {
         return this.obterSessao() !== null;
+    }
+
+    // Logout conveniente
+    static logout() {
+        this.limparSessao();
     }
 }
 
