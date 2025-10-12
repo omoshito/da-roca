@@ -66,21 +66,52 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function cadastrarCliente() {
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const idade = document.getElementById('idade').value.trim();
+    const cpf = document.getElementById('cpf').value.trim();
+    const cep = document.getElementById('cep').value.trim();
+    const logradouro = document.getElementById('logradouro').value.trim();
+    const numero = document.getElementById('numero').value.trim();
+    const complemento = document.getElementById('complemento').value.trim();
+    const bairro = document.getElementById('bairro').value.trim();
+    const cidade = document.getElementById('cidade').value.trim();
+    const estado = document.getElementById('estado').value.trim();
+    const senha = document.getElementById('senha').value;
+    const confsenha = document.getElementById('confirmar-senha').value;
 
-    const nome = document.getElementById('nome').value
-    const email = document.getElementById('email').value
-    const telefone = document.getElementById('telefone').value
-    const idade = document.getElementById('idade').value
-    const cpf = document.getElementById('cpf').value
-    const cep = document.getElementById('cep').value
-    const logradouro = document.getElementById('logradouro').value
-    const numero = document.getElementById('numero').value
-    const complemento = document.getElementById('complemento').value
-    const bairro = document.getElementById('bairro').value
-    const cidade = document.getElementById('cidade').value
-    const estado = document.getElementById('estado').value
-    const senha = document.getElementById('senha').value
-    const confsenha = document.getElementById('confirmar-senha').value
+    // Valida campos obrigatórios mínimos (já tem required no HTML, mas reforça)
+    const camposObrigatorios = [
+        { nome: 'Nome', valor: nome },
+        { nome: 'E-mail', valor: email },
+        { nome: 'CPF', valor: cpf },
+        { nome: 'Data de nascimento', valor: idade },
+        { nome: 'Logradouro', valor: logradouro },
+        { nome: 'Número', valor: numero },
+        { nome: 'Bairro', valor: bairro },
+        { nome: 'Cidade', valor: cidade },
+        { nome: 'Estado', valor: estado },
+        { nome: 'Senha', valor: senha },
+        { nome: 'Confirmar senha', valor: confsenha },
+    ];
+
+    const faltando = camposObrigatorios.find(c => !c.valor);
+    if (faltando) {
+        alert(`Por favor, preencha o campo: ${faltando.nome}`);
+        return;
+    }
+
+    // Senhas
+    if (senha.length < 6) {
+        alert('A senha deve ter pelo menos 6 caracteres.');
+        return;
+    }
+
+    if (senha !== confsenha) {
+        alert('As senhas não coincidem.');
+        return;
+    }
 
     // Validação de CPF
     if (!validarCPF(cpf)) {
@@ -107,24 +138,39 @@ async function cadastrarCliente() {
         senha: senha
     };
 
-        try {
-            const response = await fetch('http://localhost:8090/daroca/clientes', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(clienteData)
-            });
-            
-            const data = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(data.mensagem || 'Erro ao cadastrar cliente');
-            }
-            
-            return data;
-        } catch (error) {
-            console.error('Erro ao cadastrar cliente:', error);
-            throw error;
+    try {
+        const botao = document.querySelector('.btn-primary');
+        if (botao) {
+            botao.textContent = 'Enviando...';
+            botao.disabled = true;
+        }
+
+        const response = await fetch('http://localhost:8090/daroca/clientes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(clienteData)
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.mensagem || 'Erro ao cadastrar cliente');
+        }
+
+        alert('Cadastro realizado com sucesso! Você será redirecionado para o login.');
+        window.location.href = 'Login.html';
+        return data;
+    } catch (error) {
+        console.error('Erro ao cadastrar cliente:', error);
+        alert(`Erro ao cadastrar: ${error.message}`);
+        throw error;
+    } finally {
+        const botao = document.querySelector('.btn-primary');
+        if (botao) {
+            botao.textContent = 'Criar conta';
+            botao.disabled = false;
         }
     }
+}
