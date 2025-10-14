@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartCount = document.getElementById('cart-count'); // Contador de itens no botão do carrinho
 
     // Fallback local (mock) — usado apenas se a API não retornar produtos
-    const mockProducts = [
+    /*const mockProducts = [
         { id: 1, nome: "Alface Manteiga", descricao: "Alface fresca e crocante, ideal para saladas", valor: "R$ 3,50", preco: 3.50, imagem: "../Imagens/Alface Manteiga.webp", categoria: "vegetais" },
         { id: 2, nome: "Banana Nanica", descricao: "Bananas doces e nutritivas, perfeitas para vitaminas", valor: "R$ 4,80", preco: 4.80, imagem: "../Imagens/Banana Nanica.jpg", categoria: "frutas" },
         { id: 3, nome: "Cenoura", descricao: "Cenouras frescas, ricas em vitamina A", valor: "R$ 2,90", preco: 2.90, imagem: "../Imagens/cenoura.avif", categoria: "vegetais" },
@@ -24,14 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 6, nome: "Morango Orgânico", descricao: "Morangos orgânicos, doces e suculentos", valor: "R$ 8,90", preco: 8.90, imagem: "../Imagens/Morango Orgânico.webp", categoria: "frutas" },
         { id: 7, nome: "Queijo Minas", descricao: "Queijo minas fresco, sabor tradicional", valor: "R$ 15,80", preco: 15.80, imagem: "../Imagens/Queijo Minas.jpg", categoria: "laticinios" },
         { id: 8, nome: "Tomate Orgânico", descricao: "Tomates orgânicos, perfeitos para saladas e molhos", valor: "R$ 5,60", preco: 5.60, imagem: "../Imagens/Tomate Orgânico.jpg", categoria: "vegetais" }
-    ];
+    ];*/
 
     // Inicialização assíncrona: busca produtos na API real com fallback para mocks
     (async function init() {
         try {
-            if (typeof ProductAPI !== 'undefined') {
-                products = await ProductAPI.getProducts();
-            }
+           const resposta = await fetch('http://localhost:8090/daroca/produtos')
+           if (!resposta.ok) throw new Error ("Erro HTTP: ")
+           products = await resposta.json()
+           console.log(resposta.json())
+
         } catch (e) {
             console.error('Erro carregando produtos da API, usando mocks.', e);
         } finally {
