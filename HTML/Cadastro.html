@@ -1,242 +1,67 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
-    <!-- Define a codificação de caracteres para UTF-8 -->
     <meta charset="UTF-8">
-    <!-- Configuração para responsividade em dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Título exibido na aba do navegador -->
-    <title>Cadastro - DaRoça</title>
-
-    <!-- CSS customizado para página de cadastro -->
-    <link rel="stylesheet" href="../CSS/cadastro.css">
-    <!-- Biblioteca de ícones Boxicons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Script de validação de formulário (defer = carrega após HTML) -->
-    <script src="../JS/forms-interaction.js" defer></script>
+    <title>Cadastro - Da Roça</title>
+    <link rel="stylesheet" href="../css/style_cadastro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- ========== BARRA DE NAVEGAÇÃO ========== -->
-    <!-- Navegação principal fixa no topo -->
-    <nav class="top-nav">
-        <div class="nav-container">
-            <!-- Logo e marca -->
-            <div class="nav-brand">
-                <a href="Pagina_inicio.html">
-                    <img src="../Imagens/daRoca.png" alt="DaRoça Logo" class="logo">
-                    <span class="brand-name">DaRoça</span>
-                </a>
-            </div>
-            <!-- Menu de navegação -->
-            <ul class="nav-menu">
-                <li><a href="Pagina_inicio.html">Início</a></li>
-                <li><a href="Catalogo.html">Catálogo</a></li>
-                <li><a href="Pagina_inicio.html#sobre">Sobre</a></li>
-                <!-- Link ativo (página atual) -->
-                <li><a href="Cadastro.html" class="active">Cadastro</a></li>
-                <li><a href="Login.html">Login</a></li>
+   <header>
+        <div class="logo">
+            <a href="Inicio.html"><img src="../Imagens/daRoca.png" alt="Logo Da Roça"></a>
+            <h1>DaRoça</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#" class="active">Produtos</a></li>
+                <li><a href="Inicio.html#sobre">Sobre</a></li>
+                <li><a href="Cadastro.html" class="">Cadastro</a></li>
+                <li><a href="Login.html" id="cad" class="">Login</a></li>
             </ul>
-        </div>
-    </nav>
-
-    <!-- ========== FORMULÁRIO DE CADASTRO ========== -->
-    <!-- Container centralizado do formulário -->
+        </nav>
+    </header>
+    
     <div class="form-container">
-        <!-- ========== CABEÇALHO DO FORMULÁRIO ========== -->
-        <div class="form-header">
-            <h2>Junte-se ao DaRoça!</h2>
-            <p>Crie sua conta e tenha acesso aos melhores produtos frescos</p>
-        </div>
+        <h2 class="lily-script-one-regular">Faça seu cadastro</h2>
+        <form id="form-usuario">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex: João silva">
 
-        <!-- ========== CORPO DO FORMULÁRIO ========== -->
-        <div class="form-body">
-            <!-- Formulário com validação JavaScript -->
-            <form id="form-usuario">
-                <!-- ========== CAMPO NOME COMPLETO ========== -->
-                <div class="input-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
-                    <!-- Span para mensagens de erro (manipulado por JavaScript) -->
-                    <span class="error-message"></span>
-                </div>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email"placeholder="Ex: JusepMoro@gmail.com">
 
-                <!-- ========== LINHA COM E-MAIL E TELEFONE ========== -->
-                <!-- input-row organiza dois campos lado a lado -->
-                <div class="input-row">
-                    <!-- Campo de e-mail -->
-                    <div class="input-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
-                        <span class="error-message"></span>
-                    </div>
+            <label for="idade">Data de nascimento:</label>
+            <input type="date" id="idade" name="idade"placeholder="Ex: 19/09/2000">
 
-                    <!-- Campo de telefone (opcional) -->
-                    <div class="input-group">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999">
-                        <span class="error-message"></span>
-                    </div>
-                </div>
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" placeholder="Ex: R. Culto à Ciência, 177 - Centro, Campinas - SP, 13020-060">
 
-                <!-- ========== CAMPO CPF ========== -->
-                <div class="input-group">
-                    <label for="cpf">CPF</label>
-                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" required>
-                    <span class="error-message"></span>
-                </div>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha"placeholder="Ex: f@ndangos401">
 
-                <!-- ========== LINHA COM DATA DE NASCIMENTO E CEP ========== -->
-                <div class="input-row">
-                    <!-- Campo de data de nascimento -->
-                    <div class="input-group">
-                        <label for="idade">Data de nascimento</label>
-                        <input type="date" id="idade" name="idade" required>
-                        <span class="error-message"></span>
-                    </div>
-
-                    <!-- Campo de CEP (opcional) -->
-                    <div class="input-group">
-                        <label for="cep">CEP</label>
-                        <input type="text" id="cep" name="cep" placeholder="00000-000">
-                        <span class="error-message"></span>
-                    </div>
-                </div>
-
-                <!-- ========== CAMPOS DE ENDEREÇO ========== -->
-                <!-- Logradouro e Número -->
-                <div class="input-row">
-                    <div class="input-group">
-                        <label for="logradouro">Logradouro</label>
-                        <input type="text" id="logradouro" name="logradouro" placeholder="Rua, Avenida..." required>
-                        <span class="error-message"></span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="numero">Número</label>
-                        <input type="text" id="numero" name="numero" placeholder="Nº" required>
-                        <span class="error-message"></span>
-                    </div>
-                </div>
-
-                <!-- Complemento -->
-                <div class="input-group">
-                    <label for="complemento">Complemento (opcional)</label>
-                    <input type="text" id="complemento" name="complemento" placeholder="Apto, Bloco...">
-                    <span class="error-message"></span>
-                </div>
-
-                <!-- Bairro e Cidade -->
-                <div class="input-row">
-                    <div class="input-group">
-                        <label for="bairro">Bairro</label>
-                        <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
-                        <span class="error-message"></span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="cidade">Cidade</label>
-                        <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
-                        <span class="error-message"></span>
-                    </div>
-                </div>
-
-                <!-- Estado -->
-                <div class="input-group">
-                    <label for="estado">Estado</label>
-                    <select id="estado" name="estado" required>
-                        <option value="">Selecione o estado</option>
-                        <option value="AC">Acre</option>
-                        <option value="AL">Alagoas</option>
-                        <option value="AP">Amapá</option>
-                        <option value="AM">Amazonas</option>
-                        <option value="BA">Bahia</option>
-                        <option value="CE">Ceará</option>
-                        <option value="DF">Distrito Federal</option>
-                        <option value="ES">Espírito Santo</option>
-                        <option value="GO">Goiás</option>
-                        <option value="MA">Maranhão</option>
-                        <option value="MT">Mato Grosso</option>
-                        <option value="MS">Mato Grosso do Sul</option>
-                        <option value="MG">Minas Gerais</option>
-                        <option value="PA">Pará</option>
-                        <option value="PB">Paraíba</option>
-                        <option value="PR">Paraná</option>
-                        <option value="PE">Pernambuco</option>
-                        <option value="PI">Piauí</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                        <option value="RN">Rio Grande do Norte</option>
-                        <option value="RS">Rio Grande do Sul</option>
-                        <option value="RO">Rondônia</option>
-                        <option value="RR">Roraima</option>
-                        <option value="SC">Santa Catarina</option>
-                        <option value="SP">São Paulo</option>
-                        <option value="SE">Sergipe</option>
-                        <option value="TO">Tocantins</option>
-                    </select>
-                    <span class="error-message"></span>
-                </div>
-
-                <!-- ========== CAMPO DE SENHA COM INDICADOR DE FORÇA ========== -->
-                <div class="input-group">
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha" placeholder="Digite uma senha segura" required>
-                    <!-- Indicador visual da força da senha (barra colorida) -->
-                    <div class="password-strength">
-                        <div class="password-strength-bar"></div>
-                    </div>
-                    <span class="error-message"></span>
-                </div>
-
-                <!-- ========== CAMPO CONFIRMAR SENHA ========== -->
-                <div class="input-group">
-                    <label for="confirmar-senha">Confirmar senha</label>
-                    <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua senha"
-                        required>
-                    <span class="error-message"></span>
-                </div>
-
-                <!-- ========== TERMOS E CONDIÇÕES ========== -->
-                <!-- Aviso sobre termos de uso e política de privacidade -->
-                <div class="terms-container">
-                    <p>Ao criar uma conta, você concorda com nossos
-                        <a href="#">Termos de Uso</a> e
-                        <a href="#">Política de Privacidade</a>.
-                    </p>
-                </div>
-
-                <!-- Botão de submissão do formulário -->
-                <button type="button" class="btn-primary" onclick="cadastrarCliente()">Criar conta</button>
-            </form>
-        </div>
-
-        <!-- ========== RODAPÉ DO FORMULÁRIO ========== -->
-        <!-- Link para login caso o usuário já tenha conta -->
-        <div class="form-footer">
-            <p>Já tem uma conta?</p>
-            <a href="Login.html">Fazer login</a>
-        </div>
+            <button type="submit">Salvar</button>
+        </form>
     </div>
 
-    <!-- ========== RODAPÉ DA PÁGINA ========== -->
-    <footer class="page-footer">
-        <div>
-            <!-- Copyright -->
-            <span>© 2025 DaRoça - Todos os direitos reservados</span>
-            <!-- Links legais e redes sociais -->
-            <div>
-                <a href="#">Termos de Uso</a>
-                <a href="#">Política de Privacidade</a>
-                <!-- Links de redes sociais (abrem em nova aba) -->
-                <a href="#" onclick="window.open('https://instagram.com', '_blank')">Instagram</a>
-                <a href="#" onclick="window.open('https://facebook.com', '_blank')">Facebook</a>
+    <footer>
+        <div class="footer-left">
+            <span>© 2025 DaRoça</span>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-facebook-square'></i></a>
             </div>
         </div>
+        <div class="footer-right">
+            <a href="#">Termos de Uso</a>
+            <a href="#">Licença</a>
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Política de uso de cookies</a>
+        </div>
     </footer>
-
-    <script src="../JS/cadastro.js"></script>
-
 </body>
-
 </html>

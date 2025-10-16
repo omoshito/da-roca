@@ -5,7 +5,7 @@ async function listar(req, res){
     res.json(produtos)
 }
 
-async function inserir(req, res){
+async function inserir(){
     try{
         const resultado = await darocaModel.cadastrarClientes(req.body)
         res.status(201).json(resultado)
@@ -17,8 +17,8 @@ async function inserir(req, res){
 async function excluir(req, res){
     try{
         const id = req.params.id
-        const resultado = await darocaModel.excluirCliente(id)
-        if(resultado.linhasAfetadas === 1){
+        const linhas = await darocaModel.excluirCliente(id)
+        if(linhas === 1){
             res.json({mensagem : "Cliente excluido com sucesso!"})
         }else{
             res.status(404).json({mensagem : "Cliente não encontrado"})
@@ -29,11 +29,11 @@ async function excluir(req, res){
     }
 }
 async function atualizar(req, res){
-    try{
-        const id = req.params.id
-        const resultado = await darocaModel.atualizarCliente(id, req.body)
+    const id = req.params.id
+    const linhas = await darocaModel.atualizarCliente(id, req.body)
 
-        if(resultado.linhasAfetadas === 1){
+   try{
+        if(linhas === 1){
             res.json({mensagem : "Cliente atualizado com sucesso"})
         } else {
             res.status(404).json({mensagem : "Cliente não encontrado"})

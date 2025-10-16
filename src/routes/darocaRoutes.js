@@ -14,4 +14,4 @@ router.put("/clientes/:id", darocaController.atualizar)
 // Rota para excluir cliente
 router.delete("/clientes/:id", darocaController.excluir)
 
-module.exports = router
+module.exports =  router 
