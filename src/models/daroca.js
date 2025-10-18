@@ -8,28 +8,13 @@ async function listarProdutos(){
 async function cadastrarClientes(cliente){
     const {cpf, nome, telefone, login, senha} = cliente
     try{
-        if (!cpf|| !nome|| !telefone|| !login|| !senha){
-            return {mensagem:"Dados não foram inseridos corretamente"}
-        }
-        if (cpf.length !== 11){
-            return {mensagem : "CPF invalido"}
-        }
-        if (telefone.length !== 9){
-            return {mensagem : "Número de telefone invalido"}
-        }
-        for(let i = 0; i < nome.length; i++){
-            const nomeVerifica = nome[i].charCodeAt(0)
-            if ((nomeVerifica < 65 || nomeVerifica > 122) && nomeVerifica !== 32){
-                return {mensagem : "Nome invalido"}
-            }
-        }
+        const request = new mssql.Request()
+        
+        request.input('cpfCliente', mssql.Int, cpf)
+        request.input('nomeCliente', mssql.VarChar(100), nome)
+        request.input('telefoneCliente', mssql.VarChar(9), telefone)
+        request.input('loginCliente', )
 
-        const insira = await mssql.query(`INSERT INTO daroca.Clientes VALUES (${cpf},'${nome}',${telefone},'${login}',${senha})`)
-        return {
-            sucesso : true,
-            mensagem : "Cliente cadastrado inserido com sucesso",
-            dados : insira.recordset,
-        }
     }
     catch(error){
         return {mensagem : "Não foi possível cadastrar o cliente", erro : error}
