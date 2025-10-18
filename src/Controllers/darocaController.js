@@ -16,8 +16,10 @@ async function inserir(){
 }
 async function excluir(req, res){
     try{
-        const id = req.params.id
-        const linhas = await darocaModel.excluirCliente(id)
+        const cpf = req.params.cpf
+        const {login, senha} = req.body
+
+        const linhas = await darocaModel.excluirCliente(cpf, {login, senha})
         if(linhas === 1){
             res.json({mensagem : "Cliente excluido com sucesso!"})
         }else{
@@ -29,10 +31,10 @@ async function excluir(req, res){
     }
 }
 async function atualizar(req, res){
-    const id = req.params.id
-    const linhas = await darocaModel.atualizarCliente(id, req.body)
-
    try{
+        const cpf = req.params.cpf
+        const linhas = await darocaModel.atualizarCliente(cpf, req.body)
+
         if(linhas === 1){
             res.json({mensagem : "Cliente atualizado com sucesso"})
         } else {
