@@ -5,7 +5,7 @@ const { conectaBD } = require("./config/db")
 const darocaRoutes = require("./routes/darocaRoutes")
 
 const app = express()
-const porta = process.env.PORT || 8090
+const porta = process.env.PORTA || 8090
 
 app.use(cors({origin:"*"}))
 app.use(express.json())
