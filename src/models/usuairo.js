@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt')
-const {mssql} = require("../config/db")
+const { mssql } = require("../config/db")
 
-async function buscar (clientes){
-    try{
-        const {login, senha} = clientes
+async function buscar(clientes) {
+    try {
+        const { login, senha } = clientes
         const request = new mssql.Request()
 
         request.input('loginUser', mssql.VarChar(80), login)
@@ -13,18 +13,18 @@ async function buscar (clientes){
         await request.query(query)
         return buscar.recordset[0]
     }
-    catch(error){
-        return{error: "Não foi possível logar no site"}
+    catch (error) {
+        return { error: "Não foi possível logar no site" }
     }
 }
 
-async function cadastrarClientes(cliente){
-    const {cpf, nome, telefone, endereco, login, senha} = cliente
+async function cadastrarClientes(cliente) {
+    const { cpf, nome, telefone, endereco, login, senha } = cliente
     const senhaHash = await bcrypt.hash(senha, 12)
-    try{
+    try {
         const request = new mssql.Request()
-        
-        request.input('cpfCliente',VarChar(11), cpf)
+
+        request.input('cpfCliente', VarChar(11), cpf)
         request.input('nomeCliente', mssql.VarChar(100), nome)
         request.input('telefoneCliente', mssql.VarChar(9), telefone)
         request.input('enderecoCliente', mssql.VarChar(50), endereco)
@@ -36,12 +36,12 @@ async function cadastrarClientes(cliente){
 
         await request.query(query)
 
-        return{mensagem:"Cliente inserido com sucesso"}
+        return { mensagem: "Cliente inserido com sucesso" }
 
     }
-    catch(error){
-        return {mensagem : "Não foi possível cadastrar o cliente", erro : error}
+    catch (error) {
+        return { mensagem: "Não foi possível cadastrar o cliente", erro: error }
     }
 }
 
-module.exports = {buscar, cadastrarClientes}
+module.exports = { buscar, cadastrarClientes }
