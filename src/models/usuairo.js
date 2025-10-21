@@ -3,11 +3,12 @@ const {mssql} = require("../config/db")
 
 async function buscar (clientes){
     try{
-        const {nome} = clientes
+        const {login, senha} = clientes
         const request = new mssql.Request()
 
-        request.input('nomeUser', mssql.VarChar(50), nome)
-        const query = `SELECT * FROM darocaClientes WHERE nome = @nomeUser `
+        request.input('loginUser', mssql.VarChar(80), login)
+        request.input('senhaUser', mssql.VarChar(80), senha)
+        const query = `SELECT * FROM darocaClientes WHERE nome = @loginUser AND senha = @senhaUser `
 
         await request.query(query)
         return buscar.recordset[0]
