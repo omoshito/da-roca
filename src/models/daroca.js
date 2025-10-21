@@ -5,83 +5,54 @@ async function listarProdutos(){
     return dados.recordset
 }
 
-async function cadastrarClientes(cliente){
-    const {cpf, nome, telefone, login, senha} = cliente
-    try{
-        if (!cpf|| !nome|| !telefone|| !login|| !senha){
-            return {mensagem:"Dados não foram inseridos corretamente"}
-        }
-        if (cpf.length !== 11){
-            return {mensagem : "CPF invalido"}
-        }
-        if (telefone.length !== 9){
-            return {mensagem : "Número de telefone invalido"}
-        }
-        for(let i = 0; i < nome.length; i++){
-            const nomeVerifica = nome[i].charCodeAt(0)
-            if ((nomeVerifica < 65 || nomeVerifica > 122) && nomeVerifica !== 32){
-                return {mensagem : "Nome invalido"}
-            }
-        }
 
-        const insira = await mssql.query(`INSERT INTO daroca.Clientes VALUES (${cpf},'${nome}',${telefone},'${login}',${senha})`)
-        return {
-            sucesso : true,
-            mensagem : "Cliente cadastrado inserido com sucesso",
-            dados : insira.recordset,
-        }
-    }
-    catch(error){
-        return {mensagem : "Não foi possível cadastrar o cliente", erro : error}
-    }
-}
-
-async function excluirCliente(id, cliente){
-    const {login, senha} = cliente
+async function excluirCliente(CPF, cliente){
+    const {cpf ,login, senha} = cliente
     try{
-        if(!login || !senha){
-            return {mensagem : "Campo vazio"}
+        const request = new mssql.Request()
+        
+        request.input('cpfCliente', VarChar(11), cpf)
+        request.input('loginCliente', mssql.VarChar(80), login)
+        request.input('senhaCliente', mssql.VarChar(20), senha)
+
+        const verifica = await request.query(`SELECT * FROM daroca.Clientes WHERE cpf = @cpfCliente AND login = @loginCliente AND senha = @senhaCliente`)
+
+        if(verifica.recordset.length === 0){
+            return{mensagem: "Valores sem correspondência, Tente novamente"}
         }
-        const deletar = await mssql.query(`DELETE FROM daroca.Clientes WHERE ID = ${id}`)
-        return{
-            sucesso : true,
-            mensagem : "Cliente excluido com sucesso",
-            dados : deletar.recordset
-        }
+        const query = `DELETE FROM daroca.Clientes WHERE CPF = @Cpf`
+
+        await request.query(query)
+
+        return {mensagem: "Cliente excluído com sucesso"}
     }
     catch(error){
         return {mensagem : "Não foi possível excluir o cliente"}
     }   
 }
 
-async function atualizarCliente(id, cliente){
-    const {cpf, nome, telefone, login, senha} = cliente
-    try{
-        if (!cpf|| !nome|| !telefone|| !login|| !senha){
-            return {mensagem:"Dados não foram inseridos corretamente"}
-        }
-        if (cpf.length !== 11){
-            return {mensagem : "CPF invalido"}
-        }
-        if (telefone.length !== 9){
-            return {mensagem : "Número de telefone invalido"}
-        }
-        for(let i = 0; i < nome.length; i++){
-            const nomeVerifica = nome[i].charCodeAt(0)
-            if (nomeVerifica < 65 || nomeVerifica > 122 || nomeVerifica !== 32){
-                return {Mensegem : "Nome invalido"}
-            }
-        }
-        const atualizar = await mssql.query(`UPDATE daroca.Clientes SET ${cpf}, '${nome}', ${telefone}, ${login}, ${senha} WHERE ID = ${id}`)
-        return {
-            sucesso : true,
-            mensagem : "Dados atualizados com sucesso",
-            dados : atualizar.recordset
-        }
+async function atualizarCliente(cliente){
+    const {cpf, nome, telefone, login, senha, endereco} = cliente
+    try{        
+        const request = new mssql.Request()
+        
+        request.input('cpfCliente', mssql.VarChar(11), cpf)
+        request.input('nomeCliente', mssql.VarChar(100), nome)
+        request.input('telefoneCliente', mssql.VarChar(9), telefone)
+        request.input('enderecoCliente', mssql.VarChar(50), endereco)
+        request.input('loginCliente', mssql.VarChar(80), login)
+        request.input('senhaCliente', mssql.VarChar(20), senha)
+
+        const query = `UPDATE daroca.Clientes SET nome = @nomeCliente, telefone = @telefoneCliente, 
+        login = @loginCliente, senha = @senhaCliente, endereco = @enderecoCliente WHERE cpf = @cpfCliente `
+
+        await request.query(query)
+
+           return {mensagem : "Atualização concluída"}
     }
     catch(error){
         return {mensagem : "Não foi possivel atualizar os dados do cliente"}
-    }
+    } 
 }
 
-module.exports = {listarProdutos , cadastrarClientes, excluirCliente, atualizarCliente}
+module.exports = {listarProdutos , excluirCliente, atualizarCliente}

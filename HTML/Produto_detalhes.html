@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Define a codificação de caracteres para UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Configuração para responsividade em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título exibido na aba do navegador -->
+    <title>Detalhes do Produto - DaRoça</title>
+
+    <!-- CSS customizado para página de detalhes do produto -->
+    <link rel="stylesheet" href="../css/style_detalhes.css">
+    <!-- Biblioteca de ícones Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Removido: catalogo.js causava conflitos nesta página -->
+    <!-- <script src="../JS/catalogo.js" defer></script> -->
+</head>
+
+<body>
+    <!-- ========== BARRA DE NAVEGAÇÃO ========== -->
+    <!-- Navegação principal fixada no topo -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <!-- Logo e marca -->
+            <div class="nav-brand">
+                <a href="Pagina_inicio.html">
+                    <img src="../Imagens/daRoca.png" alt="DaRoça Logo" class="logo">
+                    <span class="brand-name">DaRoça</span>
+                </a>
+            </div>
+            <!-- Menu de navegação -->
+            <ul class="nav-menu">
+                <li><a href="Pagina_inicio.html">Início</a></li>
+                <li><a href="Catalogo.html">Catálogo</a></li>
+                <li><a href="Pagina_inicio.html#sobre">Sobre</a></li>
+                <li><a href="Cadastro.html">Cadastro</a></li>
+                <li><a href="Login.html">Login</a></li>
+                <li>
+                    <!-- Botão do carrinho de compras -->
+                    <button id="cart-btn" class="cart-button">
+                        <i class='bx bx-cart'></i>
+                        <!-- Contador de itens (atualizado dinamicamente) -->
+                        <span id="cart-count" class="cart-count">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+    <main class="product-detail-container">
+        <!-- ========== BREADCRUMB (NAVEGAÇÃO) ========== -->
+        <!-- Link para voltar ao catálogo -->
+        <div class="breadcrumb">
+            <a href="Catalogo.html"><i class='bx bx-arrow-back'></i> Voltar ao Catálogo</a>
+        </div>
+
+        <!-- ========== DETALHES DO PRODUTO ========== -->
+        <!-- Container onde os detalhes do produto são carregados dinamicamente -->
+        <div class="product-detail" id="product-detail">
+            <!-- Indicador de carregamento (exibido antes do produto carregar) -->
+            <div class="loading">
+                <i class='bx bx-loader-alt bx-spin'></i>
+                <p>Carregando produto...</p>
+            </div>
+        </div>
+
+        <!-- ========== SEÇÃO DE PRODUTOS RELACIONADOS ========== -->
+        <!-- Mostra produtos similares ao que está sendo visualizado -->
+        <section class="related-products">
+            <h2>Produtos Relacionados</h2>
+            <!-- Grade de produtos relacionados (preenchida via JavaScript) -->
+            <div class="related-grid" id="related-products">
+                <!-- Produtos relacionados serão carregados via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== MODAL DO CARRINHO DE COMPRAS ========== -->
+    <!-- Modal que aparece ao clicar no botão do carrinho -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <!-- ========== CABEÇALHO DO CARRINHO ========== -->
+            <div class="cart-header">
+                <h2>Meu Carrinho</h2>
+                <!-- Botão para fechar o modal -->
+                <button class="close-cart">&times;</button>
+            </div>
+            <!-- ========== LISTA DE ITENS DO CARRINHO ========== -->
+            <div class="cart-items" id="cart-items">
+                <!-- Mensagem exibida quando carrinho está vazio -->
+                <div class="empty-cart">
+                    <i class='bx bx-cart'></i>
+                    <p>Seu carrinho está vazio</p>
+                </div>
+            </div>
+            <!-- ========== RODAPÉ DO CARRINHO ========== -->
+            <div class="cart-footer">
+                <!-- Valor total do carrinho -->
+                <div class="cart-total-section">
+                    <strong>Total: R$ <span id="cart-total">0,00</span></strong>
+                </div>
+                <!-- Botão de finalizar compra -->
+                <div class="cart-actions">
+                    <button class="checkout-btn">
+                        <i class='bx bx-credit-card'></i>
+                        Finalizar Compra
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== NOTIFICAÇÃO DE CARRINHO ========== -->
+    <!-- Toast notification que aparece ao adicionar produto ao carrinho -->
+    <div id="cart-notification" class="cart-notification">
+        Produto adicionado ao carrinho!
+    </div>
+
+    <!-- ========== RODAPÉ DA PÁGINA ========== -->
+    <footer class="page-footer">
+        <div>
+            <!-- Copyright -->
+            <span>© 2025 DaRoça - Todos os direitos reservados</span>
+            <!-- Links legais e redes sociais -->
+            <div>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+                <!-- Links de redes sociais (abrem em nova aba) -->
+                <a href="#" onclick="window.open('https://instagram.com', '_blank')">Instagram</a>
+                <a href="#" onclick="window.open('https://facebook.com', '_blank')">Facebook</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts: API real + página de detalhes -->
+    <script src="../JS/productAPI.js"></script>
+    <script src="../JS/produto-detalhes.js"></script>
+</body>
+
+</html>
