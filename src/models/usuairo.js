@@ -19,12 +19,13 @@ async function buscar (clientes){
 }
 
 async function cadastrarClientes(cliente){
-    const {cpf, nome, telefone, endereco, login, senha} = cliente
+    const {cpf, nome, telefone, dataN, endereco, login, senha} = cliente
     const senhaHash = await bcrypt.hash(senha, 12)
     try{
         const request = new mssql.Request()
         
-        request.input('cpfCliente',VarChar(11), cpf)
+        request.input('cpfCliente', mssql.VarChar(11), cpf)
+        request.input('dataNCliente', mssql.)
         request.input('nomeCliente', mssql.VarChar(100), nome)
         request.input('telefoneCliente', mssql.VarChar(9), telefone)
         request.input('enderecoCliente', mssql.VarChar(50), endereco)
