@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt')
-const { mssql } = require("../config/db")
+const {mssql} = require("../config/db")
 
-async function buscar(clientes) {
-    try {
-        const { login, senha } = clientes
+async function buscar (clientes){
+    try{
+        const {login, senha} = clientes
         const request = new mssql.Request()
 
         request.input('loginUser', mssql.VarChar(80), login)
@@ -13,46 +13,36 @@ async function buscar(clientes) {
         await request.query(query)
         return buscar.recordset[0]
     }
-    catch (error) {
-        return { error: "Não foi possível logar no site" }
+    catch(error){
+        return{error: "Não foi possível logar no site"}
     }
 }
 
-<<<<<<< HEAD
-async function cadastrarClientes(cliente) {
-    const { cpf, nome, telefone, endereco, login, senha } = cliente
-=======
 async function cadastrarClientes(cliente){
     const {cpf, nome, telefone, dataN, endereco, login, senha} = cliente
->>>>>>> aab128c221ce62381aa803efcd8d902ea55463c6
-    const senhaHash = await bcrypt.hash(senha, 12)
-    try {
+    const senhaHash = await bcrypt.hash(senha, 10)
+    try{
         const request = new mssql.Request()
-<<<<<<< HEAD
-
-        request.input('cpfCliente', VarChar(11), cpf)
-=======
         
         request.input('cpfCliente', mssql.VarChar(11), cpf)
-        request.input('dataNCliente', mssql.)
->>>>>>> aab128c221ce62381aa803efcd8d902ea55463c6
+        request.input('dataNCliente', mssql.VarChar(10), dataN)
         request.input('nomeCliente', mssql.VarChar(100), nome)
         request.input('telefoneCliente', mssql.VarChar(9), telefone)
         request.input('enderecoCliente', mssql.VarChar(50), endereco)
         request.input('loginCliente', mssql.VarChar(80), login)
         request.input('senhaCliente', mssql.VarChar(255), senhaHash)
 
-        const query = `INSERT INTO daroca.clientes (cpf, nome, telefone, email, senha, endereco) VALUES (@cpfCliente, @nomeClientem 
-                       @telefoneCliente, @enderecoCliente, @loginCliente, @senhaCliente)`
+        const query = `INSERT INTO daroca.clientes (cpf, nome, telefone, email, senha, endereco, dataNascimento) VALUES (@cpfCliente, @nomeClientem 
+                       @telefoneCliente, @enderecoCliente, @loginCliente, @senhaCliente, @dataNCliente)`
 
         await request.query(query)
 
-        return { mensagem: "Cliente inserido com sucesso" }
+        return{mensagem:"Cliente inserido com sucesso"}
 
     }
-    catch (error) {
-        return { mensagem: "Não foi possível cadastrar o cliente", erro: error }
+    catch(error){
+        return {mensagem : "Não foi possível cadastrar o cliente", erro : error}
     }
 }
 
-module.exports = { buscar, cadastrarClientes }
+module.exports = {buscar, cadastrarClientes}
