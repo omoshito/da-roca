@@ -5,9 +5,6 @@ const darocaController = require("../Controllers/darocaController")
 // Rota para listar produtos
 router.get("/produtos", darocaController.listar)
 
-// Rota para cadastrar cliente
-router.post("/clientes", darocaController.inserir)
-
 // Rota para atualizar cliente
 router.put("/clientes/:id", darocaController.atualizar)
 
