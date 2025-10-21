@@ -1,74 +1,120 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catálogo - Da Roça</title>
-    <link rel="stylesheet" href="../css/style_catalogo.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
+
+    <meta
+      name="description"
+      content="Catálogo de produtos frescos e orgânicos Da Roça. Encontre frutas, vegetais, grãos e laticínios direto do produtor."
+    />
+    <meta name="author" content="Da Roça" />
+    <meta
+      name="keywords"
+      content="produtos frescos, frutas, vegetais, grãos, laticínios, Da Roça"
+    />
+
+    <link rel="stylesheet" href="../css/style_catalogo.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
     <header>
-        <div class="logo">
-            <a href="Inicio.html"><img src="../Imagens/daRoca.png" alt="Logo Da Roça"></a>
-            <h1>DaRoça</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#" class="active">Produtos</a></li>
-                <li><a href="Inicio.html#sobre">Sobre</a></li>
-                <li><a href="Cadastro.html" class="">Cadastro</a></li>
-                <li><a href="Login.html" id="cad" class="">Login</a></li>
-            </ul>
-        </nav>
+      <div class="logo">
+        <a href="inicio.html">
+          <img src="../Imagens/daRoca.png" alt="Logo Da Roça" />
+        </a>
+        <h1>DaRoça</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="contato.html" class="contact">Contato</a></li>
+          <li><a href="catalogo.html" class="product">Produtos</a></li>
+          <li><a href="inicio.html#sobre" class="about">Sobre</a></li>
+          <li><a href="cadastro.html" class="register">Cadastro</a></li>
+          <li><a href="login.html" class="login">Login</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main class="catalogo-container">
-        <h1>Nossos Produtos Frescos</h1>
+      <h1>Nossos Produtos Frescos</h1>
 
-        <div class="search-bar">
-            <div class="search-input">
-                <i class='bx bx-search'></i>
-                <input type="text" id="search-product" placeholder="Procurar...">
-            </div>
-            <button class="filter-button">
-                <i class='bx bx-filter-alt'></i>
-            </button>
+      <div class="search-bar">
+        <div class="search-input">
+          <i class="bx bx-search"></i>
+          <input
+            type="text"
+            id="search-product"
+            placeholder="Procurar..."
+            aria-label="Buscar produtos"
+          />
         </div>
+        <button class="filter-button" aria-label="Abrir filtros">
+          <i class="bx bx-filter-alt"></i>
+        </button>
+      </div>
 
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">Todos</button>
-             <button class="filter-btn" data-filter="frutas">Frutas</button>
-            <button class="filter-btn" data-filter="vegetais">Vegetais</button>
-            <button class="filter-btn" data-filter="graos">Grãos</button>
-            <button class="filter-btn" data-filter="laticinios">Laticínios</button>
-            <button class="filter-btn" data-filter="outros">Outros</button>
-        </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">
+          Todos
+        </button>
+        <button class="filter-btn" data-filter="frutas" aria-pressed="false">
+          Frutas
+        </button>
+        <button class="filter-btn" data-filter="vegetais" aria-pressed="false">
+          Vegetais
+        </button>
+        <button class="filter-btn" data-filter="graos" aria-pressed="false">
+          Grãos
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="laticinios"
+          aria-pressed="false"
+        >
+          Laticínios
+        </button>
+        <button class="filter-btn" data-filter="outros" aria-pressed="false">
+          Outros
+        </button>
+      </div>
 
-        <div class="product-grid" id="product-list">
-            </div>
+      <div class="product-grid" id="product-list">
+        <p class="no-products">Carregando produtos...</p>
+      </div>
     </main>
 
     <footer>
-        <div class="footer-left">
-            <span>© 2025 DaRoça</span>
-            <div class="social-icons">
-                <a href="#"><i class='bx bxl-instagram'></i></a>
-                <a href="#"><i class='bx bxl-facebook-square'></i></a>
-            </div>
+      <div class="footer-left">
+        <span>© 2025 DaRoça</span>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram"
+            ><i class="bx bxl-instagram"></i
+          ></a>
+          <a href="#" aria-label="Facebook"
+            ><i class="bx bxl-facebook-square"></i
+          ></a>
         </div>
-        <div class="footer-right">
-            <a href="#">Termos de Uso</a>
-            <a href="#">Licença</a>
-            <a href="#">Política de Privacidade</a>
-            <a href="#">Política de uso de cookies</a>
-        </div>
+      </div>
+      <div class="footer-right">
+        <a href="#">Termos de Uso</a>
+        <a href="#">Licença</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Política de uso de cookies</a>
+      </div>
     </footer>
 
     <script src="../js/catalogo.js"></script>
-</body>
+  </body>
 </html>
