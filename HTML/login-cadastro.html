@@ -3,24 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Da Roça</title>
+    <title>Login e Cadastro - Da Roça</title>
 
     <!-- Meta Tags SEO -->
     <meta
       name="description"
-      content="Faça login na Da Roça e acesse sua conta para gerenciar pedidos e receber produtos frescos em casa."
+      content="Faça login ou cadastre-se na Da Roça para acessar produtos frescos e naturais direto do campo."
     />
     <meta name="author" content="Da Roça" />
     <meta
       name="keywords"
-      content="login, Da Roça, entrar, conta, produtos frescos"
+      content="login, cadastro, Da Roça, entrar, criar conta, produtos frescos"
     />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../Imagens/daRoca.png" />
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../CSS/base.css" />
+    <link rel="stylesheet" href="../CSS/login-cadastro.css" />
 
     <!-- Icons -->
     <link
@@ -32,280 +32,182 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap"
       rel="stylesheet"
     />
   </head>
 
   <body>
-    <header>
-      <div class="header-container">
-        <!-- Logo e título -->
-        <div class="logo">
-          <a href="inicio.html">
-            <img src="../Imagens/daRoca.png" alt="Logo Da Roça" />
-          </a>
-          <h1>DaRoça</h1>
+    <!-- Botão de voltar -->
+    <div class="back-button">
+      <a href="inicio.html" aria-label="Voltar para página inicial">
+        <i class="bx bx-arrow-back"></i>
+        Voltar
+      </a>
+    </div>
+
+    <!-- Container principal -->
+    <div class="container">
+      <div class="form-container">
+        <!-- Botões de alternância -->
+        <div class="toggle-buttons">
+          <button id="login-toggle" class="toggle-btn active">
+            <i class="bx bx-log-in"></i>
+            Entrar
+          </button>
+          <button id="register-toggle" class="toggle-btn">
+            <i class="bx bx-user-plus"></i>
+            Cadastrar
+          </button>
         </div>
 
-        <!-- Navegação principal -->
-        <nav
-          class="main-nav"
-          role="navigation"
-          aria-label="Navegação principal"
-        >
-          <ul>
-            <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="inicio.html#sobre">Sobre</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
-            <li>
-              <a href="login.html" class="active" aria-current="page">Login</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <section class="login-section">
-        <div class="container">
-          <div class="form-container">
-            <header class="form-header">
-              <h1 class="form-title lily-script-one-regular">Entrar</h1>
-              <p class="form-description">
-                Acesse sua conta e continue aproveitando nossos produtos
-                frescos.
-              </p>
-            </header>
-
-            <form id="form-usuario" novalidate aria-labelledby="form-title">
-              <div class="input-group">
-                <label for="email">E-mail:</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Ex: usuario@gmail.com"
-                  required
-                  aria-describedby="email-error"
-                  autocomplete="email"
-                />
-                <span
-                  id="email-error"
-                  class="error-message"
-                  role="alert"
-                ></span>
-              </div>
-
-              <div class="input-group">
-                <label for="senha">Senha:</label>
-                <input
-                  type="password"
-                  id="senha"
-                  name="senha"
-                  placeholder="Digite sua senha"
-                  required
-                  aria-describedby="senha-error"
-                  autocomplete="current-password"
-                />
-                <span
-                  id="senha-error"
-                  class="error-message"
-                  role="alert"
-                ></span>
-              </div>
-
-              <div class="form-options">
-                <label class="checkbox-container">
-                  <input type="checkbox" id="lembrar" name="lembrar" />
-                  <span class="checkmark"></span>
-                  Lembrar de mim
-                </label>
-                <a href="#" class="forgot-password">Esqueceu a senha?</a>
-              </div>
-
-              <div class="form-actions">
-                <button type="submit" class="submit-btn">Entrar</button>
-                <p class="register-link">
-                  Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>
-                </p>
-              </div>
-            </form>
+        <!-- Formulário de Login -->
+        <div id="login-form" class="form-section active">
+          <div class="form-header">
+            <h1 class="form-title">Bem-vindo de volta!</h1>
+            <p class="form-subtitle">Entre na sua conta Da Roça</p>
           </div>
+
+          <form id="login" novalidate>
+            <div class="input-group">
+              <input
+                type="email"
+                id="login-email"
+                name="email"
+                required
+                autocomplete="email"
+              />
+              <label for="login-email">
+                <i class="bx bx-envelope"></i>
+                E-mail
+              </label>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                required
+                autocomplete="current-password"
+              />
+              <label for="login-password">
+                <i class="bx bx-lock-alt"></i>
+                Senha
+              </label>
+            </div>
+
+            <div class="form-options">
+              <label class="checkbox-container">
+                <input type="checkbox" id="remember" />
+                <span class="checkmark"></span>
+                Lembrar de mim
+              </label>
+              <a href="#" class="forgot-link">Esqueceu a senha?</a>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <span>Entrar</span>
+              <i class="bx bx-right-arrow-alt"></i>
+            </button>
+          </form>
         </div>
-      </section>
 
-      <section class="registration-section">
-        <div class="container">
-          <div class="form-container">
-            <header class="form-header">
-              <h1 class="form-title lily-script-one-regular">
-                Faça seu cadastro
-              </h1>
-              <p class="form-description">
-                Crie sua conta para ter acesso aos melhores produtos frescos e
-                naturais.
-              </p>
-            </header>
-
-            <form id="form-usuario" novalidate aria-labelledby="form-title">
-              <fieldset class="personal-info">
-                <legend class="visually-hidden">Informações Pessoais</legend>
-
-                <div class="input-group">
-                  <label for="nome">Nome Completo:</label>
-                  <input
-                    type="text"
-                    id="nome"
-                    name="nome"
-                    placeholder="Ex: João Silva"
-                    required
-                    aria-describedby="nome-error"
-                    autocomplete="name"
-                  />
-                  <span
-                    id="nome-error"
-                    class="error-message"
-                    role="alert"
-                  ></span>
-                </div>
-
-                <div class="input-group">
-                  <label for="email">E-mail:</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Ex: usuario@gmail.com"
-                    required
-                    aria-describedby="email-error"
-                    autocomplete="email"
-                  />
-                  <span
-                    id="email-error"
-                    class="error-message"
-                    role="alert"
-                  ></span>
-                </div>
-
-                <div class="input-group">
-                  <label for="data-nascimento">Data de Nascimento:</label>
-                  <input
-                    type="date"
-                    id="data-nascimento"
-                    name="dataNascimento"
-                    required
-                    aria-describedby="data-error"
-                    autocomplete="bday"
-                  />
-                  <span
-                    id="data-error"
-                    class="error-message"
-                    role="alert"
-                  ></span>
-                </div>
-
-                <div class="input-group">
-                  <label for="endereco">Endereço Completo:</label>
-                  <input
-                    type="text"
-                    id="endereco"
-                    name="endereco"
-                    placeholder="Ex: Rua das Flores, 123, Centro"
-                    required
-                    aria-describedby="endereco-error"
-                    autocomplete="street-address"
-                  />
-                  <span
-                    id="endereco-error"
-                    class="error-message"
-                    role="alert"
-                  ></span>
-                </div>
-              </fieldset>
-
-              <fieldset class="security-info">
-                <legend class="visually-hidden">
-                  Informações de Segurança
-                </legend>
-
-                <div class="input-group">
-                  <label for="senha">Senha:</label>
-                  <input
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    placeholder="Mínimo 8 caracteres"
-                    required
-                    aria-describedby="senha-error senha-help"
-                    autocomplete="new-password"
-                    minlength="8"
-                  />
-                  <small id="senha-help" class="help-text">
-                    A senha deve ter pelo menos 8 caracteres
-                  </small>
-                  <span
-                    id="senha-error"
-                    class="error-message"
-                    role="alert"
-                  ></span>
-                </div>
-
-                <div class="input-group">
-                  <label for="confirmar-senha">Confirmar Senha:</label>
-                  <input
-                    type="password"
-                    id="confirmar-senha"
-                    name="confirmarSenha"
-                    placeholder="Digite a senha novamente"
-                    required
-                    aria-describedby="confirmar-senha-error"
-                    autocomplete="new-password"
-                  />
-                  <span
-                    id="confirmar-senha-error"
-                    class="error-message"
-                    role="alert"
-                  ></span>
-                </div>
-              </fieldset>
-
-              <div class="form-actions">
-                <button type="submit" class="submit-btn">Criar Conta</button>
-                <p class="login-link">
-                  Já tem uma conta? <a href="login.html">Faça login</a>
-                </p>
-              </div>
-            </form>
+        <!-- Formulário de Cadastro -->
+        <div id="register-form" class="form-section">
+          <div class="form-header">
+            <h1 class="form-title">Criar nova conta</h1>
+            <p class="form-subtitle">Junte-se à família Da Roça</p>
           </div>
-        </div>
-      </section>
 
-    </main>
+          <form id="register" novalidate>
+            <div class="input-group">
+              <input
+                type="text"
+                id="register-name"
+                name="name"
+                required
+                autocomplete="name"
+              />
+              <label for="register-name">
+                <i class="bx bx-user"></i>
+                Nome completo
+              </label>
+            </div>
 
-    <footer role="contentinfo">
-      <div class="footer-container">
-        <div class="footer-left">
-          <p class="copyright">© 2025 DaRoça. Todos os direitos reservados.</p>
-          <div class="social-media">
-            <h4 class="visually-hidden">Redes Sociais</h4>
-            <a
-              href="#"
-              aria-label="Instagram da Da Roça"
-              target="_blank"
-              rel="noopener"
-            >
-              <i class="bx bxl-instagram"></i>
-            </a>
-            <a
-              href="#"
-              aria-label="Facebook da Da Roça"
-              target="_blank"
-              rel="noopener"
-            >
-              <i class="bx bxl-facebook-square"></i>
-            </a>
-          </div>
+            <div class="input-group">
+              <input
+                type="email"
+                id="register-email"
+                name="email"
+                required
+                autocomplete="email"
+              />
+              <label for="register-email">
+                <i class="bx bx-envelope"></i>
+                E-mail
+              </label>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="tel"
+                id="register-phone"
+                name="phone"
+                required
+                autocomplete="tel"
+              />
+              <label for="register-phone">
+                <i class="bx bx-phone"></i>
+                Telefone
+              </label>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="password"
+                id="register-password"
+                name="password"
+                required
+                autocomplete="new-password"
+              />
+              <label for="register-password">
+                <i class="bx bx-lock-alt"></i>
+                Senha
+              </label>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirmPassword"
+                required
+                autocomplete="new-password"
+              />
+              <label for="confirm-password">
+                <i class="bx bx-lock-alt"></i>
+                Confirmar senha
+              </label>
+            </div>
+
+            <div class="form-options">
+              <label class="checkbox-container">
+                <input type="checkbox" id="terms" required />
+                <span class="checkmark"></span>
+                Aceito os <a href="#" target="_blank">termos de uso</a>
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <span>Criar conta</span>
+              <i class="bx bx-right-arrow-alt"></i>
+            </button>
+          </form>
         </div>
 
         <nav class="footer-nav" aria-label="Links úteis">
@@ -317,9 +219,9 @@
           </ul>
         </nav>
       </div>
-    </footer>
+    </div>
 
     <!-- Scripts -->
-    <script src="../JS/login.js"></script>
+    <script src="../JS/login-cadastro.js"></script>
   </body>
 </html>
