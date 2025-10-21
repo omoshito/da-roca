@@ -55,13 +55,13 @@
       <div class="form-container">
         <!-- Botões de alternância -->
         <div class="toggle-buttons">
-          <button id="login-toggle" class="toggle-btn active">
+          <button id="login-toggle" class="toggle-btn active" type="button">
             <i class="bx bx-log-in"></i>
-            Entrar
+            <span>Entrar</span>
           </button>
-          <button id="register-toggle" class="toggle-btn">
+          <button id="register-toggle" class="toggle-btn" type="button">
             <i class="bx bx-user-plus"></i>
-            Cadastrar
+            <span>Cadastrar</span>
           </button>
         </div>
 
@@ -72,7 +72,7 @@
             <p class="form-subtitle">Entre na sua conta Da Roça</p>
           </div>
 
-          <form id="login" novalidate>
+          <form id="login" novalidate autocomplete="on">
             <div class="input-group">
               <input
                 type="email"
@@ -80,6 +80,7 @@
                 name="email"
                 required
                 autocomplete="email"
+                placeholder=" "
               />
               <label for="login-email">
                 <i class="bx bx-envelope"></i>
@@ -94,6 +95,7 @@
                 name="password"
                 required
                 autocomplete="current-password"
+                placeholder=" "
               />
               <label for="login-password">
                 <i class="bx bx-lock-alt"></i>
@@ -124,7 +126,7 @@
             <p class="form-subtitle">Junte-se à família Da Roça</p>
           </div>
 
-          <form id="register" novalidate>
+          <form id="register" novalidate autocomplete="on">
             <div class="input-group">
               <input
                 type="text"
@@ -132,6 +134,7 @@
                 name="name"
                 required
                 autocomplete="name"
+                placeholder=" "
               />
               <label for="register-name">
                 <i class="bx bx-user"></i>
@@ -146,6 +149,7 @@
                 name="email"
                 required
                 autocomplete="email"
+                placeholder=" "
               />
               <label for="register-email">
                 <i class="bx bx-envelope"></i>
@@ -160,6 +164,7 @@
                 name="phone"
                 required
                 autocomplete="tel"
+                placeholder=" "
               />
               <label for="register-phone">
                 <i class="bx bx-phone"></i>
@@ -174,6 +179,7 @@
                 name="password"
                 required
                 autocomplete="new-password"
+                placeholder=" "
               />
               <label for="register-password">
                 <i class="bx bx-lock-alt"></i>
@@ -188,6 +194,7 @@
                 name="confirmPassword"
                 required
                 autocomplete="new-password"
+                placeholder=" "
               />
               <label for="confirm-password">
                 <i class="bx bx-lock-alt"></i>
@@ -199,7 +206,9 @@
               <label class="checkbox-container">
                 <input type="checkbox" id="terms" required />
                 <span class="checkmark"></span>
-                Aceito os <a href="#" target="_blank">termos de uso</a>
+                <span style="margin-left: 8px"
+                  >Aceito os <a href="#" target="_blank">termos de uso</a></span
+                >
               </label>
             </div>
 
