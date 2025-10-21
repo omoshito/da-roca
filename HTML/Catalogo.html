@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catálogo - Da Roça</title>
 
+    <!-- Meta Tags SEO -->
     <meta
       name="description"
       content="Catálogo de produtos frescos e orgânicos Da Roça. Encontre frutas, vegetais, grãos e laticínios direto do produtor."
@@ -12,109 +13,219 @@
     <meta name="author" content="Da Roça" />
     <meta
       name="keywords"
-      content="produtos frescos, frutas, vegetais, grãos, laticínios, Da Roça"
+      content="produtos frescos, frutas, vegetais, grãos, laticínios, Da Roça, orgânicos, catálogo"
     />
 
-    <link rel="stylesheet" href="../css/style_catalogo.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Imagens/daRoca.png" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../CSS/base.css" />
+
+    <!-- Icons -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <header>
-      <div class="logo">
-        <a href="inicio.html">
-          <img src="../Imagens/daRoca.png" alt="Logo Da Roça" />
-        </a>
-        <h1>DaRoça</h1>
+      <div class="header-container">
+        <!-- Logo e título -->
+        <div class="logo">
+          <a href="inicio.html">
+            <img src="../Imagens/daRoca.png" alt="Logo Da Roça" />
+          </a>
+          <h1>DaRoça</h1>
+        </div>
+
+        <!-- Navegação principal -->
+        <nav
+          class="main-nav"
+          role="navigation"
+          aria-label="Navegação principal"
+        >
+          <ul>
+            <li>
+              <a href="catalogo.html" class="active" aria-current="page"
+                >Catálogo</a
+              >
+            </li>
+            <li><a href="inicio.html#sobre">Sobre</a></li>
+            <li><a href="login-cadastro.html">Entrar / Cadastrar</a></li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul>
-          <li><a href="contato.html" class="contact">Contato</a></li>
-          <li><a href="catalogo.html" class="product">Produtos</a></li>
-          <li><a href="inicio.html#sobre" class="about">Sobre</a></li>
-          <li><a href="cadastro.html" class="register">Cadastro</a></li>
-          <li><a href="login.html" class="login">Login</a></li>
-        </ul>
-      </nav>
     </header>
 
-    <main class="catalogo-container">
-      <h1>Nossos Produtos Frescos</h1>
-
-      <div class="search-bar">
-        <div class="search-input">
-          <i class="bx bx-search"></i>
-          <input
-            type="text"
-            id="search-product"
-            placeholder="Procurar..."
-            aria-label="Buscar produtos"
-          />
+    <main>
+      <section class="catalog-hero">
+        <div class="container">
+          <h1 class="catalog-title">Nossos Produtos Frescos</h1>
+          <p class="catalog-description">
+            Descubra a variedade de produtos frescos e naturais que temos para
+            você.
+          </p>
         </div>
-        <button class="filter-button" aria-label="Abrir filtros">
-          <i class="bx bx-filter-alt"></i>
-        </button>
-      </div>
+      </section>
 
-      <div class="filters">
-        <button class="filter-btn active" data-filter="all" aria-pressed="true">
-          Todos
-        </button>
-        <button class="filter-btn" data-filter="frutas" aria-pressed="false">
-          Frutas
-        </button>
-        <button class="filter-btn" data-filter="vegetais" aria-pressed="false">
-          Vegetais
-        </button>
-        <button class="filter-btn" data-filter="graos" aria-pressed="false">
-          Grãos
-        </button>
-        <button
-          class="filter-btn"
-          data-filter="laticinios"
-          aria-pressed="false"
-        >
-          Laticínios
-        </button>
-        <button class="filter-btn" data-filter="outros" aria-pressed="false">
-          Outros
-        </button>
-      </div>
+      <section class="catalog-content">
+        <div class="container">
+          <!-- Barra de pesquisa -->
+          <div class="search-section">
+            <div class="search-bar">
+              <div class="search-input-wrapper">
+                <label for="search-product" class="visually-hidden">
+                  Buscar produtos
+                </label>
+                <i class="bx bx-search" aria-hidden="true"></i>
+                <input
+                  type="search"
+                  id="search-product"
+                  placeholder="Procurar produtos..."
+                  aria-label="Buscar produtos no catálogo"
+                  autocomplete="off"
+                />
+              </div>
+              <button
+                class="filter-toggle"
+                aria-label="Abrir filtros"
+                aria-expanded="false"
+              >
+                <i class="bx bx-filter-alt" aria-hidden="true"></i>
+                <span>Filtros</span>
+              </button>
+            </div>
+          </div>
 
-      <div class="product-grid" id="product-list">
-        <p class="no-products">Carregando produtos...</p>
-      </div>
+          <!-- Filtros de categoria -->
+          <nav
+            class="filters-section"
+            role="navigation"
+            aria-label="Filtros de categoria"
+          >
+            <h2 class="visually-hidden">Filtrar por categoria</h2>
+            <div class="filters">
+              <button
+                class="filter-btn active"
+                data-filter="all"
+                aria-pressed="true"
+                type="button"
+              >
+                <span>Todos</span>
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="frutas"
+                aria-pressed="false"
+                type="button"
+              >
+                <span>Frutas</span>
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="vegetais"
+                aria-pressed="false"
+                type="button"
+              >
+                <span>Vegetais</span>
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="graos"
+                aria-pressed="false"
+                type="button"
+              >
+                <span>Grãos</span>
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="laticinios"
+                aria-pressed="false"
+                type="button"
+              >
+                <span>Laticínios</span>
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="outros"
+                aria-pressed="false"
+                type="button"
+              >
+                <span>Outros</span>
+              </button>
+            </div>
+          </nav>
+
+          <!-- Grade de produtos -->
+          <section class="products-section">
+            <h2 class="visually-hidden">Lista de produtos</h2>
+            <div
+              class="product-grid"
+              id="product-list"
+              role="region"
+              aria-live="polite"
+            >
+              <div class="loading-message">
+                <i class="bx bx-loader-alt bx-spin" aria-hidden="true"></i>
+                <p>Carregando produtos...</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
     </main>
 
-    <footer>
-      <div class="footer-left">
-        <span>© 2025 DaRoça</span>
-        <div class="social-icons">
-          <a href="#" aria-label="Instagram"
-            ><i class="bx bxl-instagram"></i
-          ></a>
-          <a href="#" aria-label="Facebook"
-            ><i class="bx bxl-facebook-square"></i
-          ></a>
+    <footer role="contentinfo">
+      <div class="footer-container">
+        <div class="footer-left">
+          <p class="copyright">© 2025 DaRoça. Todos os direitos reservados.</p>
+          <div class="social-media">
+            <h4 class="visually-hidden">Redes Sociais</h4>
+            <a
+              href="#"
+              aria-label="Instagram da Da Roça"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="bx bxl-instagram"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook da Da Roça"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="bx bxl-facebook-square"></i>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="footer-right">
-        <a href="#">Termos de Uso</a>
-        <a href="#">Licença</a>
-        <a href="#">Política de Privacidade</a>
-        <a href="#">Política de uso de cookies</a>
+
+        <nav class="footer-nav" aria-label="Links úteis">
+          <ul class="footer-links">
+            <li><a href="#" rel="noopener">Termos de Uso</a></li>
+            <li><a href="#" rel="noopener">Licença</a></li>
+            <li><a href="#" rel="noopener">Política de Privacidade</a></li>
+            <li><a href="#" rel="noopener">Política de Cookies</a></li>
+          </ul>
+        </nav>
       </div>
     </footer>
 
-    <script src="../js/catalogo.js"></script>
+    <!-- Scripts -->
+    <script src="../JS/catalogo.js"></script>
   </body>
 </html>
