@@ -8,8 +8,8 @@ const SECRET = process.env.SECRET
 
 async function login(req, res) {
     try {
-        const { username, senha } = req.body;
-        const usuario = await Usuario.buscar(username);
+        const { login, senha } = req.body;
+        const usuario = await Usuario.buscar(login);
 
         if (!usuario) return res.status(401).json({ msg: "Credenciais inválidas" });
 
@@ -17,7 +17,7 @@ async function login(req, res) {
         if (!senhaValida) return res.status(401).json({msg: "Credenciais inválidas"});
 
 
-        const token = jwt.sign({id: usuario.id, username: usuario.username, 
+        const token = jwt.sign({id: usuario.id, login: usuario.login, 
             role: usuario.role}, SECRET, {expiresIn: "1h"});
             res.json({token});
     }   catch (err){
