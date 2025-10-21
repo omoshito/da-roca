@@ -1,64 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Da Roça</title>
-    <link rel="stylesheet" href="../css/style_login.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="../css/style_login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="logo">
-            <a href="Inicio.html"><img src="../Imagens/daRoca.png" alt="Logo Da Roça"></a>
-            <h1>DaRoça</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#" class="active">Produtos</a></li>
-                <li><a href="Inicio.html">Sobre</a></li>
-                <li><a href="Cadastro.html" class="">Cadastro</a></li>
-                <li><a href="Login.html" id="cad" class="">Login</a></li>
-            </ul>
-        </nav>
+      <div class="logo">
+        <a href="Inicio.html"
+          ><img src="../Imagens/daRoca.png" alt="Logo Da Roça"
+        /></a>
+        <h1>DaRoça</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="catalogo.html" class="active">Catálogo</a></li>
+          <li><a href="inicio.html#Sobre">Sobre</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+          <li><a href="login.html" id="cad">Login</a></li>
+        </ul>
+      </nav>
     </header>
 
-
     <div id="form">
-        <div class="form-container">
-            <h2 class="lily-script-one-regular">Entrar</h2>
-            <form id="form-usuario">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" placeholder="Ex: JusepMoro@gmail.com">
+      <div class="form-container">
+        <h2 class="lily-script-one-regular">Entrar</h2>
+        <form id="form-usuario">
+          <label for="email">E-mail:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Ex: usuario@gmail.com"
+          />
 
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" placeholder="Ex: f@ndangos401">
+          <label for="senha">Senha:</label>
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            placeholder="Ex: Abcd@1234"
+          />
 
-                <button type="submit">Salvar</button>
-            </form>
-        </div>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
     </div>
 
     <footer>
-        <div class="footer-left">
-            <span>© 2025 DaRoça</span>
-            <div class="social-icons">
-                <a href="#"><i class='bx bxl-instagram'></i></a>
-                <a href="#"><i class='bx bxl-facebook-square'></i></a>
-            </div>
+      <div class="footer-left">
+        <span>© 2025 DaRoça</span>
+        <div class="social-icons">
+          <a href="#"><i class="bx bxl-instagram"></i></a>
+          <a href="#"><i class="bx bxl-facebook-square"></i></a>
         </div>
-        <div class="footer-right">
-            <a href="#">Termos de Uso</a>
-            <a href="#">Licença</a>
-            <a href="#">Política de Privacidade</a>
-            <a href="#">Política de uso de cookies</a>
-        </div>
+      </div>
+      <div class="footer-right">
+        <a href="#">Termos de Uso</a>
+        <a href="#">Licença</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Política de uso de cookies</a>
+      </div>
     </footer>
-</body>
-
+  </body>
 </html>
