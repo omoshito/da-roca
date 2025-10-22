@@ -1,16 +1,16 @@
 async function cadastrarClientes(){
-    const nome =  document.getElementById('nome').value
-    const email =  document.getElementById('email').value
-    const dataNasc =  document.getElementById('idade').value
-    const endereco =  document.getElementById('endereco').value
-    const senha =  document.getElementById('senha').value
-    const Csenha =  document.getElementById('confirmar-senha').value
+    const nome =  document.getElementById('register-name').value
+    const email =  document.getElementById('register-email').value
+    //const dataNasc =  document.getElementById('idade').value
+    //const endereco =  document.getElementById('register-phone').value
+    const senha =  document.getElementById('register-password').value
+    const Csenha =  document.getElementById('confirm-password').value
 
     const cadastro = {
         nome: nome,
         email: email,
-        dataNasc: dataNasc,
-        endereco: endereco,
+        //dataNasc: dataNasc,
+        //endereco: endereco,
         senha: senha
     }
 
