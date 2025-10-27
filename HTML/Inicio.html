@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Início - Da Roça</title>
 
-    <!-- Meta Tags SEO -->
     <meta
       name="description"
       content="Da Roça - produtos frescos e naturais entregues direto do campo à sua mesa. Conheça nosso catálogo de frutas, verduras, grãos e laticínios."
@@ -16,23 +15,24 @@
       content="produtos frescos, frutas, verduras, grãos, laticínios, Da Roça, orgânicos, naturais"
     />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../Imagens/daRoca.png" />
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../CSS/base.css" />
+    <link rel="stylesheet" href="../CSS/inicio.css" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
 
-    <!-- Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -40,38 +40,45 @@
   <body>
     <header>
       <div class="header-container">
-        <!-- Logo e título -->
         <div class="logo">
-          <a href="inicio.html">
-            <img src="../Imagens/daRoca.png" alt="Logo Da Roça" id="logo" />
+          <a href="inicio.html" aria-label="DaRoça - Página Inicial">
+            <img src="../Imagens/daRoca.png" alt="Logo Da Roça" id="logo-img" />
           </a>
-          <h1 class="visually-hidden">Da Roça</h1>
         </div>
 
-        <!-- Navegação principal -->
         <nav
           class="main-nav"
           role="navigation"
           aria-label="Navegação principal"
         >
-          <ul>
+          <ul id="main-nav-list">
             <li><a href="catalogo.html">Catálogo</a></li>
             <li><a href="inicio.html#sobre">Sobre</a></li>
             <li><a href="login-cadastro.html">Entrar / Cadastrar</a></li>
           </ul>
         </nav>
-      </div>
 
-      <!-- Hero Section -->
+        <button
+          class="nav-toggle"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="main-nav-list"
+        >
+          <i class="bx bx-menu" aria-hidden="true"></i>
+          <i class="bx bx-x" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="overlay"></div>
+
+    <main>
       <section class="hero">
         <h1 class="hero-title lily-script-one-regular">
           Bem-vindo ao nosso mundo DaRoça
         </h1>
       </section>
-    </header>
 
-    <main>
-      <!-- Seção de convite ao catálogo -->
       <section class="catalog-invitation">
         <div class="container">
           <h2>Conheça mais sobre o nosso catálogo</h2>
@@ -82,6 +89,7 @@
           <div class="cta-buttons">
             <a href="catalogo.html" class="cta-button primary" role="button">
               Conhecer Catálogo
+              <i class="bx bx-right-arrow-alt" aria-hidden="true"></i>
             </a>
             <a
               href="login-cadastro.html"
@@ -94,7 +102,6 @@
         </div>
       </section>
 
-      <!-- Seção sobre a empresa -->
       <section class="about-section" id="sobre">
         <div class="container">
           <h2 class="section-title lily-script-one-regular">
@@ -176,5 +183,7 @@
         </nav>
       </div>
     </footer>
+
+    <script src="../JS/main.js"></script>
   </body>
 </html>

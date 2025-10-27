@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login e Cadastro - Da Roça</title>
 
-    <!-- Meta Tags SEO -->
     <meta
       name="description"
       content="Faça login ou cadastre-se na Da Roça para acessar produtos frescos e naturais direto do campo."
@@ -16,19 +15,15 @@
       content="login, cadastro, Da Roça, entrar, criar conta, produtos frescos"
     />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../Imagens/daRoca.png" />
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="../CSS/login-cadastro.css" />
 
-    <!-- Icons -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -42,195 +37,214 @@
   </head>
 
   <body>
-    <!-- Botão de voltar -->
-    <div class="back-button">
-      <a href="inicio.html" aria-label="Voltar para página inicial">
-        <i class="bx bx-arrow-back"></i>
-        Voltar
-      </a>
-    </div>
+    <div class="page-container">
+      <div class="info-panel">
+        <div class="info-content">
+          <a href="inicio.html" class="logo-link">
+            <img src="../Imagens/daRoca.png" alt="Logo Da Roça" />
+            <h1 class="brand-title">DaRoça</h1>
+          </a>
+          <p class="brand-subtitle">
+            Sabor e frescor, direto do campo para a sua mesa.
+          </p>
+        </div>
+        <div class="info-footer">
+          <p>© 2025 DaRoça. Todos os direitos reservados.</p>
+        </div>
+      </div>
 
-    <!-- Container principal -->
-    <div class="container">
-      <div class="form-container">
-        <!-- Botões de alternância -->
-        <div class="toggle-buttons">
-          <button id="login-toggle" class="toggle-btn active" type="button">
-            <i class="bx bx-log-in"></i>
-            <span>Entrar</span>
-          </button>
-          <button id="register-toggle" class="toggle-btn" type="button">
-            <i class="bx bx-user-plus"></i>
-            <span>Cadastrar</span>
-          </button>
+      <main class="form-panel">
+        <div class="back-button">
+          <a href="inicio.html" aria-label="Voltar para página inicial">
+            <i class="bx bx-arrow-back"></i>
+            <span>Voltar</span>
+          </a>
         </div>
 
-        <!-- Formulário de Login -->
-        <div id="login-form" class="form-section active">
-          <div class="form-header">
-            <h1 class="form-title">Bem-vindo de volta!</h1>
-            <p class="form-subtitle">Entre na sua conta Da Roça</p>
-          </div>
-
-          <form id="login" novalidate autocomplete="on">
-            <div class="input-group">
-              <input
-                type="email"
-                id="login-email"
-                name="email"
-                required
-                autocomplete="email"
-                placeholder=" "
-              />
-              <label for="login-email">
-                <i class="bx bx-envelope"></i>
-                E-mail
-              </label>
-            </div>
-
-            <div class="input-group">
-              <input
-                type="password"
-                id="login-password"
-                name="password"
-                required
-                autocomplete="current-password"
-                placeholder=" "
-              />
-              <label for="login-password">
-                <i class="bx bx-lock-alt"></i>
-                Senha
-              </label>
-            </div>
-
-            <div class="form-options">
-              <label class="checkbox-container">
-                <input type="checkbox" id="remember" />
-                <span class="checkmark"></span>
-                Lembrar de mim
-              </label>
-              <a href="#" class="forgot-link">Esqueceu a senha?</a>
-            </div>
-
-            <button type="submit" class="submit-btn">
+        <div class="form-container">
+          <div class="toggle-buttons">
+            <button id="login-toggle" class="toggle-btn active" type="button">
+              <i class="bx bx-log-in"></i>
               <span>Entrar</span>
-              <i class="bx bx-right-arrow-alt"></i>
             </button>
-          </form>
-        </div>
-
-        <!-- Formulário de Cadastro -->
-        <div id="register-form" class="form-section">
-          <div class="form-header">
-            <h1 class="form-title">Criar nova conta</h1>
-            <p class="form-subtitle">Junte-se à família Da Roça</p>
+            <button id="register-toggle" class="toggle-btn" type="button">
+              <i class="bx bx-user-plus"></i>
+              <span>Cadastrar</span>
+            </button>
           </div>
 
-          <form id="register" novalidate autocomplete="on">
-            <div class="input-group">
-              <input
-                type="text"
-                id="register-name"
-                name="name"
-                required
-                autocomplete="name"
-                placeholder=" "
-              />
-              <label for="register-name">
-                <i class="bx bx-user"></i>
-                Nome completo
-              </label>
+          <div
+            id="login-form"
+            class="form-section active"
+            role="tabpanel"
+            aria-hidden="false"
+          >
+            <div class="form-header">
+              <h2 class="form-title">Bem-vindo de volta!</h2>
+              <p class="form-subtitle">Entre na sua conta Da Roça</p>
             </div>
 
-            <div class="input-group">
-              <input
-                type="email"
-                id="register-email"
-                name="email"
-                required
-                autocomplete="email"
-                placeholder=" "
-              />
-              <label for="register-email">
-                <i class="bx bx-envelope"></i>
-                E-mail
-              </label>
+            <form id="login" novalidate autocomplete="on">
+              <div class="input-group">
+                <input
+                  type="email"
+                  id="login-email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder=" "
+                />
+                <label for="login-email">
+                  <i class="bx bx-envelope"></i>
+                  E-mail
+                </label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="password"
+                  id="login-password"
+                  name="password"
+                  required
+                  autocomplete="current-password"
+                  placeholder=" "
+                />
+                <label for="login-password">
+                  <i class="bx bx-lock-alt"></i>
+                  Senha
+                </label>
+              </div>
+
+              <div class="form-options">
+                <label class="checkbox-container">
+                  <input type="checkbox" id="remember" />
+                  <span class="checkmark"></span>
+                  Lembrar de mim
+                </label>
+                <a href="#" class="forgot-link">Esqueceu a senha?</a>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span>Entrar</span>
+                <i class="bx bx-right-arrow-alt"></i>
+              </button>
+            </form>
+          </div>
+
+          <div
+            id="register-form"
+            class="form-section"
+            role="tabpanel"
+            aria-hidden="true"
+          >
+            <div class="form-header">
+              <h2 class="form-title">Criar nova conta</h2>
+              <p class="form-subtitle">Junte-se à família Da Roça</p>
             </div>
 
-            <div class="input-group">
-              <input
-                type="tel"
-                id="register-phone"
-                name="phone"
-                required
-                autocomplete="tel"
-                placeholder=" "
-              />
-              <label for="register-phone">
-                <i class="bx bx-phone"></i>
-                Telefone
-              </label>
-            </div>
+            <form id="register" novalidate autocomplete="on">
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="register-name"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  placeholder=" "
+                />
+                <label for="register-name">
+                  <i class="bx bx-user"></i>
+                  Nome completo
+                </label>
+              </div>
 
-            <div class="input-group">
-              <input
-                type="password"
-                id="register-password"
-                name="password"
-                required
-                autocomplete="new-password"
-                placeholder=" "
-              />
-              <label for="register-password">
-                <i class="bx bx-lock-alt"></i>
-                Senha
-              </label>
-            </div>
+              <div class="input-group">
+                <input
+                  type="email"
+                  id="register-email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder=" "
+                />
+                <label for="register-email">
+                  <i class="bx bx-envelope"></i>
+                  E-mail
+                </label>
+              </div>
 
-            <div class="input-group">
-              <input
-                type="password"
-                id="confirm-password"
-                name="confirmPassword"
-                required
-                autocomplete="new-password"
-                placeholder=" "
-              />
-              <label for="confirm-password">
-                <i class="bx bx-lock-alt"></i>
-                Confirmar senha
-              </label>
-            </div>
+              <div class="input-group">
+                <input
+                  type="tel"
+                  id="register-phone"
+                  name="phone"
+                  required
+                  autocomplete="tel"
+                  placeholder=" "
+                />
+                <label for="register-phone">
+                  <i class="bx bx-phone"></i>
+                  Telefone
+                </label>
+              </div>
 
-            <div class="form-options">
-              <label class="checkbox-container">
-                <input type="checkbox" id="terms" required />
-                <span class="checkmark"></span>
-                <span style="margin-left: 8px"
-                  >Aceito os <a href="#" target="_blank">termos de uso</a></span
-                >
-              </label>
-            </div>
+              <div class="input-group">
+                <input
+                  type="password"
+                  id="register-password"
+                  name="password"
+                  required
+                  autocomplete="new-password"
+                  placeholder=" "
+                />
+                <label for="register-password">
+                  <i class="bx bx-lock-alt"></i>
+                  Senha
+                </label>
+              </div>
 
-            <button type="submit" class="submit-btn">
-              <span>Criar conta</span>
-              <i class="bx bx-right-arrow-alt"></i>
-            </button>
-          </form>
+              <div class="input-group">
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirmPassword"
+                  required
+                  autocomplete="new-password"
+                  placeholder=" "
+                />
+                <label for="confirm-password">
+                  <i class="bx bx-lock-alt"></i>
+                  Confirmar senha
+                </label>
+              </div>
+
+              <div class="form-options">
+                <label class="checkbox-container terms">
+                  <input type="checkbox" id="terms" required />
+                  <span class="checkmark"></span>
+                  Aceito os <a href="#" target="_blank">termos de uso</a>
+                </label>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span>Criar conta</span>
+                <i class="bx bx-right-arrow-alt"></i>
+              </button>
+            </form>
+          </div>
         </div>
 
         <nav class="footer-nav" aria-label="Links úteis">
           <ul class="footer-links">
             <li><a href="#" rel="noopener">Termos de Uso</a></li>
             <li><a href="#" rel="noopener">Licença</a></li>
-            <li><a href="#" rel="noopener">Política de Privacidade</a></li>
-            <li><a href="#" rel="noopener">Política de Cookies</a></li>
+            <li><a href="#" rel="noopener">Privacidade</a></li>
+            <li><a href="#" rel="noopener">Cookies</a></li>
           </ul>
         </nav>
-      </div>
+      </main>
     </div>
 
-    <!-- Scripts -->
-    <script src="../JS/login-cadastro.js" src="../js/cadastro.js"></script>
+    <script src="../JS/login-cadastro.js"></script>
   </body>
 </html>

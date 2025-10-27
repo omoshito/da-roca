@@ -3,68 +3,116 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teste - DaRoça</title>
-    <link rel="stylesheet" href="CSS/style_catalogo.css" />
+    <title>Bem-vindo ao DaRoça</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-      .test-container {
-        padding: 20px;
+      /* CSS Totalmente Novo - Focado em Estética 
+      */
+
+      /* Reseta e define o fundo */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh; /* Garante que o fundo ocupe a tela toda */
+        font-family: "Poppins", sans-serif; /* Usa a fonte importada */
+        background-color: #f5f0e3; /* Cor de fundo "rústica" do seu original */
+        color: #333;
+
+        /* Centraliza o conteúdo na tela */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* O cartão principal */
+      .nav-container {
         text-align: center;
-        background-color: #f5f0e3;
-        min-height: 100vh;
+        background-color: #ffffff; /* Fundo branco para o "cartão" */
+        padding: 40px 50px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        width: 90%;
+        max-width: 400px; /* Limita a largura em telas grandes */
       }
 
-      .status {
-        padding: 10px;
-        margin: 10px;
-        border-radius: 5px;
-      }
-
-      .success {
-        background-color: #4caf50;
-        color: white;
-      }
-
-      .error {
-        background-color: #f44336;
-        color: white;
-      }
-
-      .logo-test {
-        max-width: 200px;
+      /* Estilo do Logo */
+      .logo {
+        max-width: 180px; /* Um pouco menor para equilibrar */
         height: auto;
+        margin-bottom: 25px;
+      }
+
+      /* Título */
+      h1 {
+        font-size: 1.5rem; /* 24px */
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+
+      /* Lista de navegação */
+      nav ul {
+        list-style: none; /* Remove bolinhas da lista */
+        padding: 0;
+        margin: 0;
+      }
+
+      nav li {
+        margin-bottom: 15px; /* Espaço entre os botões */
+      }
+
+      /* Estilo dos Links como Botões */
+      nav li a {
+        display: block; /* Faz o link ocupar o espaço todo do 'li' */
+        text-decoration: none; /* Remove sublinhado */
+        color: #ffffff; /* Texto branco */
+        background-color: #4caf50; /* Verde "sucesso" do seu original */
+        padding: 16px;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 1rem; /* 16px */
+
+        /* Efeito suave na transição */
+        transition: all 0.3s ease;
+      }
+
+      /* Efeito ao passar o mouse (Hover) */
+      nav li a:hover {
+        background-color: #45a049; /* Verde um pouco mais escuro */
+        transform: translateY(-3px); /* Levanta o botão levemente */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       }
     </style>
   </head>
 
   <body>
-    <div class="test-container">
-      <h1>🧪 Teste de Caminhos - DaRoça</h1>
+    <div class="nav-container">
+      <header>
+        <img src="Imagens/daRoca.png" alt="Logo DaRoça" class="logo" />
+        <h1>Seja bem-vindo!</h1>
+      </header>
 
-      <div class="status success">
-        <h2>✅ CSS Carregado Corretamente</h2>
-        <p>Se você está vendo este estilo verde, o CSS está funcionando!</p>
-      </div>
-
-      <div class="status">
-        <h2>🖼️ Teste de Imagem</h2>
-        <img src="Imagens/daRoca.png" alt="Logo DaRoça" class="logo-test" />
-        <p>Se a logo aparecer acima, as imagens estão funcionando!</p>
-      </div>
-
-      <div class="status">
-        <h2>📁 Estrutura de Arquivos</h2>
-        <p>✅ HTML: Pratica-Profissional-A--main/[arquivo].html</p>
-        <p>✅ CSS: Pratica-Profissional-A--main/CSS/</p>
-        <p>✅ JS: Pratica-Profissional-A--main/JS/</p>
-        <p>✅ Imagens: Pratica-Profissional-A--main/Imagens/</p>
-      </div>
-
-      <div class="status">
-        <h2>🔗 Links de Teste</h2>
-        <a href="HTML/Inicio.html">📄 Página Inicial</a> |
-        <a href="HTML/Catalogo.html">🛒 Catálogo</a> |
-        <a href="HTML/login-cadastro.html">🔐 Login/📝 Cadastro</a> |
-      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="HTML/Inicio.html">📄 Página Inicial</a>
+          </li>
+          <li>
+            <a href="HTML/Catalogo.html">🛒 Catálogo de Produtos</a>
+          </li>
+          <li>
+            <a href="HTML/login-cadastro.html">🔐 Login / 📝 Cadastro</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </body>
+
+    </body>
 </html>

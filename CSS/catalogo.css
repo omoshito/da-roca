@@ -1,0 +1,667 @@
+/* ==============================================
+   ARQUIVO: base.css
+   DESCRIÇÃO: Estilos principais para a plataforma e-commerce "Da Roça".
+   ============================================== */
+
+/* ==============================================
+   1. Variáveis e Configurações Globais (Root)
+   ============================================== */
+:root {
+  /* Paleta de Cores "Da Roça" */
+  --color-primary: #386641; /* Verde escuro (principal) */
+  --color-primary-dark: #2a4c30; /* Verde mais escuro (hover) */
+  --color-accent: #6a994e; /* Verde vibrante (botões, detalhes) */
+  --color-background-light: #f6f4f1; /* Bege/Off-white (fundos de seção) */
+  --color-background: #ffffff; /* Branco (fundo principal) */
+  --color-text: #333333; /* Cinza escuro (texto principal) */
+  --color-text-light: #ffffff; /* Branco (texto sobre fundos escuros) */
+  --color-border: #dddddd; /* Cinza claro (bordas) */
+  --color-gray-medium: #777777; /* Cinza médio (textos secundários) */
+
+  /* Tipografia */
+  --font-primary: "Poppins", sans-serif;
+  --font-brand: "Lily Script One", cursive;
+
+  /* Tamanhos e Espaçamentos */
+  --header-height: 70px;
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-xxl: 3rem; /* 48px */
+
+  /* Outros */
+  --container-width: 1200px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.2s ease-in-out;
+}
+
+/* ==============================================
+   2. Reset e Estilos de Base
+   ============================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%; /* 1rem = 16px */
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ==============================================
+   3. Classes Utilitárias
+   ============================================== */
+
+/* Container principal para centralizar conteúdo */
+.container {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+/* Esconde visualmente, mas mantém para leitores de tela */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Foco visível para acessibilidade */
+:focus-visible {
+  outline: 3px solid var(--color-primary-dark);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Remove transições se o usuário preferir */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==============================================
+   4. Estilos do Header (Cabeçalho)
+   ============================================== */
+header {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  height: var(--header-height);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-light);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-primary);
+}
+
+.logo img {
+  height: 40px; /* Ajuste conforme o tamanho do seu logo */
+  width: auto;
+}
+
+.logo h1 {
+  font-family: var(--font-brand);
+  font-size: clamp(1.75rem, 5vw, 2.25rem); /* Fonte responsiva */
+  margin: 0;
+  font-weight: 400; /* Fontes script geralmente não precisam de bold */
+}
+
+.main-nav ul {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.main-nav a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  padding: var(--spacing-sm) 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-fast);
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+  color: var(--color-primary);
+}
+
+.main-nav a:hover::after,
+.main-nav a:focus-visible::after {
+  width: 100%;
+}
+
+.main-nav a.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.main-nav a.active::after {
+  width: 100%;
+  background-color: var(--color-primary);
+}
+
+/* ==============================================
+   5. Estilos do Main (Conteúdo Principal)
+   ============================================== */
+main {
+  min-height: calc(100vh - var(--header-height) - 150px); /* Garante que o footer vá para baixo */
+}
+
+/* --- Seção Hero do Catálogo --- */
+.catalog-hero {
+  background-color: var(--color-background-light);
+  padding-block: var(--spacing-xxl);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.catalog-title {
+  font-size: clamp(2.25rem, 6vw, 3rem); /* Título grande e responsivo */
+  margin-bottom: var(--spacing-sm);
+}
+
+.catalog-description {
+  font-size: 1.125rem;
+  color: var(--color-gray-medium);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* --- Conteúdo do Catálogo (Filtros e Produtos) --- */
+.catalog-content {
+  padding-block: var(--spacing-xl);
+}
+
+/* --- Barra de Pesquisa --- */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar em telas menores */
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.search-input-wrapper {
+  flex: 1 1 300px; /* Cresce e encolhe, com base de 300px */
+  position: relative;
+}
+
+.search-input-wrapper .bx-search {
+  position: absolute;
+  left: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--color-gray-medium);
+  pointer-events: none; /* Permite clicar no input através do ícone */
+}
+
+#search-product {
+  width: 100%;
+  height: 48px;
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 3rem; /* Espaço para o ícone */
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  transition: border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+#search-product:focus,
+#search-product:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(56, 102, 65, 0.2);
+  outline: none;
+}
+
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-lg);
+  height: 48px;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  transition: background-color var(--transition-fast);
+}
+
+.filter-toggle:hover {
+  background-color: var(--color-background-light);
+}
+
+.filter-toggle .bx {
+  font-size: 1.25rem;
+}
+
+/* --- Botões de Filtro --- */
+.filters-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar em várias linhas */
+  gap: var(--spacing-sm);
+}
+
+.filter-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 1px solid var(--color-border);
+  border-radius: 30px; /* Pílulas */
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background-color: var(--color-background-light);
+  border-color: var(--color-gray-medium);
+}
+
+.filter-btn.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+/* --- Grade de Produtos --- */
+.product-grid {
+  display: grid;
+  /* Grid responsivo:
+     - auto-fill: cria quantas colunas couberem
+     - minmax(280px, 1fr): cada coluna tem no mínimo 280px e no máximo 1 fração do espaço
+  */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* --- Mensagem de Carregamento --- */
+.loading-message {
+  /* Ocupa toda a largura da grade */
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding-block: var(--spacing-xxl);
+  color: var(--color-gray-medium);
+  font-size: 1.1rem;
+}
+
+.loading-message .bx-spin {
+  font-size: 3rem;
+  color: var(--color-primary);
+}
+
+/* --- Card de Produto (Estilo para o JS) --- */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.product-card__image-wrapper {
+  aspect-ratio: 4 / 3; /* Proporção da imagem */
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que a imagem cubra o espaço */
+  transition: transform var(--transition-fast);
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.05);
+}
+
+.product-card__info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Faz esta div crescer para preencher o card */
+  padding: var(--spacing-lg);
+}
+
+.product-card__category {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-gray-medium);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xs);
+}
+
+.product-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.product-card__price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: auto; /* Empurra o preço para baixo */
+  margin-bottom: var(--spacing-lg);
+}
+
+.product-card__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  height: 48px;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  text-align: center;
+  transition: background-color var(--transition-fast);
+}
+
+.product-card__button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.product-card__button .bx {
+  font-size: 1.25rem;
+}
+
+/* ==============================================
+   6. Estilos do Footer (Rodapé)
+   ============================================== */
+footer {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding-block: var(--spacing-xl);
+  margin-top: var(
+    --spacing-xxl
+  ); /* Espaço acima do rodapé */
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar em telas menores */
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xl);
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+.footer-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: var(--color-background-light);
+}
+
+.social-media {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.social-media a {
+  font-size: 1.5rem;
+  color: var(--color-text-light);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.social-media a:hover {
+  transform: scale(1.1);
+  color: var(--color-accent);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--color-background-light);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+/* ==============================================
+   7. Media Queries (Responsividade)
+   ============================================== */
+
+/* --- Telas Médias (Tablets) --- */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 60px; /* Header menor em telas menores */
+  }
+
+  .header-container {
+    flex-wrap: wrap;
+  }
+
+  .main-nav {
+    order: 3; /* Joga a navegação para baixo do logo */
+    width: 100%;
+    margin-top: var(--spacing-sm);
+  }
+
+  .main-nav ul {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-sm);
+    justify-content: space-around; /* Distribui os links */
+    gap: var(--spacing-sm);
+  }
+
+  .main-nav a {
+    font-size: 0.9rem;
+    padding: var(--spacing-sm) var(--spacing-xs);
+  }
+
+  .main-nav a::after {
+    display: none; /* Remove linha de hover no mobile */
+  }
+
+  .main-nav a.active {
+    background-color: var(--color-background-light);
+    border-radius: var(--border-radius-sm);
+  }
+
+  /* Faz os filtros rolarem horizontalmente */
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: var(--spacing-md); /* Espaço para a barra de rolagem */
+    /* Melhora a rolagem em touch */
+    -webkit-overflow-scrolling: touch;
+    /* Esconde a barra de rolagem (opcional) */
+    scrollbar-width: none; /* Firefox */
+  }
+  .filters::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .filters .filter-btn {
+    white-space: nowrap; /* Impede que o texto do botão quebre */
+  }
+
+  /* Centraliza o rodapé */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-left {
+    flex-direction: column;
+  }
+}
+
+/* --- Telas Pequenas (Celulares) --- */
+@media (max-width: 600px) {
+  /* Ajusta a grade para 2 colunas */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  /* Diminui fontes e preenchimentos nos cards */
+  .product-card__info {
+    padding: var(--spacing-md);
+  }
+  .product-card__title {
+    font-size: 1rem;
+  }
+  .product-card__price {
+    font-size: 1.15rem;
+    margin-bottom: var(--spacing-md);
+  }
+  .product-card__button {
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .catalog-title {
+    font-size: 2rem;
+  }
+  .catalog-description {
+    font-size: 1rem;
+  }
+}
+
+/* --- Telas Muito Pequenas (Celulares) --- */
+@media (max-width: 400px) {
+  /* Ajusta a grade para 1 coluna */
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links {
+    flex-direction: column; /* Links do rodapé em coluna */
+    gap: var(--spacing-sm);
+  }
+}
