@@ -24,6 +24,7 @@
   --font-brand: "Lily Script One", cursive;
 
   /* Tamanhos e Espaçamentos */
+  --spacing-xs: 0.25rem; /* 4px */
   --spacing-sm: 0.5rem; /* 8px */
   --spacing-md: 1rem; /* 16px */
   --spacing-lg: 1.5rem; /* 24px */
@@ -160,12 +161,12 @@ a:hover {
    4. Componentes do Formulário
    ============================================== */
 
-/* --- Botão "Voltar" (Mobile) --- */
+/* --- Botão "Voltar" --- */
 .back-button {
-  display: none; /* Escondido no desktop */
   position: absolute;
   top: var(--spacing-lg);
   left: var(--spacing-lg);
+  z-index: 10;
 }
 .back-button a {
   display: flex;
@@ -173,9 +174,11 @@ a:hover {
   gap: var(--spacing-sm);
   color: var(--color-gray-medium);
   font-weight: 500;
+  transition: all var(--transition-fast);
 }
 .back-button a:hover {
   color: var(--color-primary);
+  transform: translateX(-3px);
 }
 
 /* --- Botões de Alternância (Entrar/Cadastrar) --- */
@@ -253,6 +256,23 @@ a:hover {
   margin-bottom: var(--spacing-lg);
 }
 
+/* --- Linha de Inputs (para campos lado a lado) --- */
+.input-row {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.input-row .input-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.input-row .input-group-small {
+  flex: 0 0 100px;
+  min-width: 100px;
+}
+
 .input-group label {
   position: absolute;
   top: 50%;
@@ -276,6 +296,19 @@ a:hover {
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
   background: transparent;
+  transition: all var(--transition-fast);
+}
+
+.input-group input:hover {
+  border-color: var(--color-gray-medium);
+}
+
+.input-group input:invalid:not(:placeholder-shown) {
+  border-color: var(--color-error);
+}
+
+.input-group input:valid:not(:placeholder-shown) {
+  border-color: var(--color-accent);
 }
 
 /* O "truque" do floating label */
@@ -368,6 +401,12 @@ a:hover {
 }
 .checkbox-container.terms a {
   font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-left: 0.25rem;
+}
+.checkbox-container.terms a:hover {
+  text-decoration: none;
 }
 
 /* --- Botão de Envio --- */
@@ -391,6 +430,18 @@ a:hover {
 .submit-btn:hover {
   background-color: var(--color-primary-dark);
   box-shadow: 0 4px 10px rgba(106, 153, 78, 0.4);
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(106, 153, 78, 0.3);
+}
+
+.submit-btn:disabled {
+  background-color: var(--color-gray-medium);
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .submit-btn .bx {
@@ -450,7 +501,7 @@ a:hover {
     box-shadow: none; /* Remove a sombra no mobile */
     border-radius: 0;
     max-width: none;
-    background: transparent;
+    background-color: var(--color-background);
   }
 
   .form-section {
@@ -458,7 +509,6 @@ a:hover {
   }
 
   .back-button {
-    display: block; /* Mostra o botão "voltar" */
     position: static;
     margin-bottom: var(--spacing-md);
   }
@@ -474,5 +524,20 @@ a:hover {
   .forgot-link {
     width: 100%;
     text-align: right;
+  }
+
+  /* Campos em linha viram blocos empilhados no mobile */
+  .input-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .input-row .input-group {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .input-row .input-group-small {
+    flex: 1;
+    min-width: 100%;
   }
 }

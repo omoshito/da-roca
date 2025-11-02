@@ -55,7 +55,7 @@
 
       <main class="form-panel">
         <div class="back-button">
-          <a href="inicio.html" aria-label="Voltar para página inicial">
+          <a href="Catalogo.html" aria-label="Voltar para catálogo">
             <i class="bx bx-arrow-back"></i>
             <span>Voltar</span>
           </a>
@@ -93,6 +93,7 @@
                   required
                   autocomplete="email"
                   placeholder=" "
+                  aria-label="E-mail"
                 />
                 <label for="login-email">
                   <i class="bx bx-envelope"></i>
@@ -108,6 +109,7 @@
                   required
                   autocomplete="current-password"
                   placeholder=" "
+                  aria-label="Senha"
                 />
                 <label for="login-password">
                   <i class="bx bx-lock-alt"></i>
@@ -190,6 +192,105 @@
 
               <div class="input-group">
                 <input
+                  type="text"
+                  id="register-cpf"
+                  name="cpf"
+                  required
+                  inputmode="numeric"
+                  maxlength="14"
+                  autocomplete="off"
+                  placeholder=" "
+                />
+                <label for="register-cpf">
+                  <i class="bx bx-id-card"></i>
+                  CPF
+                </label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="register-cep"
+                  name="cep"
+                  required
+                  inputmode="numeric"
+                  maxlength="9"
+                  autocomplete="postal-code"
+                  placeholder=" "
+                />
+                <label for="register-cep">
+                  <i class="bx bx-map-pin"></i>
+                  CEP
+                </label>
+              </div>
+
+              <div class="input-row">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="register-address"
+                    name="address"
+                    required
+                    autocomplete="street-address"
+                    placeholder=" "
+                  />
+                  <label for="register-address">
+                    <i class="bx bx-map"></i>
+                    Endereço
+                  </label>
+                </div>
+
+                <div class="input-group input-group-small">
+                  <input
+                    type="text"
+                    id="register-number"
+                    name="number"
+                    required
+                    autocomplete="off"
+                    placeholder=" "
+                  />
+                  <label for="register-number">
+                    <i class="bx bx-hash"></i>
+                    Nº
+                  </label>
+                </div>
+              </div>
+
+              <div class="input-row">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="register-city"
+                    name="city"
+                    required
+                    autocomplete="address-level2"
+                    placeholder=" "
+                  />
+                  <label for="register-city">
+                    <i class="bx bx-buildings"></i>
+                    Cidade
+                  </label>
+                </div>
+
+                <div class="input-group input-group-small">
+                  <input
+                    type="text"
+                    id="register-state"
+                    name="state"
+                    required
+                    maxlength="2"
+                    autocomplete="address-level1"
+                    placeholder=" "
+                  />
+                  <label for="register-state">
+                    <i class="bx bx-map-alt"></i>
+                    UF
+                  </label>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <input
                   type="password"
                   id="register-password"
                   name="password"
@@ -222,7 +323,7 @@
                 <label class="checkbox-container terms">
                   <input type="checkbox" id="terms" required />
                   <span class="checkmark"></span>
-                   <a href="#" target="_blank"> Aceito os termos de uso</a>
+                  Aceito os <a href="#" target="_blank">termos de uso</a>
                 </label>
               </div>
 
