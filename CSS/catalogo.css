@@ -340,6 +340,7 @@ main {
   display: flex;
   flex-wrap: wrap; /* Permite quebrar em várias linhas */
   gap: var(--spacing-sm);
+  justify-content: center;
 }
 
 .filter-btn {
@@ -607,7 +608,8 @@ footer {
   }
 
   .filters .filter-btn {
-    white-space: nowrap; /* Impede que o texto do botão quebre */
+    white-space: nowrap;
+     /* Impede que o texto do botão quebre */
   }
 
   /* Centraliza o rodapé */
