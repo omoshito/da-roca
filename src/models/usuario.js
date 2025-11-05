@@ -31,7 +31,7 @@ async function cadastrarClientes(cliente) {
   try {
     const request = new mssql.Request();
 
-    request.input("cpfCliente", mssql.VarChar(11), cpf);
+    request.input("cpfCliente", mssql.BigInt, cpf);
     request.input("nomeCliente", mssql.VarChar(100), nome);
     request.input("telefoneCliente", mssql.VarChar(15), telefone);
     request.input("enderecoCliente", mssql.VarChar(100), endereco);
