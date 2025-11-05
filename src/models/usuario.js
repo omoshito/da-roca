@@ -19,7 +19,7 @@ async function buscar (clientes){
 }
 
 async function cadastrarClientes(cliente){
-    const {cpf, nome, telefone, endereco, login, senha} = cliente
+    const {cpf, nome, telefone, endereco, uf, cidade, numero,  login} = cliente
     const senhaHash = await bcrypt.hash(senha, 10)
     try{
         const request = new mssql.Request()
@@ -28,11 +28,14 @@ async function cadastrarClientes(cliente){
         request.input('nomeCliente', mssql.VarChar(100), nome)
         request.input('telefoneCliente', mssql.VarChar(9), telefone)
         request.input('enderecoCliente', mssql.VarChar(50), endereco)
+        request.input('ufc', mssql.VarChar(2), uf)
+        request.input('cidadeC', mssql.VarChar(20), cidade)
+        request.input('numeroC', mssql.VarChar(3), numero)
         request.input('loginCliente', mssql.VarChar(80), login)
         request.input('senhaCliente', mssql.VarChar(255), senhaHash)
 
-        const query = `INSERT INTO daroca.clientes (cpf, nome, telefone, email, senha, endereco) VALUES (@cpfCliente, @nomeClientem 
-                       @telefoneCliente, @enderecoCliente, @loginCliente, @senhaCliente)`
+        const query = `INSERT INTO daroca.clientes (cpf, nome, telefone, email, senha, uf, numero, cidade, endereco) VALUES (@cpfCliente, @nomeClientem 
+                       @telefoneCliente, @enderecoCliente,@ufc, @cidadeC, @numeroC, @loginCliente, @senhaCliente)`
 
         await request.query(query)
 

@@ -56,12 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filtra produtos ao digitar na barra de pesquisa
     searchInput.addEventListener('input', () => {
         const searchTerm = searchInput.value.toLowerCase();
-        const activeFilter = document.getElementById('search-product').dataset.filter;
-        
+        console.log("Digitando:", searchInput.value);
+
         const filteredProducts = products.filter(product => {
-            const matchesSearch = product.nome.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm);
-            return matchesSearch
-        });
+        const nome = (product.nome ?? "").toLowerCase(); 
+        
+        const matchesSearch = nome.includes(searchTerm);
+        
+    return matchesSearch 
+});
         renderProducts(filteredProducts);
     });
 });

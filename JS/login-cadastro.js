@@ -173,7 +173,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = document.getElementById("register-email").value.trim();
     const phone = document.getElementById("register-phone").value.trim();
     const cpf = document.getElementById("register-cpf").value.trim();
-    const cep = document.getElementById("register-cep").value.trim();
     const address = document.getElementById("register-address").value.trim();
     const number = document.getElementById("register-number").value.trim();
     const city = document.getElementById("register-city").value.trim();

@@ -12,7 +12,7 @@ app.use(cors({origin:"*"}))
 app.use(express.json())
 
 app.use("/daroca", darocaRoutes)
-app.use("/usuario", usuarioRoutes)
+app.use("/", usuarioRoutes)
 
 app.get("/", (req, res) => {
     res.json({mensagem : "Servidor em execução"})

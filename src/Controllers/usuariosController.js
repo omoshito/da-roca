@@ -26,6 +26,8 @@ async function login(req, res) {
 }
 
 async function inserir(req, res) {
+    console.log("📩 Rota /clientes foi chamada!");
+    console.log("Dados recebidos:", req.body)
     try{
         const resultado = await Usuario.inserir(req.body);
         res.status(201).json(resultado);
