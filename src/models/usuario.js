@@ -1,50 +1,59 @@
-const bcrypt = require('bcrypt')
-const {mssql} = require("../config/db")
+const bcrypt = require("bcrypt");
+const { mssql } = require("../config/db");
 
-async function buscar (clientes){
-    try{
-        const {login, senha} = clientes
-        const request = new mssql.Request()
+async function buscar(clientes) {
+  try {
+    const { login, senha } = clientes;
+    const request = new mssql.Request();
 
-        request.input('loginUser', mssql.VarChar(80), login)
-        request.input('senhaUser', mssql.VarChar(80), senha)
-        const query = `SELECT * FROM darocaClientes WHERE nome = @loginUser AND senha = @senhaUser `
+    request.input("loginUser", mssql.VarChar(80), login);
 
-        await request.query(query)
-        return buscar.recordset[0]
-    }
-    catch(error){
-        return{error: "Não foi possível logar no site"}
-    }
+    const query = `SELECT * FROM darocaClientes WHERE email = @loginUser`;
+    const resultado = await request.query(query);
+
+    const usuario = resultado.recordset[0];
+    if (!usuario) return { erro: "Usuário não encontrado" };
+
+    const senhaValida = await bcrypt.compare(senha, usuario.senha);
+    if (!senhaValida) return { erro: "Senha incorreta" };
+
+    return usuario;
+  } catch (error) {
+    console.error("Erro ao buscar cliente:", error);
+    return { erro: "Não foi possível logar no site" };
+  }
 }
 
-async function cadastrarClientes(cliente){
-    const {cpf, nome, telefone, endereco, uf, cidade, numero,  login} = cliente
-    const senhaHash = await bcrypt.hash(senha, 10)
-    try{
-        const request = new mssql.Request()
-        
-        request.input('cpfCliente', mssql.VarChar(11), cpf)
-        request.input('nomeCliente', mssql.VarChar(100), nome)
-        request.input('telefoneCliente', mssql.VarChar(9), telefone)
-        request.input('enderecoCliente', mssql.VarChar(50), endereco)
-        request.input('ufc', mssql.VarChar(2), uf)
-        request.input('cidadeC', mssql.VarChar(20), cidade)
-        request.input('numeroC', mssql.VarChar(3), numero)
-        request.input('loginCliente', mssql.VarChar(80), login)
-        request.input('senhaCliente', mssql.VarChar(255), senhaHash)
+async function cadastrarClientes(cliente) {
+  const { cpf, nome, telefone, endereco, uf, cidade, numero, login, senha } = cliente;
+  const senhaHash = await bcrypt.hash(senha, 10);
 
-        const query = `INSERT INTO daroca.clientes (cpf, nome, telefone, email, senha, uf, numero, cidade, endereco) VALUES (@cpfCliente, @nomeClientem 
-                       @telefoneCliente, @enderecoCliente,@ufc, @cidadeC, @numeroC, @loginCliente, @senhaCliente)`
+  try {
+    const request = new mssql.Request();
 
-        await request.query(query)
+    request.input("cpfCliente", mssql.VarChar(11), cpf);
+    request.input("nomeCliente", mssql.VarChar(100), nome);
+    request.input("telefoneCliente", mssql.VarChar(15), telefone);
+    request.input("enderecoCliente", mssql.VarChar(100), endereco);
+    request.input("ufc", mssql.VarChar(2), uf);
+    request.input("cidadeC", mssql.VarChar(50), cidade);
+    request.input("numeroC", mssql.VarChar(10), numero);
+    request.input("loginCliente", mssql.VarChar(80), login);
+    request.input("senhaCliente", mssql.VarChar(255), senhaHash);
 
-        return{mensagem:"Cliente inserido com sucesso"}
+    const query = `
+      INSERT INTO darocaClientes 
+      (cpf, nome, telefone, endereco, uf, cidade, numero, email, senha)
+      VALUES 
+      (@cpfCliente, @nomeCliente, @telefoneCliente, @enderecoCliente, @ufc, @cidadeC, @numeroC, @loginCliente, @senhaCliente)
+    `;
 
-    }
-    catch(error){
-        return {mensagem : "Não foi possível cadastrar o cliente", erro : error}
-    }
+    await request.query(query);
+    return { mensagem: "Cliente inserido com sucesso" };
+  } catch (error) {
+    console.error("Erro ao cadastrar cliente:", error);
+    return { mensagem: "Não foi possível cadastrar o cliente", erro: error.message };
+  }
 }
 
-module.exports = {buscar, cadastrarClientes}
+module.exports = { buscar, cadastrarClientes };
