@@ -55,15 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Filtra produtos ao digitar na barra de pesquisa
     searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
+        const busca = searchInput.value.toLowerCase();
         console.log("Digitando:", searchInput.value);
 
         const filteredProducts = products.filter(product => {
         const nome = (product.nome ?? "").toLowerCase(); 
         
-        const matchesSearch = nome.includes(searchTerm);
+        const resultado = nome.includes(busca);
         
-    return matchesSearch 
+    return resultado
 });
         renderProducts(filteredProducts);
     });
