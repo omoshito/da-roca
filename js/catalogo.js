@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filteredProducts.forEach(product => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
-            productCard.dataset.category = product.category;
+            productCard.dataset.categoria = product.categoria;
             productCard.innerHTML = `
                 <img src="${product.imagem}" alt="${product.nome}">
                 <div class="product-info">
@@ -32,39 +32,27 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
         products = data
         renderProducts(products)
+        console.log(products)
     })
     .catch(erro => 
         console.log("Não foi possível regatar os dados", erro)
     )
 
     // Filtra produtos ao clicar nos botões de categoria
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filterCategory = btn.dataset.filter;
-            const filteredProducts = products.filter(product => {
-                if (filterCategory === 'all') {
-                    return true;
-                }
-                return product.category === filterCategory;
-            });
-            renderProducts(filteredProducts);
-        });
-    });
+    
 
     // Filtra produtos ao digitar na barra de pesquisa
     searchInput.addEventListener('input', () => {
-        const busca = searchInput.value.toLowerCase();
-        console.log("Digitando:", searchInput.value);
+        const busca = searchInput.value.toLowerCase()
+        console.log("Digitando:", searchInput.value)
 
         const filteredProducts = products.filter(product => {
-        const nome = (product.nome ?? "").toLowerCase(); 
+        const nome = (product.nome ?? "").toLowerCase() 
         
-        const resultado = nome.includes(busca);
+        const resultado = nome.includes(busca)
         
     return resultado
-});
-        renderProducts(filteredProducts);
-    });
-});
+})
+        renderProducts(filteredProducts)
+    })
+})
