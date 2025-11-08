@@ -42,7 +42,7 @@ async function cadastrarClientes(cliente) {
     request.input("senhaCliente", mssql.VarChar(255), senhaHash);
 
     const query = `
-      INSERT INTO darocaClientes 
+      INSERT INTO daroca.Clientes
       (cpf, nome, telefone, endereco, uf, cidade, numero, email, senha)
       VALUES 
       (@cpfCliente, @nomeCliente, @telefoneCliente, @enderecoCliente, @ufc, @cidadeC, @numeroC, @emailCliente, @senhaCliente)

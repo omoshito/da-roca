@@ -29,7 +29,7 @@ async function inserir(req, res) {
     console.log("📩 Rota /clientes foi chamada!");
     console.log("Dados recebidos:", req.body)
     try{
-        const resultado = await Usuario.inserir(req.body);
+        const resultado = await Usuario.cadastrarClientes(req.body);
         res.status(201).json(resultado);
     } catch (err) {
         res.status(500).json({erro: err.message});
