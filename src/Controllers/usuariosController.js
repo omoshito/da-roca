@@ -8,7 +8,7 @@ const SECRET = process.env.SECRET
 
 async function login(req, res) {
     try {
-        const { login, senha } = req.body;
+        const { email, senha } = req.body;
         const usuario = await Usuario.buscar(login);
 
         if (!usuario) return res.status(401).json({ msg: "Credenciais inválidas" });

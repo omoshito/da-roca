@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const loginToggle = document.getElementById("login-toggle");
   const registerToggle = document.getElementById("register-toggle");

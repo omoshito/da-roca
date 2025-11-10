@@ -3,7 +3,7 @@ const { mssql } = require("../config/db");
 
 async function buscar(clientes) {
   try {
-    const { login, senha } = clientes;
+    const { email, senha } = clientes;
     const request = new mssql.Request();
 
     request.input("loginUser", mssql.VarChar(80), login);
