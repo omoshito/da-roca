@@ -286,7 +286,5 @@ document.addEventListener("DOMContentLoaded", function () {
         state
     );
 
-    // Aqui você pode adicionar integração com o backend
-    // Exemplo: fetch('/api/register', { method: 'POST', body: JSON.stringify({...}) })
   });
 });

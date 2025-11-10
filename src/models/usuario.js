@@ -6,9 +6,9 @@ async function buscar(clientes) {
     const { email, senha } = clientes;
     const request = new mssql.Request();
 
-    request.input("loginUser", mssql.VarChar(80), login);
+    request.input("emailUser", mssql.VarChar(80), email);
 
-    const query = `SELECT * FROM darocaClientes WHERE email = @loginUser`;
+    const query = `SELECT * FROM daroca.Clientes WHERE email = @emailUser`;
     const resultado = await request.query(query);
 
     const usuario = resultado.recordset[0];
@@ -25,7 +25,8 @@ async function buscar(clientes) {
 }
 
 async function cadastrarClientes(cliente) {
-  const { cpf, nome, telefone, endereco, uf, cidade, numero, email, senha } = cliente;
+  const { cpf, nome, telefone, endereco, uf, cidade, numero, email, senha } =
+    cliente;
   const senhaHash = await bcrypt.hash(senha, 10);
 
   try {
@@ -52,7 +53,10 @@ async function cadastrarClientes(cliente) {
     return { mensagem: "Cliente inserido com sucesso" };
   } catch (error) {
     console.error("Erro ao cadastrar cliente:", error);
-    return { mensagem: "Não foi possível cadastrar o cliente", erro: error.message };
+    return {
+      mensagem: "Não foi possível cadastrar o cliente",
+      erro: error.message,
+    };
   }
 }
 
