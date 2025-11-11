@@ -15,14 +15,14 @@ form.addEventListener('submit', async function (event) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            login: email,  // backend espera login = email
+            email: email, 
             senha: senha
         })
     };
 
     try {
         const result = await fetch("http://localhost:8090/login", options);
-        const usuario = await result.json(); // <-- CORRIGIDO (colocamos os parênteses)
+        const usuario = await result.json(); 
 
         if (usuario.token) {
             localStorage.setItem("token", usuario.token);

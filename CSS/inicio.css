@@ -9,16 +9,26 @@
    ============================================== */
 :root {
   /* Paleta de Cores "Da Roça" */
-  --color-primary: #386641; /* Verde escuro (principal) */
-  --color-primary-dark: #2a4c30; /* Verde mais escuro (hover) */
-  --color-accent: #6a994e; /* Verde vibrante (botões, detalhes) */
-  --color-background-light: #f6f4f1; /* Bege/Off-white (fundos de seção) */
-  --color-background: #ffffff; /* Branco (fundo principal) */
-  --color-text: #333333; /* Cinza escuro (texto principal) */
-  --color-text-light: #ffffff; /* Branco (texto sobre fundos escuros) */
-  --color-border: #dddddd; /* Cinza claro (bordas) */
-  --color-gray-medium: #777777; /* Cinza médio (textos secundários) */
-  --color-overlay: rgba(0, 0, 0, 0.5); /* Sombra menu mobile */
+  --color-primary: #386641;
+  /* Verde escuro (principal) */
+  --color-primary-dark: #2a4c30;
+  /* Verde mais escuro (hover) */
+  --color-accent: #6a994e;
+  /* Verde vibrante (botões, detalhes) */
+  --color-background-light: #f6f4f1;
+  /* Bege/Off-white (fundos de seção) */
+  --color-background: #ffffff;
+  /* Branco (fundo principal) */
+  --color-text: #333333;
+  /* Cinza escuro (texto principal) */
+  --color-text-light: #ffffff;
+  /* Branco (texto sobre fundos escuros) */
+  --color-border: #dddddd;
+  /* Cinza claro (bordas) */
+  --color-gray-medium: #777777;
+  /* Cinza médio (textos secundários) */
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  /* Sombra menu mobile */
 
   /* Tipografia */
   --font-primary: "Poppins", sans-serif;
@@ -26,12 +36,18 @@
 
   /* Tamanhos e Espaçamentos */
   --header-height: 70px;
-  --spacing-xs: 0.25rem; /* 4px */
-  --spacing-sm: 0.5rem; /* 8px */
-  --spacing-md: 1rem; /* 16px */
-  --spacing-lg: 1.5rem; /* 24px */
-  --spacing-xl: 2rem; /* 32px */
-  --spacing-xxl: 3rem; /* 48px */
+  --spacing-xs: 0.25rem;
+  /* 4px */
+  --spacing-sm: 0.5rem;
+  /* 8px */
+  --spacing-md: 1rem;
+  /* 16px */
+  --spacing-lg: 1.5rem;
+  /* 24px */
+  --spacing-xl: 2rem;
+  /* 32px */
+  --spacing-xxl: 3rem;
+  /* 48px */
 
   /* Outros */
   --container-width: 1200px;
@@ -55,7 +71,8 @@
 }
 
 html {
-  font-size: 100%; /* 1rem = 16px */
+  font-size: 100%;
+  /* 1rem = 16px */
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -149,6 +166,7 @@ h6 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -242,10 +260,12 @@ header {
 
 /* --- Estilos do Menu Hamburger --- */
 .nav-toggle {
-  display: none; /* Escondido no desktop */
+  display: none;
+  /* Escondido no desktop */
   font-size: 2rem;
   color: var(--color-primary);
-  z-index: 1002; /* Acima da navegação e do overlay */
+  z-index: 1002;
+  /* Acima da navegação e do overlay */
 }
 
 .nav-toggle .bx-x {
@@ -257,7 +277,8 @@ header {
   position: fixed;
   inset: 0;
   background-color: var(--color-overlay);
-  z-index: 998; /* Abaixo do menu, acima do conteúdo */
+  z-index: 998;
+  /* Abaixo do menu, acima do conteúdo */
   transition: opacity var(--transition-menu);
 }
 
@@ -286,18 +307,18 @@ body.nav-open .overlay {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70vh; /* Altura aumentada */
+  height: 70vh;
+  /* Altura aumentada */
   min-height: 500px;
   padding: var(--spacing-lg);
   text-align: center;
   color: var(--color-text-light);
 
   /* Imagem de fundo atualizada */
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    ),
-    url("../Imagens/farm.jpg"); /* <-- A SUA IMAGEM ESTÁ AQUI */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)),
+    url("../Imagens/farm.jpg");
+  /* <-- A SUA IMAGEM ESTÁ AQUI */
   background-size: cover;
   background-position: center;
 }
@@ -342,7 +363,8 @@ body.nav-open .overlay {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm); /* Espaço para o ícone */
+  gap: var(--spacing-sm);
+  /* Espaço para o ícone */
   min-width: 200px;
   height: 50px;
   padding: var(--spacing-sm) var(--spacing-xl);
@@ -370,7 +392,8 @@ body.nav-open .overlay {
 }
 
 .cta-button.primary:hover .bx {
-  transform: translateX(4px); /* Animação do ícone */
+  transform: translateX(4px);
+  /* Animação do ícone */
 }
 
 .cta-button.secondary {
@@ -432,7 +455,8 @@ body.nav-open .overlay {
 }
 
 .about-image img:hover {
-  transform: scale(1.02); /* Efeito de zoom sutil */
+  transform: scale(1.02);
+  /* Efeito de zoom sutil */
 }
 
 /* ==============================================
@@ -540,7 +564,8 @@ body.nav-open .overlay {
 .filter-btn {
   padding: var(--spacing-sm) var(--spacing-lg);
   border: 1px solid var(--color-border);
-  border-radius: 30px; /* Pílulas */
+  border-radius: 30px;
+  /* Pílulas */
   font-size: 0.9rem;
   font-weight: 500;
   transition: all var(--transition-fast);
@@ -746,7 +771,8 @@ footer {
 /* --- Telas Médias (Tablets) --- */
 @media (max-width: 768px) {
   :root {
-    --header-height: 60px; /* Header menor */
+    --header-height: 60px;
+    /* Header menor */
   }
 
   /* --- Header & Nav Mobile --- */
@@ -759,7 +785,8 @@ footer {
     height: 100vh;
     padding: var(--spacing-xxl) var(--spacing-xl);
     background-color: var(--color-background);
-    z-index: 1001; /* Acima do overlay */
+    z-index: 1001;
+    /* Acima do overlay */
 
     /* Efeito de slide-in */
     transform: translateX(100%);
@@ -781,17 +808,21 @@ footer {
     font-size: 1.25rem;
     font-weight: 600;
   }
+
   .main-nav a::after {
-    display: none; /* Remove linha de hover no mobile */
+    display: none;
+    /* Remove linha de hover no mobile */
   }
 
   .nav-toggle {
-    display: block; /* Mostra o botão hamburger */
+    display: block;
+    /* Mostra o botão hamburger */
   }
 
   /* --- Homepage (Tablet) --- */
   .about-content {
-    grid-template-columns: 1fr; /* Coluna única */
+    grid-template-columns: 1fr;
+    /* Coluna única */
     gap: var(--spacing-xl);
   }
 
@@ -801,10 +832,13 @@ footer {
     overflow-x: auto;
     padding-bottom: var(--spacing-md);
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
+    /* Firefox */
   }
+
   .filters::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none;
+    /* Chrome, Safari */
   }
 
   .filters .filter-btn {
@@ -824,6 +858,7 @@ footer {
 
 /* --- Telas Pequenas (Celulares) --- */
 @media (max-width: 600px) {
+
   /* --- Catálogo (Celular) --- */
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -833,13 +868,16 @@ footer {
   .product-card__info {
     padding: var(--spacing-md);
   }
+
   .product-card__title {
     font-size: 1rem;
   }
+
   .product-card__price {
     font-size: 1.15rem;
     margin-bottom: var(--spacing-md);
   }
+
   .product-card__button {
     height: 40px;
     font-size: 0.9rem;
@@ -848,6 +886,7 @@ footer {
   .catalog-title {
     font-size: 2rem;
   }
+
   .catalog-description {
     font-size: 1rem;
   }
@@ -855,6 +894,7 @@ footer {
 
 /* --- Telas Muito Pequenas (Celulares) --- */
 @media (max-width: 400px) {
+
   /* --- Catálogo (Celular Pequeno) --- */
   .product-grid {
     grid-template-columns: 1fr;
@@ -862,7 +902,22 @@ footer {
 
   /* --- Footer (Celular Pequeno) --- */
   .footer-links {
-    flex-direction: column; /* Links do rodapé em coluna */
+    flex-direction: column;
+    /* Links do rodapé em coluna */
     gap: var(--spacing-sm);
   }
 }
+
+/*Botão de sair quando o usuário estiver logado*/
+.logout-link {
+  margin-left: 8px;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logout-link:hover {
+  text-decoration: none;
+  color: #111;
+} 
