@@ -3,12 +3,12 @@ const { mssql } = require("../config/db");
 
 async function buscar(clientes) {
   try {
-    const { login, senha } = clientes;
+    const { email, senha } = clientes;
     const request = new mssql.Request();
 
-    request.input("loginUser", mssql.VarChar(80), login);
+    request.input("emailUser", mssql.VarChar(80), email);
 
-    const query = `SELECT * FROM darocaClientes WHERE email = @loginUser`;
+    const query = `SELECT * FROM daroca.Clientes WHERE email = @emailUser`;
     const resultado = await request.query(query);
 
     const usuario = resultado.recordset[0];
@@ -25,34 +25,38 @@ async function buscar(clientes) {
 }
 
 async function cadastrarClientes(cliente) {
-  const { cpf, nome, telefone, endereco, uf, cidade, numero, login, senha } = cliente;
+  const { cpf, nome, telefone, endereco, uf, cidade, numero, email, senha } =
+    cliente;
   const senhaHash = await bcrypt.hash(senha, 10);
 
   try {
     const request = new mssql.Request();
 
-    request.input("cpfCliente", mssql.BigInt, cpf);
+    request.input("cpfCliente", mssql.VarChar(14), cpf);
     request.input("nomeCliente", mssql.VarChar(100), nome);
     request.input("telefoneCliente", mssql.VarChar(15), telefone);
     request.input("enderecoCliente", mssql.VarChar(100), endereco);
     request.input("ufc", mssql.VarChar(2), uf);
     request.input("cidadeC", mssql.VarChar(50), cidade);
     request.input("numeroC", mssql.VarChar(10), numero);
-    request.input("loginCliente", mssql.VarChar(80), login);
+    request.input("emailCliente", mssql.VarChar(80), email);
     request.input("senhaCliente", mssql.VarChar(255), senhaHash);
 
     const query = `
-      INSERT INTO darocaClientes 
+      INSERT INTO daroca.Clientes
       (cpf, nome, telefone, endereco, uf, cidade, numero, email, senha)
       VALUES 
-      (@cpfCliente, @nomeCliente, @telefoneCliente, @enderecoCliente, @ufc, @cidadeC, @numeroC, @loginCliente, @senhaCliente)
+      (@cpfCliente, @nomeCliente, @telefoneCliente, @enderecoCliente, @ufc, @cidadeC, @numeroC, @emailCliente, @senhaCliente)
     `;
 
     await request.query(query);
     return { mensagem: "Cliente inserido com sucesso" };
   } catch (error) {
     console.error("Erro ao cadastrar cliente:", error);
-    return { mensagem: "Não foi possível cadastrar o cliente", erro: error.message };
+    return {
+      mensagem: "Não foi possível cadastrar o cliente",
+      erro: error.message,
+    };
   }
 }
 

@@ -195,6 +195,7 @@ header {
 .main-nav ul {
   display: flex;
   gap: var(--spacing-lg);
+  align-items: center;
 }
 
 .main-nav a {
@@ -237,11 +238,39 @@ header {
   background-color: var(--color-primary);
 }
 
+/* Estilo do carrinho no header */
+.cart-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cart-link i {
+  font-size: 1.5rem;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
 /* ==============================================
    5. Estilos do Main (Conteúdo Principal)
    ============================================== */
 main {
-  min-height: calc(100vh - var(--header-height) - 150px); /* Garante que o footer vá para baixo */
+  min-height: calc(
+    100vh - var(--header-height) - 150px
+  ); /* Garante que o footer vá para baixo */
 }
 
 /* --- Seção Hero do Catálogo --- */
@@ -403,7 +432,8 @@ main {
   background-color: var(--color-background);
   box-shadow: var(--shadow-light);
   overflow: hidden;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .product-card:hover {
@@ -489,9 +519,7 @@ footer {
   background-color: var(--color-primary);
   color: var(--color-text-light);
   padding-block: var(--spacing-xl);
-  margin-top: var(
-    --spacing-xxl
-  ); /* Espaço acima do rodapé */
+  margin-top: var(--spacing-xxl); /* Espaço acima do rodapé */
 }
 
 .footer-container {
@@ -609,7 +637,7 @@ footer {
 
   .filters .filter-btn {
     white-space: nowrap;
-     /* Impede que o texto do botão quebre */
+    /* Impede que o texto do botão quebre */
   }
 
   /* Centraliza o rodapé */

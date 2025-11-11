@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const loginToggle = document.getElementById("login-toggle");
   const registerToggle = document.getElementById("register-toggle");
@@ -56,6 +57,7 @@ document.getElementById("register").addEventListener("submit", async function (e
         return
     }
    try{
+    console.log(cadastro)
     const response = await fetch('http://localhost:8090/clientes',{
         method: "POST",
         headers:{

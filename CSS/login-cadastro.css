@@ -24,11 +24,16 @@
   --font-brand: "Lily Script One", cursive;
 
   /* Tamanhos e Espaçamentos */
-  --spacing-xs: 0.25rem; /* 4px */
-  --spacing-sm: 0.5rem; /* 8px */
-  --spacing-md: 1rem; /* 16px */
-  --spacing-lg: 1.5rem; /* 24px */
-  --spacing-xl: 2rem; /* 32px */
+  --spacing-xs: 0.25rem;
+  /* 4px */
+  --spacing-sm: 0.5rem;
+  /* 8px */
+  --spacing-md: 1rem;
+  /* 16px */
+  --spacing-lg: 1.5rem;
+  /* 24px */
+  --spacing-xl: 2rem;
+  /* 32px */
 
   /* Outros */
   --border-radius-md: 8px;
@@ -154,7 +159,8 @@ a:hover {
   background-color: var(--color-background);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-medium);
-  overflow: hidden; /* Para os botões ficarem contidos */
+  overflow: hidden;
+  /* Para os botões ficarem contidos */
 }
 
 /* ==============================================
@@ -168,6 +174,7 @@ a:hover {
   left: var(--spacing-lg);
   z-index: 10;
 }
+
 .back-button a {
   display: flex;
   align-items: center;
@@ -176,6 +183,7 @@ a:hover {
   font-weight: 500;
   transition: all var(--transition-fast);
 }
+
 .back-button a:hover {
   color: var(--color-primary);
   transform: translateX(-3px);
@@ -217,7 +225,8 @@ a:hover {
 /* --- Seções do Formulário (Animação) --- */
 .form-section {
   padding: var(--spacing-xl);
-  display: none; /* JS controla isso */
+  display: none;
+  /* JS controla isso */
   animation: fadeIn var(--transition-slow);
 }
 
@@ -230,6 +239,7 @@ a:hover {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -240,11 +250,13 @@ a:hover {
   text-align: center;
   margin-bottom: var(--spacing-xl);
 }
+
 .form-title {
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--color-primary-dark);
 }
+
 .form-subtitle {
   font-size: 1rem;
   color: var(--color-gray-medium);
@@ -312,8 +324,8 @@ a:hover {
 }
 
 /* O "truque" do floating label */
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
+.input-group input:focus+label,
+.input-group input:not(:placeholder-shown)+label {
   top: 0;
   left: 0.75rem;
   font-size: 0.8rem;
@@ -367,14 +379,15 @@ a:hover {
   border: 2px solid var(--color-border);
   border-radius: 4px;
   transition: all var(--transition-fast);
-  margin-right: 8px; /* Remove o style inline */
+  margin-right: 8px;
+  /* Remove o style inline */
 }
 
 .checkbox-container:hover .checkmark {
   border-color: var(--color-gray-medium);
 }
 
-.checkbox-container input:checked ~ .checkmark {
+.checkbox-container input:checked~.checkmark {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
 }
@@ -392,19 +405,21 @@ a:hover {
   transform: rotate(45deg);
 }
 
-.checkbox-container input:checked ~ .checkmark:after {
+.checkbox-container input:checked~.checkmark:after {
   display: block;
 }
 
 .checkbox-container.terms {
   line-height: 1.3;
 }
+
 .checkbox-container.terms a {
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
   margin-left: 0.25rem;
 }
+
 .checkbox-container.terms a:hover {
   text-decoration: none;
 }
@@ -448,6 +463,7 @@ a:hover {
   font-size: 1.25rem;
   transition: transform var(--transition-fast);
 }
+
 .submit-btn:hover .bx {
   transform: translateX(5px);
 }
@@ -457,6 +473,7 @@ a:hover {
   margin-top: var(--spacing-xl);
   text-align: center;
 }
+
 .footer-links {
   display: flex;
   justify-content: center;
@@ -464,11 +481,13 @@ a:hover {
   gap: var(--spacing-lg);
   list-style: none;
 }
+
 .footer-links a {
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--color-gray-medium);
 }
+
 .footer-links a:hover {
   color: var(--color-primary);
 }
@@ -488,17 +507,20 @@ a:hover {
   }
 
   .info-footer {
-    display: none; /* Esconde no mobile, fica redundante */
+    display: none;
+    /* Esconde no mobile, fica redundante */
   }
 
   .form-panel {
     flex: 1;
     padding: var(--spacing-lg) var(--spacing-md);
-    justify-content: flex-start; /* Alinha ao topo */
+    justify-content: flex-start;
+    /* Alinha ao topo */
   }
 
   .form-container {
-    box-shadow: none; /* Remove a sombra no mobile */
+    box-shadow: none;
+    /* Remove a sombra no mobile */
     border-radius: 0;
     max-width: none;
     background-color: var(--color-background);
@@ -540,4 +562,14 @@ a:hover {
     flex: 1;
     min-width: 100%;
   }
+}
+
+/* Estilo da mensagem de erro no login */
+#mens {
+  color: #d90429;
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+  transition: 0.3s;
 }
