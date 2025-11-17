@@ -5,6 +5,15 @@ async function listarProdutos() {
   return dados.recordset;
 }
 
+async function listarProdutosPorCategoria(id, nome) {
+  const dados = await mssql
+    .request()
+    .input("id", mssql.Int, id)
+    .query("SELECT * FROM daroca.produtos WHERE categoria_id = @id");
+
+  return dados.recordset;
+}
+
 async function excluirCliente(CPF, cliente) {
   const { login, senha } = cliente;
   try {
@@ -54,4 +63,4 @@ async function atualizarCliente(cliente) {
   }
 }
 
-module.exports = { listarProdutos, excluirCliente, atualizarCliente };
+module.exports = { listarProdutos, listarProdutosPorCategoria, excluirCliente, atualizarCliente };

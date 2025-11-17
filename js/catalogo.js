@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   let products = [];
 
@@ -19,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="product-price">${product.valor} / kg</div>
                     <div class="product-actions">
                         <button class="buy-btn" data-product='${JSON.stringify(
-                          product
-                        )}'>
+        product
+      )}'>
                             <i class='bx bx-cart-add'></i> Comprar
                         </button>
                         <button class="details-btn">Ver Detalhes</button>
@@ -96,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <span>${mensagem}</span>
         `;
 
+
+
     // Estilos inline
     Object.assign(notification.style, {
       position: "fixed",
@@ -123,6 +126,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
   }
 
+
+  window.renderProducts = renderProducts;
+  window.adicionarAoCarrinho = adicionarAoCarrinho;
+  window.atualizarContadorCarrinho = atualizarContadorCarrinho;
+  window.mostrarNotificacao = mostrarNotificacao;
+
+
   fetch("http://localhost:8090/daroca/produtos")
     .then((res) => res.json())
     .then((data) => {
@@ -136,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((erro) => console.log("Não foi possível regatar os dados", erro));
 
   // Filtra produtos ao clicar nos botões de categoria
+
 
   // Filtra produtos ao digitar na barra de pesquisa
   searchInput.addEventListener("input", () => {
@@ -151,4 +162,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     renderProducts(filteredProducts);
   });
+
+  function clicouGanhou(id) {
+    fetch(`http://localhost:8090/daroca/categorias/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("Produtos filtrados:", data);
+        renderProducts(data); 
+      })
+      .catch(err => console.log("Erro ao buscar categoria", err));
+  }
+  window.clicouGanhou = clicouGanhou;
+
 });
+

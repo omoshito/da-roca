@@ -5,6 +5,17 @@ async function listar(req, res) {
   res.json(produtos);
 }
 
+async function listarPorCategoria(req, res) {
+  const id = req.params.id;
+
+  try{
+    const lista = await darocaModel.listarProdutosPorCategoria(id);
+    res.status(200).json(lista);
+  } catch (erro) {
+    res.status(500).json({erro: "Erro ao exibir os produtos por categoria", detalhe : erro});
+  }
+}
+
 async function inserir(req, res) {
   try {
     const resultado = await darocaModel.cadastrarClientes(req.body);
@@ -45,4 +56,4 @@ async function atualizar(req, res) {
   }
 }
 
-module.exports = { listar, inserir, excluir, atualizar };
+module.exports = { listar, listarPorCategoria, inserir, excluir, atualizar };
