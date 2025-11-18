@@ -8,15 +8,24 @@
    ============================================== */
 :root {
   /* Paleta de Cores "Da Roça" */
-  --color-primary: #386641; /* Verde escuro (principal) */
-  --color-primary-dark: #2a4c30; /* Verde mais escuro (hover) */
-  --color-accent: #6a994e; /* Verde vibrante (botões, detalhes) */
-  --color-background-light: #f6f4f1; /* Bege/Off-white (fundos de seção) */
-  --color-background: #ffffff; /* Branco (fundo principal) */
-  --color-text: #333333; /* Cinza escuro (texto principal) */
-  --color-text-light: #ffffff; /* Branco (texto sobre fundos escuros) */
-  --color-border: #dddddd; /* Cinza claro (bordas) */
-  --color-gray-medium: #777777; /* Cinza médio (textos secundários) */
+  --color-primary: #386641;
+  /* Verde escuro (principal) */
+  --color-primary-dark: #2a4c30;
+  /* Verde mais escuro (hover) */
+  --color-accent: #6a994e;
+  /* Verde vibrante (botões, detalhes) */
+  --color-background-light: #f6f4f1;
+  /* Bege/Off-white (fundos de seção) */
+  --color-background: #ffffff;
+  /* Branco (fundo principal) */
+  --color-text: #333333;
+  /* Cinza escuro (texto principal) */
+  --color-text-light: #ffffff;
+  /* Branco (texto sobre fundos escuros) */
+  --color-border: #dddddd;
+  /* Cinza claro (bordas) */
+  --color-gray-medium: #777777;
+  /* Cinza médio (textos secundários) */
 
   /* Tipografia */
   --font-primary: "Poppins", sans-serif;
@@ -24,12 +33,18 @@
 
   /* Tamanhos e Espaçamentos */
   --header-height: 70px;
-  --spacing-xs: 0.25rem; /* 4px */
-  --spacing-sm: 0.5rem; /* 8px */
-  --spacing-md: 1rem; /* 16px */
-  --spacing-lg: 1.5rem; /* 24px */
-  --spacing-xl: 2rem; /* 32px */
-  --spacing-xxl: 3rem; /* 48px */
+  --spacing-xs: 0.25rem;
+  /* 4px */
+  --spacing-sm: 0.5rem;
+  /* 8px */
+  --spacing-md: 1rem;
+  /* 16px */
+  --spacing-lg: 1.5rem;
+  /* 24px */
+  --spacing-xl: 2rem;
+  /* 32px */
+  --spacing-xxl: 3rem;
+  /* 48px */
 
   /* Outros */
   --container-width: 1200px;
@@ -52,7 +67,8 @@
 }
 
 html {
-  font-size: 100%; /* 1rem = 16px */
+  font-size: 100%;
+  /* 1rem = 16px */
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -140,6 +156,7 @@ h6 {
 
 /* Remove transições se o usuário preferir */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -181,15 +198,18 @@ header {
 }
 
 .logo img {
-  height: 40px; /* Ajuste conforme o tamanho do seu logo */
+  height: 40px;
+  /* Ajuste conforme o tamanho do seu logo */
   width: auto;
 }
 
 .logo h1 {
   font-family: var(--font-brand);
-  font-size: clamp(1.75rem, 5vw, 2.25rem); /* Fonte responsiva */
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  /* Fonte responsiva */
   margin: 0;
-  font-weight: 400; /* Fontes script geralmente não precisam de bold */
+  font-weight: 400;
+  /* Fontes script geralmente não precisam de bold */
 }
 
 .main-nav ul {
@@ -268,9 +288,8 @@ header {
    5. Estilos do Main (Conteúdo Principal)
    ============================================== */
 main {
-  min-height: calc(
-    100vh - var(--header-height) - 150px
-  ); /* Garante que o footer vá para baixo */
+  min-height: calc(100vh - var(--header-height) - 150px);
+  /* Garante que o footer vá para baixo */
 }
 
 /* --- Seção Hero do Catálogo --- */
@@ -282,7 +301,8 @@ main {
 }
 
 .catalog-title {
-  font-size: clamp(2.25rem, 6vw, 3rem); /* Título grande e responsivo */
+  font-size: clamp(2.25rem, 6vw, 3rem);
+  /* Título grande e responsivo */
   margin-bottom: var(--spacing-sm);
 }
 
@@ -301,13 +321,15 @@ main {
 /* --- Barra de Pesquisa --- */
 .search-bar {
   display: flex;
-  flex-wrap: wrap; /* Permite quebrar em telas menores */
+  flex-wrap: wrap;
+  /* Permite quebrar em telas menores */
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-xl);
 }
 
 .search-input-wrapper {
-  flex: 1 1 300px; /* Cresce e encolhe, com base de 300px */
+  flex: 1 1 300px;
+  /* Cresce e encolhe, com base de 300px */
   position: relative;
 }
 
@@ -318,13 +340,15 @@ main {
   transform: translateY(-50%);
   font-size: 1.25rem;
   color: var(--color-gray-medium);
-  pointer-events: none; /* Permite clicar no input através do ícone */
+  pointer-events: none;
+  /* Permite clicar no input através do ícone */
 }
 
 #search-product {
   width: 100%;
   height: 48px;
-  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 3rem; /* Espaço para o ícone */
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 3rem;
+  /* Espaço para o ícone */
   font-size: 1rem;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
@@ -367,7 +391,8 @@ main {
 
 .filters {
   display: flex;
-  flex-wrap: wrap; /* Permite quebrar em várias linhas */
+  flex-wrap: wrap;
+  /* Permite quebrar em várias linhas */
   gap: var(--spacing-sm);
   justify-content: center;
 }
@@ -375,7 +400,8 @@ main {
 .filter-btn {
   padding: var(--spacing-sm) var(--spacing-lg);
   border: 1px solid var(--color-border);
-  border-radius: 30px; /* Pílulas */
+  border-radius: 30px;
+  /* Pílulas */
   font-size: 0.9rem;
   font-weight: 500;
   transition: all var(--transition-fast);
@@ -442,7 +468,8 @@ main {
 }
 
 .product-card__image-wrapper {
-  aspect-ratio: 4 / 3; /* Proporção da imagem */
+  aspect-ratio: 4 / 3;
+  /* Proporção da imagem */
   overflow: hidden;
   border-bottom: 1px solid var(--color-border);
 }
@@ -450,7 +477,8 @@ main {
 .product-card__image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Garante que a imagem cubra o espaço */
+  object-fit: cover;
+  /* Garante que a imagem cubra o espaço */
   transition: transform var(--transition-fast);
 }
 
@@ -461,7 +489,8 @@ main {
 .product-card__info {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Faz esta div crescer para preencher o card */
+  flex-grow: 1;
+  /* Faz esta div crescer para preencher o card */
   padding: var(--spacing-lg);
 }
 
@@ -484,7 +513,8 @@ main {
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--color-primary);
-  margin-top: auto; /* Empurra o preço para baixo */
+  margin-top: auto;
+  /* Empurra o preço para baixo */
   margin-bottom: var(--spacing-lg);
 }
 
@@ -519,12 +549,14 @@ footer {
   background-color: var(--color-primary);
   color: var(--color-text-light);
   padding-block: var(--spacing-xl);
-  margin-top: var(--spacing-xxl); /* Espaço acima do rodapé */
+  margin-top: var(--spacing-xxl);
+  /* Espaço acima do rodapé */
 }
 
 .footer-container {
   display: flex;
-  flex-wrap: wrap; /* Permite quebrar em telas menores */
+  flex-wrap: wrap;
+  /* Permite quebrar em telas menores */
   justify-content: space-between;
   align-items: center;
   gap: var(--spacing-xl);
@@ -587,7 +619,8 @@ footer {
 /* --- Telas Médias (Tablets) --- */
 @media (max-width: 768px) {
   :root {
-    --header-height: 60px; /* Header menor em telas menores */
+    --header-height: 60px;
+    /* Header menor em telas menores */
   }
 
   .header-container {
@@ -595,7 +628,8 @@ footer {
   }
 
   .main-nav {
-    order: 3; /* Joga a navegação para baixo do logo */
+    order: 3;
+    /* Joga a navegação para baixo do logo */
     width: 100%;
     margin-top: var(--spacing-sm);
   }
@@ -603,7 +637,8 @@ footer {
   .main-nav ul {
     border-top: 1px solid var(--color-border);
     padding-top: var(--spacing-sm);
-    justify-content: space-around; /* Distribui os links */
+    justify-content: space-around;
+    /* Distribui os links */
     gap: var(--spacing-sm);
   }
 
@@ -613,7 +648,8 @@ footer {
   }
 
   .main-nav a::after {
-    display: none; /* Remove linha de hover no mobile */
+    display: none;
+    /* Remove linha de hover no mobile */
   }
 
   .main-nav a.active {
@@ -625,14 +661,18 @@ footer {
   .filters {
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding-bottom: var(--spacing-md); /* Espaço para a barra de rolagem */
+    padding-bottom: var(--spacing-md);
+    /* Espaço para a barra de rolagem */
     /* Melhora a rolagem em touch */
     -webkit-overflow-scrolling: touch;
     /* Esconde a barra de rolagem (opcional) */
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
+    /* Firefox */
   }
+
   .filters::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none;
+    /* Chrome, Safari */
   }
 
   .filters .filter-btn {
@@ -653,6 +693,7 @@ footer {
 
 /* --- Telas Pequenas (Celulares) --- */
 @media (max-width: 600px) {
+
   /* Ajusta a grade para 2 colunas */
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -663,13 +704,16 @@ footer {
   .product-card__info {
     padding: var(--spacing-md);
   }
+
   .product-card__title {
     font-size: 1rem;
   }
+
   .product-card__price {
     font-size: 1.15rem;
     margin-bottom: var(--spacing-md);
   }
+
   .product-card__button {
     height: 40px;
     font-size: 0.9rem;
@@ -678,6 +722,7 @@ footer {
   .catalog-title {
     font-size: 2rem;
   }
+
   .catalog-description {
     font-size: 1rem;
   }
@@ -685,13 +730,57 @@ footer {
 
 /* --- Telas Muito Pequenas (Celulares) --- */
 @media (max-width: 400px) {
+
   /* Ajusta a grade para 1 coluna */
   .product-grid {
     grid-template-columns: 1fr;
   }
 
   .footer-links {
-    flex-direction: column; /* Links do rodapé em coluna */
+    flex-direction: column;
+    /* Links do rodapé em coluna */
     gap: var(--spacing-sm);
   }
+}
+
+
+/*Alinhei algumas coisas dos cards do catalogo*/
+#product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.card {
+    width: 280px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-info {
+    flex-grow: 1;
+}
+
+.card-desc {
+    min-height: 40px;
+    color: #555;
+    
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

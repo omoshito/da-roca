@@ -1,178 +1,174 @@
+let products = [];
+
+function clicouGanhou(id) {
+    console.log("Categoria clicada:", id);
+
+    if (id === 0) {
+        renderProducts(products);
+        return;
+    }
+
+    fetch(`http://localhost:8090/daroca/categorias/${id}`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`Erro HTTP: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            if (Array.isArray(data)) {
+                renderProducts(data);
+            } else {
+                console.error("API retornou um formato de dados inválido (não é um array).", data);
+                renderProducts([]);
+            }
+        })
+        .catch(err => {
+            console.error("Erro ao buscar categoria", err);
+            document.getElementById("product-list").innerHTML =
+                '<p class="error-message">Não foi possível carregar os produtos desta categoria.</p>';
+        });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  let products = [];
+    const productList = document.getElementById("product-list");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const searchInput = document.getElementById("search-product");
 
-  const productList = document.getElementById("product-list");
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const searchInput = document.getElementById("search-product");
+    window.renderProducts = function (filteredProducts) {
+        productList.innerHTML = "";
+        filteredProducts.forEach((product) => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("card");
+            productCard.dataset.categoria = product.categoria;
+            productCard.innerHTML = `
+    <img src="${product.imagem}" alt="${product.nome}" class="card-img">
 
-  function renderProducts(filteredProducts) {
-    productList.innerHTML = "";
-    filteredProducts.forEach((product) => {
-      const productCard = document.createElement("div");
-      productCard.classList.add("product-card");
-      productCard.dataset.categoria = product.categoria;
-      productCard.innerHTML = `
-                <img src="${product.imagem}" alt="${product.nome}">
-                <div class="product-info">
-                    <h3>${product.nome}</h3>
-                    <p>${product.descricao}</p>
-                    <div class="product-price">${product.valor} / kg</div>
-                    <div class="product-actions">
-                        <button class="buy-btn" data-product='${JSON.stringify(
-        product
-      )}'>
-                            <i class='bx bx-cart-add'></i> Comprar
-                        </button>
-                        <button class="details-btn">Ver Detalhes</button>
-                    </div>
-                </div>
-            `;
-      productList.appendChild(productCard);
-    });
+    <div class="card-info">
+        <h3 class="card-title">${product.nome}</h3>
+        <p class="card-desc">${product.descricao}</p>
+    </div>
 
-    // Adiciona event listeners aos botões de compra
-    document.querySelectorAll(".buy-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const productData = JSON.parse(e.currentTarget.dataset.product);
-        adicionarAoCarrinho(productData);
-      });
-    });
-  }
+    <div class="card-footer">
+        <div class="product-price">${product.valor} / kg</div>
+        <button class="buy-btn" data-product='${JSON.stringify(product)}'>
+            <i class='bx bx-cart-add'></i> Comprar
+        </button>
+    </div>
+`;
 
-  // Função para adicionar produto ao carrinho
-  function adicionarAoCarrinho(product) {
-    // Carrega carrinho do localStorage
-    let carrinho = JSON.parse(localStorage.getItem("carrinho_daroca") || "[]");
+            productList.appendChild(productCard);
+        });
 
-    // Verifica se o produto já existe no carrinho
-    const itemExistente = carrinho.find((item) => item.id === product.id);
-
-    if (itemExistente) {
-      itemExistente.quantidade++;
-    } else {
-      carrinho.push({
-        ...product,
-        quantidade: 1,
-      });
+        document.querySelectorAll(".buy-btn").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                const productData = JSON.parse(e.currentTarget.dataset.product);
+                adicionarAoCarrinho(productData);
+            });
+        });
     }
 
-    // Salva no localStorage
-    localStorage.setItem("carrinho_daroca", JSON.stringify(carrinho));
+    function adicionarAoCarrinho(product) {
+        let carrinho = JSON.parse(localStorage.getItem("carrinho_daroca") || "[]");
 
-    // Atualiza contador do carrinho
-    atualizarContadorCarrinho();
+        const itemExistente = carrinho.find((item) => item.id === product.id);
 
-    // Mostra notificação
-    mostrarNotificacao(`${product.nome} adicionado ao carrinho!`);
-  }
+        if (itemExistente) {
+            itemExistente.quantidade++;
+        } else {
+            carrinho.push({
+                ...product,
+                quantidade: 1,
+            });
+        }
 
-  // Atualiza contador do carrinho no header
-  function atualizarContadorCarrinho() {
-    const carrinho = JSON.parse(
-      localStorage.getItem("carrinho_daroca") || "[]"
-    );
-    const totalItens = carrinho.reduce(
-      (total, item) => total + item.quantidade,
-      0
-    );
+        localStorage.setItem("carrinho_daroca", JSON.stringify(carrinho));
 
-    // Atualiza o contador (se existir na página)
-    const contador = document.querySelector(".cart-count");
-    if (contador) {
-      contador.textContent = totalItens;
+        atualizarContadorCarrinho();
+
+        mostrarNotificacao(`${product.nome} adicionado ao carrinho!`);
     }
-  }
 
-  // Mostra notificação de produto adicionado
-  function mostrarNotificacao(mensagem) {
-    // Remove notificações existentes
-    const existente = document.querySelector(".notification");
-    if (existente) existente.remove();
+    function atualizarContadorCarrinho() {
+        const carrinho = JSON.parse(
+            localStorage.getItem("carrinho_daroca") || "[]"
+        );
+        const totalItens = carrinho.reduce(
+            (total, item) => total + item.quantidade,
+            0
+        );
 
-    const notification = document.createElement("div");
-    notification.className = "notification";
-    notification.innerHTML = `
+        const contador = document.querySelector(".cart-count");
+        if (contador) {
+            contador.textContent = totalItens;
+        }
+    }
+
+    function mostrarNotificacao(mensagem) {
+        const existente = document.querySelector(".notification");
+        if (existente) existente.remove();
+
+        const notification = document.createElement("div");
+        notification.className = "notification";
+        notification.innerHTML = `
             <i class='bx bx-check-circle'></i>
             <span>${mensagem}</span>
         `;
 
+        Object.assign(notification.style, {
+            position: "fixed",
+            top: "100px",
+            right: "20px",
+            backgroundColor: "#28a745",
+            color: "white",
+            padding: "1rem 1.5rem",
+            borderRadius: "8px",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            zIndex: "10000",
+            animation: "slideIn 0.3s ease-out",
+            fontSize: "1rem",
+            fontWeight: "500",
+        });
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = "slideOut 0.3s ease-out";
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
 
 
-    // Estilos inline
-    Object.assign(notification.style, {
-      position: "fixed",
-      top: "100px",
-      right: "20px",
-      backgroundColor: "#28a745",
-      color: "white",
-      padding: "1rem 1.5rem",
-      borderRadius: "8px",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-      display: "flex",
-      alignItems: "center",
-      gap: "0.5rem",
-      zIndex: "10000",
-      animation: "slideIn 0.3s ease-out",
-      fontSize: "1rem",
-      fontWeight: "500",
+    window.adicionarAoCarrinho = adicionarAoCarrinho;
+    window.atualizarContadorCarrinho = atualizarContadorCarrinho;
+    window.mostrarNotificacao = mostrarNotificacao;
+
+
+    fetch("http://localhost:8090/daroca/produtos")
+        .then((res) => res.json())
+        .then((data) => {
+            products = data;
+            window.renderProducts(products);
+            console.log(products);
+
+            atualizarContadorCarrinho();
+        })
+        .catch((erro) => console.log("Não foi possível regatar os dados", erro));
+
+    searchInput.addEventListener("input", () => {
+        const busca = searchInput.value.toLowerCase();
+        console.log("Digitando:", searchInput.value);
+
+        const filteredProducts = products.filter((product) => {
+            const nome = (product.nome ?? "").toLowerCase();
+
+            const resultado = nome.includes(busca);
+
+            return resultado;
+        });
+        window.renderProducts(filteredProducts);
     });
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-      notification.style.animation = "slideOut 0.3s ease-out";
-      setTimeout(() => notification.remove(), 300);
-    }, 3000);
-  }
-
-
-  window.renderProducts = renderProducts;
-  window.adicionarAoCarrinho = adicionarAoCarrinho;
-  window.atualizarContadorCarrinho = atualizarContadorCarrinho;
-  window.mostrarNotificacao = mostrarNotificacao;
-
-
-  fetch("http://localhost:8090/daroca/produtos")
-    .then((res) => res.json())
-    .then((data) => {
-      products = data;
-      renderProducts(products);
-      console.log(products);
-
-      // Atualiza contador do carrinho ao carregar a página
-      atualizarContadorCarrinho();
-    })
-    .catch((erro) => console.log("Não foi possível regatar os dados", erro));
-
-  // Filtra produtos ao clicar nos botões de categoria
-
-
-  // Filtra produtos ao digitar na barra de pesquisa
-  searchInput.addEventListener("input", () => {
-    const busca = searchInput.value.toLowerCase();
-    console.log("Digitando:", searchInput.value);
-
-    const filteredProducts = products.filter((product) => {
-      const nome = (product.nome ?? "").toLowerCase();
-
-      const resultado = nome.includes(busca);
-
-      return resultado;
-    });
-    renderProducts(filteredProducts);
-  });
-
-  function clicouGanhou(id) {
-    fetch(`http://localhost:8090/daroca/categorias/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log("Produtos filtrados:", data);
-        renderProducts(data); 
-      })
-      .catch(err => console.log("Erro ao buscar categoria", err));
-  }
-  window.clicouGanhou = clicouGanhou;
-
 });
-

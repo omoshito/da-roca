@@ -6,13 +6,13 @@ async function listar(req, res) {
 }
 
 async function listarPorCategoria(req, res) {
-  const id = req.params.id;
+  const id = parseInt(req.params.id, 10);
 
-  try{
+  try {
     const lista = await darocaModel.listarProdutosPorCategoria(id);
-    res.status(200).json(lista);
+    res.json(lista);
   } catch (erro) {
-    res.status(500).json({erro: "Erro ao exibir os produtos por categoria", detalhe : erro});
+    res.status(500).json({ erro: "Não foi possível listar os produtos por categoria" });
   }
 }
 

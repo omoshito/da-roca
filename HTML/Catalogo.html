@@ -57,7 +57,7 @@
       </nav>
     </div>
   </header>
-    
+
   <main>
     <section class="catalog-hero">
       <div class="container">
@@ -96,16 +96,20 @@
             <button class="filter-btn active" data-filter="all" aria-pressed="true" type="button">
               <span>Todos</span>
             </button>
-            <button class="filter-btn" data-filter="frutas" aria-pressed="false" type="button" id="1" onclick="clicouGanhou(1)">
+            <button class="filter-btn" data-filter="frutas" aria-pressed="false" type="button" id="1"
+              onclick="clicouGanhou(1)">
               <span>Frutas</span>
             </button>
-            <button class="filter-btn" data-filter="vegetais" aria-pressed="false" type="button" id="2" onclick="clicouGanhou(2)">
+            <button class="filter-btn" data-filter="vegetais" aria-pressed="false" type="button" id="2"
+              onclick="clicouGanhou(2)">
               <span>Legumes</span>
             </button>
-            <button class="filter-btn" data-filter="graos" aria-pressed="false" type="button" id="3" onclick="clicouGanhou(3)">
+            <button class="filter-btn" data-filter="graos" aria-pressed="false" type="button" id="3"
+              onclick="clicouGanhou(3)">
               <span>Verduras</span>
             </button>
-            <button class="filter-btn" data-filter="laticinios" aria-pressed="false" type="button" id="4" onclick="clicouGanhou(4)">
+            <button class="filter-btn" data-filter="laticinios" aria-pressed="false" type="button" id="4"
+              onclick="clicouGanhou(4)">
               <span>Outros</span>
             </button>
           </div>
@@ -151,9 +155,31 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="../JS/catalogo.js"></script>
-  <script src="../JS/login.js"></script>
+
+  //Caso o usuario nao esteja logado, com esse script ele não add nada no carrinho e vai ser direcionado para o login
+  <script>
+    document.addEventListener("click", function (e) {
+      const token = localStorage.getItem("token");
+
+      // Verifica se clicou no botão de compra
+      let botao = e.target.closest(".buy-btn");
+      if (!botao) return;
+
+      // Se não estiver logado
+      if (!token) {
+        e.preventDefault();
+        alert("Você precisa estar logado para adicionar itens ao carrinho.");
+        window.location.href = "login-cadastro.html";
+        return;
+      }
+
+    });
+  </script>
+
+
+
+
 </body>
 
 </html>

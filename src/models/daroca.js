@@ -5,13 +5,31 @@ async function listarProdutos() {
   return dados.recordset;
 }
 
-async function listarProdutosPorCategoria(id, nome) {
-  const dados = await mssql
-    .request()
-    .input("id", mssql.Int, id)
-    .query("SELECT * FROM daroca.produtos WHERE categoria_id = @id");
+async function listarProdutosPorCategoria(id) {
+  let pool;
+  try {
+   
+    pool = await mssql.connect();
 
-  return dados.recordset;
+  
+    const request = pool.request();
+    let query = "SELECT * FROM daroca.produtos";
+
+    
+    if (id !== 0) {
+      query += " WHERE categoria_id = @id";
+      request.input("id", mssql.Int, id);
+    }
+
+  
+    const dados = await request.query(query);
+    return dados.recordset;
+
+  } catch (err) {
+    
+    console.error("Erro no sql", err);
+    throw err; // 
+  }
 }
 
 async function excluirCliente(CPF, cliente) {
