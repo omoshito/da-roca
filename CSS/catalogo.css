@@ -156,7 +156,6 @@ h6 {
 
 /* Remove transições se o usuário preferir */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -399,24 +398,70 @@ main {
 
 .filter-btn {
   padding: var(--spacing-sm) var(--spacing-lg);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: 30px;
-  /* Pílulas */
+  background-color: var(--color-background);
+  color: var(--color-text);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: all var(--transition-fast);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(106, 153, 78, 0.1),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.filter-btn:hover::before {
+  left: 100%;
 }
 
 .filter-btn:hover {
   background-color: var(--color-background-light);
-  border-color: var(--color-gray-medium);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 153, 78, 0.2);
 }
 
 .filter-btn.active {
-  background-color: var(--color-primary);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
   border-color: var(--color-primary);
   color: var(--color-text-light);
   font-weight: 600;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(106, 153, 78, 0.3);
+}
+
+.filter-btn.active:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark),
+    var(--color-primary)
+  );
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(106, 153, 78, 0.4);
+}
+
+.filter-btn:active {
+  transform: translateY(0);
 }
 
 /* --- Grade de Produtos --- */
@@ -444,9 +489,15 @@ main {
   font-size: 1.1rem;
 }
 
-.loading-message .bx-spin {
+.loading-message i {
   font-size: 3rem;
-  color: var(--color-primary);
+  margin-bottom: 16px;
+  color: var(--color-accent);
+}
+
+.loading-message p {
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 /* --- Card de Produto (Estilo para o JS) --- */
@@ -693,7 +744,6 @@ footer {
 
 /* --- Telas Pequenas (Celulares) --- */
 @media (max-width: 600px) {
-
   /* Ajusta a grade para 2 colunas */
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -730,7 +780,6 @@ footer {
 
 /* --- Telas Muito Pequenas (Celulares) --- */
 @media (max-width: 400px) {
-
   /* Ajusta a grade para 1 coluna */
   .product-grid {
     grid-template-columns: 1fr;
@@ -743,44 +792,337 @@ footer {
   }
 }
 
-
 /*Alinhei algumas coisas dos cards do catalogo*/
 #product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
+/* Card modernizado e mais atrativo */
 .card {
-    width: 280px;
-    padding: 15px;
-    background: white;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 320px;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card-img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  position: relative;
+}
+
+.card:hover .card-img {
+  transform: scale(1.08);
 }
 
 .card-info {
-    flex-grow: 1;
+  padding: 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.3;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .card-desc {
-    min-height: 40px;
-    color: #555;
-    
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 0 24px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.product-price {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.buy-btn {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-primary)
+  );
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(106, 153, 78, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.buy-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.buy-btn:hover::before {
+  left: 100%;
+}
+
+.buy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(106, 153, 78, 0.4);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+}
+
+.buy-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(106, 153, 78, 0.3);
+}
+
+.buy-btn i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.buy-btn:hover i {
+  transform: scale(1.1);
+}
+
+/* Badge de categoria */
+.category-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(106, 153, 78, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+  animation: pulse 2s infinite;
+  box-shadow: 0 2px 8px rgba(106, 153, 78, 0.3);
+}
+
+/* Animações de entrada para os cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Animação escalonada para cada card */
+.card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* Efeito de brilho no hover do card */
+.card:hover {
+  position: relative;
+}
+
+.card:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+  .card {
+    width: 290px;
+    margin: 0 auto;
+  }
+
+  .card-info {
+    padding: 20px;
+  }
+
+  .card-footer {
+    padding: 0 20px 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .buy-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Animações para notificações */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Estilo para mensagens de erro */
+.error-message {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1rem;
+  color: var(--color-gray-medium);
+  background: linear-gradient(135deg, #fff5f5, #fed7d7);
+  border: 2px dashed #e53e3e;
+  border-radius: 16px;
+  margin: 20px;
 }
