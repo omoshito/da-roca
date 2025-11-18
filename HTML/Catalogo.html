@@ -108,10 +108,6 @@
               onclick="clicouGanhou(3)">
               <span>Verduras</span>
             </button>
-            <button class="filter-btn" data-filter="laticinios" aria-pressed="false" type="button" id="4"
-              onclick="clicouGanhou(4)">
-              <span>Outros</span>
-            </button>
           </div>
         </nav>
 
@@ -162,11 +158,11 @@
     document.addEventListener("click", function (e) {
       const token = localStorage.getItem("token");
 
-      // Verifica se clicou no botão de compra
+     
       let botao = e.target.closest(".buy-btn");
       if (!botao) return;
 
-      // Se não estiver logado
+      // Se o usuario não estiver logado
       if (!token) {
         e.preventDefault();
         alert("Você precisa estar logado para adicionar itens ao carrinho.");
@@ -176,9 +172,6 @@
 
     });
   </script>
-
-
-
 
 </body>
 
