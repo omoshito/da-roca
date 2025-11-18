@@ -1,0 +1,923 @@
+/* ==============================================
+   ARQUIVO: base.css
+   DESCRIÇÃO: Estilos principais para a plataforma e-commerce "Da Roça".
+              Inclui estilos globais, do catálogo e da homepage.
+   ============================================== */
+
+/* ==============================================
+   1. Variáveis e Configurações Globais (Root)
+   ============================================== */
+:root {
+  /* Paleta de Cores "Da Roça" */
+  --color-primary: #386641;
+  /* Verde escuro (principal) */
+  --color-primary-dark: #2a4c30;
+  /* Verde mais escuro (hover) */
+  --color-accent: #6a994e;
+  /* Verde vibrante (botões, detalhes) */
+  --color-background-light: #f6f4f1;
+  /* Bege/Off-white (fundos de seção) */
+  --color-background: #ffffff;
+  /* Branco (fundo principal) */
+  --color-text: #333333;
+  /* Cinza escuro (texto principal) */
+  --color-text-light: #ffffff;
+  /* Branco (texto sobre fundos escuros) */
+  --color-border: #dddddd;
+  /* Cinza claro (bordas) */
+  --color-gray-medium: #777777;
+  /* Cinza médio (textos secundários) */
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  /* Sombra menu mobile */
+
+  /* Tipografia */
+  --font-primary: "Poppins", sans-serif;
+  --font-brand: "Lily Script One", cursive;
+
+  /* Tamanhos e Espaçamentos */
+  --header-height: 70px;
+  --spacing-xs: 0.25rem;
+  /* 4px */
+  --spacing-sm: 0.5rem;
+  /* 8px */
+  --spacing-md: 1rem;
+  /* 16px */
+  --spacing-lg: 1.5rem;
+  /* 24px */
+  --spacing-xl: 2rem;
+  /* 32px */
+  --spacing-xxl: 3rem;
+  /* 48px */
+
+  /* Outros */
+  --container-width: 1200px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.2s ease-in-out;
+  --transition-menu: 0.3s ease-in-out;
+}
+
+/* ==============================================
+   2. Reset e Estilos de Base
+   ============================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  /* 1rem = 16px */
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+/* Trava o scroll quando o menu mobile estiver aberto */
+body.nav-open {
+  overflow: hidden;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ==============================================
+   3. Classes Utilitárias
+   ============================================== */
+
+.container {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary-dark);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+.lily-script-one-regular {
+  font-family: var(--font-brand);
+  font-weight: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==============================================
+   4. Estilos do Header (Reutilizável)
+   ============================================== */
+
+header {
+  background-color: var(--color-background);
+  height: var(--header-height);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-light);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-primary);
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.main-nav a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  padding: var(--spacing-sm) 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-fast);
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+  color: var(--color-primary);
+}
+
+.main-nav a:hover::after,
+.main-nav a:focus-visible::after {
+  width: 100%;
+}
+
+.main-nav a.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.main-nav a.active::after {
+  width: 100%;
+  background-color: var(--color-primary);
+}
+
+/* --- Estilos do Menu Hamburger --- */
+.nav-toggle {
+  display: none;
+  /* Escondido no desktop */
+  font-size: 2rem;
+  color: var(--color-primary);
+  z-index: 1002;
+  /* Acima da navegação e do overlay */
+}
+
+.nav-toggle .bx-x {
+  display: none;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-overlay);
+  z-index: 998;
+  /* Abaixo do menu, acima do conteúdo */
+  transition: opacity var(--transition-menu);
+}
+
+/* --- Quando o menu está aberto --- */
+body.nav-open .nav-toggle .bx-menu {
+  display: none;
+}
+
+body.nav-open .nav-toggle .bx-x {
+  display: block;
+}
+
+body.nav-open .overlay {
+  display: block;
+  opacity: 1;
+}
+
+/* ==============================================
+   5. Estilos da Homepage (inicio.html)
+   ============================================== */
+
+/* --- Seção Hero --- */
+/* --- Seção Hero --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  /* Altura aumentada */
+  min-height: 500px;
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-text-light);
+
+  /* Imagem de fundo atualizada */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)),
+    url("../Imagens/farm.jpg");
+  /* <-- A SUA IMAGEM ESTÁ AQUI */
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-title {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--color-text-light);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Seção de Convite ao Catálogo --- */
+.catalog-invitation {
+  background-color: var(--color-background-light);
+  padding-block: var(--spacing-xxl);
+  text-align: center;
+}
+
+.catalog-invitation h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: var(--spacing-md);
+}
+
+.catalog-invitation p {
+  font-size: 1.125rem;
+  color: var(--color-gray-medium);
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-xl);
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  /* Espaço para o ícone */
+  min-width: 200px;
+  height: 50px;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.cta-button .bx {
+  font-size: 1.25rem;
+  transition: transform var(--transition-fast);
+}
+
+.cta-button.primary {
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  border-color: var(--color-accent);
+}
+
+.cta-button.primary:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.cta-button.primary:hover .bx {
+  transform: translateX(4px);
+  /* Animação do ícone */
+}
+
+.cta-button.secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.cta-button.secondary:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
+  border-color: var(--color-primary-dark);
+}
+
+/* --- Seção Sobre Nós --- */
+.about-section {
+  padding-block: var(--spacing-xxl);
+}
+
+.section-title {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 3rem);
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xxl);
+  align-items: center;
+}
+
+.about-text h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-text p {
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-text p:last-of-type {
+  margin-bottom: 0;
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+  aspect-ratio: 4 / 3;
+  transition: transform var(--transition-fast);
+}
+
+.about-image img:hover {
+  transform: scale(1.02);
+  /* Efeito de zoom sutil */
+}
+
+/* ==============================================
+   6. Estilos da Página do Catálogo (catalogo.html)
+   ============================================== */
+
+/* --- Seção Hero do Catálogo --- */
+.catalog-hero {
+  background-color: var(--color-background-light);
+  padding-block: var(--spacing-xxl);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.catalog-title {
+  font-size: clamp(2.25rem, 6vw, 3rem);
+  margin-bottom: var(--spacing-sm);
+}
+
+.catalog-description {
+  font-size: 1.125rem;
+  color: var(--color-gray-medium);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* --- Conteúdo do Catálogo (Filtros e Produtos) --- */
+.catalog-content {
+  padding-block: var(--spacing-xl);
+}
+
+/* --- Barra de Pesquisa --- */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.search-input-wrapper {
+  flex: 1 1 300px;
+  position: relative;
+}
+
+.search-input-wrapper .bx-search {
+  position: absolute;
+  left: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--color-gray-medium);
+  pointer-events: none;
+}
+
+#search-product {
+  width: 100%;
+  height: 48px;
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 3rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  transition: border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+#search-product:focus,
+#search-product:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(56, 102, 65, 0.2);
+  outline: none;
+}
+
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-lg);
+  height: 48px;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  transition: background-color var(--transition-fast);
+}
+
+.filter-toggle:hover {
+  background-color: var(--color-background-light);
+}
+
+.filter-toggle .bx {
+  font-size: 1.25rem;
+}
+
+/* --- Botões de Filtro --- */
+.filters-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.filter-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 1px solid var(--color-border);
+  border-radius: 30px;
+  /* Pílulas */
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background-color: var(--color-background-light);
+  border-color: var(--color-gray-medium);
+}
+
+.filter-btn.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+/* --- Grade de Produtos --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* --- Mensagem de Carregamento --- */
+.loading-message {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding-block: var(--spacing-xxl);
+  color: var(--color-gray-medium);
+  font-size: 1.1rem;
+}
+
+.loading-message .bx-spin {
+  font-size: 3rem;
+  color: var(--color-primary);
+}
+
+/* --- Card de Produto (Estilo para o JS) --- */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.product-card__image-wrapper {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-fast);
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.05);
+}
+
+.product-card__info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: var(--spacing-lg);
+}
+
+.product-card__category {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-gray-medium);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xs);
+}
+
+.product-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.product-card__price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: auto;
+  margin-bottom: var(--spacing-lg);
+}
+
+.product-card__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  height: 48px;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  text-align: center;
+  transition: background-color var(--transition-fast);
+}
+
+.product-card__button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.product-card__button .bx {
+  font-size: 1.25rem;
+}
+
+/* ==============================================
+   7. Estilos do Footer (Reutilizável)
+   ============================================== */
+footer {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding-block: var(--spacing-xl);
+  margin-top: var(--spacing-xxl);
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xl);
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+.footer-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: var(--color-background-light);
+}
+
+.social-media {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.social-media a {
+  font-size: 1.5rem;
+  color: var(--color-text-light);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.social-media a:hover {
+  transform: scale(1.1);
+  color: var(--color-accent);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--color-background-light);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+/* ==============================================
+   8. Media Queries (Responsividade)
+   ============================================== */
+
+/* --- Telas Médias (Tablets) --- */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 60px;
+    /* Header menor */
+  }
+
+  /* --- Header & Nav Mobile --- */
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    padding: var(--spacing-xxl) var(--spacing-xl);
+    background-color: var(--color-background);
+    z-index: 1001;
+    /* Acima do overlay */
+
+    /* Efeito de slide-in */
+    transform: translateX(100%);
+    transition: transform var(--transition-menu);
+  }
+
+  body.nav-open .main-nav {
+    transform: translateX(0);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+  }
+
+  .main-nav a {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .main-nav a::after {
+    display: none;
+    /* Remove linha de hover no mobile */
+  }
+
+  .nav-toggle {
+    display: block;
+    /* Mostra o botão hamburger */
+  }
+
+  /* --- Homepage (Tablet) --- */
+  .about-content {
+    grid-template-columns: 1fr;
+    /* Coluna única */
+    gap: var(--spacing-xl);
+  }
+
+  /* --- Catálogo (Tablet) --- */
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: var(--spacing-md);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari */
+  }
+
+  .filters .filter-btn {
+    white-space: nowrap;
+  }
+
+  /* --- Footer (Tablet) --- */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-left {
+    flex-direction: column;
+  }
+}
+
+/* --- Telas Pequenas (Celulares) --- */
+@media (max-width: 600px) {
+
+  /* --- Catálogo (Celular) --- */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .product-card__info {
+    padding: var(--spacing-md);
+  }
+
+  .product-card__title {
+    font-size: 1rem;
+  }
+
+  .product-card__price {
+    font-size: 1.15rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .product-card__button {
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .catalog-title {
+    font-size: 2rem;
+  }
+
+  .catalog-description {
+    font-size: 1rem;
+  }
+}
+
+/* --- Telas Muito Pequenas (Celulares) --- */
+@media (max-width: 400px) {
+
+  /* --- Catálogo (Celular Pequeno) --- */
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Footer (Celular Pequeno) --- */
+  .footer-links {
+    flex-direction: column;
+    /* Links do rodapé em coluna */
+    gap: var(--spacing-sm);
+  }
+}
+
+/*Botão de sair quando o usuário estiver logado*/
+.logout-link {
+  margin-left: 8px;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logout-link:hover {
+  text-decoration: none;
+  color: #111;
+} 
