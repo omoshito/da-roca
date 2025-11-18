@@ -51,11 +51,31 @@ document.getElementById("register").addEventListener("submit", async function (e
         numero: numero,
         senha: senha
     }
-
-    if (senha !== Csenha){
-        alert("As senhas não coincidem")
+    if(!senha||!email||!cpf||!endereco||!telefone||!cidade||!uf||!numero ){
+        alert("Preencha os campos corretamente")
         return
     }
+    if(cpf.length < 11 || cpf.length > 11)
+    {
+      alert("CPF invalido")
+      return
+    }
+    if(telefone.length < 11 || telefone.length > 11)
+    {
+      alert("Número inválido")
+      return
+    }
+    if(uf.length > 2 || uf.length < 2)
+    {
+      alert("UF invalida")
+      return
+    }
+
+    if (senha !== Csenha)
+      {
+        alert("As senhas não coincidem")
+        return
+      }
    try{
     console.log(cadastro)
     const response = await fetch('http://localhost:8090/clientes',{
@@ -80,4 +100,4 @@ document.getElementById("register").addEventListener("submit", async function (e
         alert("Não foi possível realizar o cadastro.")
     }
   });
-});
+})
