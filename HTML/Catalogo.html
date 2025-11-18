@@ -93,7 +93,7 @@
         <nav class="filters-section" role="navigation" aria-label="Filtros de categoria">
           <h2 class="visually-hidden">Filtrar por categoria</h2>
           <div class="filters">
-            <button class="filter-btn active" data-filter="all" aria-pressed="true" type="button" id="0" onclick="clicouGanhou(0)">
+            <button class="filter-btn active" data-filter="all" aria-pressed="true" type="button">
               <span>Todos</span>
             </button>
             <button class="filter-btn" data-filter="frutas" aria-pressed="false" type="button" id="1"
@@ -153,8 +153,9 @@
 
   <script src="../JS/catalogo.js"></script>
 
-  //Caso o usuario nao esteja logado, com esse script ele não add nada no carrinho e vai ser direcionado para o login
+  
   <script>
+    //Caso o usuario nao esteja logado, com esse script ele não add nada no carrinho e vai ser direcionado para o login
     document.addEventListener("click", function (e) {
       const token = localStorage.getItem("token");
 
