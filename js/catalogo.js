@@ -284,20 +284,16 @@ const usuario = localStorage.getItem("usuario");
 const navUser = document.getElementById("usuario-logado");
 
 if (usuario) {
-    navUser.innerHTML = `
+  navUser.innerHTML = `
   <span>Usuário conectado</span>
   <a id="logout-btn" class="logout-link">Sair</a>
 `;
 
-    document.getElementById('logout-btn').addEventListener('click', () => {
-        localStorage.removeItem("usuario");
-        localStorage.removeItem("token");
-        location.reload();
-    });
-
-
+  document.getElementById("logout-btn").addEventListener("click", () => {
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("token");
+    location.reload();
+  });
 } else {
-    navUser.innerHTML = `<a href="login-cadastro.html">Entrar / Cadastrar</a>`;
+  navUser.innerHTML = `<a href="login-cadastro.html">Entrar / Cadastrar</a>`;
 }
-
-

@@ -324,8 +324,8 @@ a:hover {
 }
 
 /* O "truque" do floating label */
-.input-group input:focus+label,
-.input-group input:not(:placeholder-shown)+label {
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
   top: 0;
   left: 0.75rem;
   font-size: 0.8rem;
@@ -387,7 +387,7 @@ a:hover {
   border-color: var(--color-gray-medium);
 }
 
-.checkbox-container input:checked~.checkmark {
+.checkbox-container input:checked ~ .checkmark {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
 }
@@ -405,7 +405,7 @@ a:hover {
   transform: rotate(45deg);
 }
 
-.checkbox-container input:checked~.checkmark:after {
+.checkbox-container input:checked ~ .checkmark:after {
   display: block;
 }
 

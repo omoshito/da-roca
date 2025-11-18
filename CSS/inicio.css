@@ -166,7 +166,6 @@ h6 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -315,8 +314,7 @@ body.nav-open .overlay {
   color: var(--color-text-light);
 
   /* Imagem de fundo atualizada */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("../Imagens/farm.jpg");
   /* <-- A SUA IMAGEM ESTÁ AQUI */
   background-size: cover;
@@ -617,7 +615,8 @@ body.nav-open .overlay {
   background-color: var(--color-background);
   box-shadow: var(--shadow-light);
   overflow: hidden;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .product-card:hover {
@@ -858,7 +857,6 @@ footer {
 
 /* --- Telas Pequenas (Celulares) --- */
 @media (max-width: 600px) {
-
   /* --- Catálogo (Celular) --- */
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -894,7 +892,6 @@ footer {
 
 /* --- Telas Muito Pequenas (Celulares) --- */
 @media (max-width: 400px) {
-
   /* --- Catálogo (Celular Pequeno) --- */
   .product-grid {
     grid-template-columns: 1fr;
@@ -920,4 +917,4 @@ footer {
 .logout-link:hover {
   text-decoration: none;
   color: #111;
-} 
+}

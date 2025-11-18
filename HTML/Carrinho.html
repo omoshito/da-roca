@@ -1,197 +1,233 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrinho de Compras - Da Roça</title>
 
-<head>
+    <!-- Meta Tags SEO -->
+    <meta
+      name="description"
+      content="Carrinho de compras Da Roça. Finalize seu pedido de produtos frescos e orgânicos."
+    />
+    <meta name="author" content="Da Roça" />
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carrinho de Compras - Da Roça</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Imagens/daRoca.png" />
 
-  <!-- Meta Tags SEO -->
-  <meta name="description"
-    content="Carrinho de compras Da Roça. Finalize seu pedido de produtos frescos e orgânicos." />
-  <meta name="author" content="Da Roça" />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../CSS/carrinho.css" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../Imagens/daRoca.png" />
+    <!-- Icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="../CSS/carrinho.css" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <!-- Icons -->
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet" />
-</head>
-
-<body>
-  <header>
-    <div class="header-container">
-      <!-- Logo e título -->
-      <div class="logo">
-        <a href="Inicio.html">
-          <img src="../Imagens/daRoca.png" alt="Logo Da Roça" />
-        </a>
-        <h1>DaRoça</h1>
-      </div>
-
-      <!-- Navegação principal -->
-      <nav class="main-nav" role="navigation" aria-label="Navegação principal">
-        <ul>
-          <li><a href="Catalogo.html">Catálogo</a></li>
-          <li><a href="Inicio.html#sobre">Sobre</a></li>
-          <li><a id="btn-login" href="login-cadastro.html">Cadastrar / Entrar</a>
-            <a id="btn-logout" href="#" style="display:none;" onclick="logout()">Sair</a>
-          </li>
-          <li>
-            <a href="Carrinho.html" class="cart-link active" aria-current="page">
-              <i class="bx bx-cart"></i>
-              <span class="cart-count" id="header-cart-count">0</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="cart-hero">
-      <div class="container">
-        <h1 class="cart-title">Meu Carrinho</h1>
-        <p class="cart-description">
-          Revise seus produtos antes de finalizar a compra
-        </p>
-      </div>
-    </section>
-
-    <section class="cart-content">
-      <div class="container">
-        <div class="cart-layout">
-          <!-- Lista de produtos no carrinho -->
-          <div class="cart-items-section">
-            <div class="cart-header">
-              <h2>Produtos no Carrinho</h2>
-              <button class="clear-cart-btn" id="clear-cart">
-                <i class="bx bx-trash"></i>
-                Limpar Carrinho
-              </button>
-            </div>
-
-            <div id="cart-items" class="cart-items">
-              <!-- Mensagem de carrinho vazio (mostrada via JS se necessário) -->
-              <div class="empty-cart" id="empty-cart-message">
-                <i class="bx bx-cart-alt"></i>
-                <h3>Seu carrinho está vazio</h3>
-                <p>Adicione produtos do nosso catálogo para começar!</p>
-                <a href="Catalogo.html" class="btn-primary">
-                  Ir para o Catálogo
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Resumo do pedido -->
-          <aside class="cart-summary">
-            <h2>Resumo do Pedido</h2>
-
-            <div class="summary-details">
-              <div class="summary-row">
-                <span>Subtotal:</span>
-                <span id="subtotal">R$ 0,00</span>
-              </div>
-              <div class="summary-row">
-                <span>Frete:</span>
-                <span id="shipping">R$ 0,00</span>
-              </div>
-              <div class="summary-row total">
-                <span>Total:</span>
-                <span id="total">R$ 0,00</span>
-              </div>
-            </div>
-
-            <button class="btn-checkout" id="checkout-btn" disabled>
-              <i class="bx bx-check-circle"></i>
-              Finalizar Compra
-            </button>
-
-            <a href="Catalogo.html" class="btn-continue">
-              <i class="bx bx-left-arrow-alt"></i>
-              Continuar Comprando
-            </a>
-
-            <div class="payment-methods">
-              <p>Formas de pagamento aceitas:</p>
-              <div class="payment-icons">
-                <i class="bx bxl-visa"></i>
-                <i class="bx bxl-mastercard"></i>
-                <i class="bx bx-money"></i>
-                <i class="bx bx-barcode"></i>
-              </div>
-            </div>
-          </aside>
+  <body>
+    <header>
+      <div class="header-container">
+        <!-- Logo e título -->
+        <div class="logo">
+          <a href="Inicio.html">
+            <img src="../Imagens/daRoca.png" alt="Logo Da Roça" />
+          </a>
+          <h1>DaRoça</h1>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <footer role="contentinfo">
-    <div class="footer-container">
-      <div class="footer-left">
-        <p class="copyright">© 2025 DaRoça. Todos os direitos reservados.</p>
-        <div class="social-media">
-          <h4 class="visually-hidden">Redes Sociais</h4>
-          <a href="#" aria-label="Instagram da Da Roça" class="social-link" target="_blank" rel="noopener noreferrer">
-            <i class="bx bxl-instagram"></i>
-          </a>
-          <a href="#" aria-label="Facebook da Da Roça" class="social-link" target="_blank" rel="noopener noreferrer">
-            <i class="bx bxl-facebook"></i>
-          </a>
-          <a href="#" aria-label="WhatsApp da Da Roça" class="social-link" target="_blank" rel="noopener noreferrer">
-            <i class="bx bxl-whatsapp"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-right">
-        <nav class="footer-nav" aria-label="Links do rodapé">
-          <a href="#">Política de Privacidade</a>
-          <a href="#">Termos de Uso</a>
-          <a href="#">Fale Conosco</a>
+        <!-- Navegação principal -->
+        <nav
+          class="main-nav"
+          role="navigation"
+          aria-label="Navegação principal"
+        >
+          <ul>
+            <li><a href="Catalogo.html">Catálogo</a></li>
+            <li><a href="Inicio.html#sobre">Sobre</a></li>
+            <li>
+              <a id="btn-login" href="login-cadastro.html"
+                >Cadastrar / Entrar</a
+              >
+              <a
+                id="btn-logout"
+                href="#"
+                style="display: none"
+                onclick="logout()"
+                >Sair</a
+              >
+            </li>
+            <li>
+              <a
+                href="Carrinho.html"
+                class="cart-link active"
+                aria-current="page"
+              >
+                <i class="bx bx-cart"></i>
+                <span class="cart-count" id="header-cart-count">0</span>
+              </a>
+            </li>
+          </ul>
         </nav>
       </div>
-    </div>
-  </footer>
+    </header>
 
-  <script src="../JS/carrinho.js"></script>
-  <script src="../JS/auth-manager.js"></script>
+    <main>
+      <section class="cart-hero">
+        <div class="container">
+          <h1 class="cart-title">Meu Carrinho</h1>
+          <p class="cart-description">
+            Revise seus produtos antes de finalizar a compra
+          </p>
+        </div>
+      </section>
 
-  //Leva o usario para logar/cadastrar caso nao esteja logado
-  const token = localStorage.getItem("token");
-=======
-  //Leva o usario para logar/cadastrar caso nao esteja logado
-  <script>
-    const token = localStorage.getItem("token");
->>>>>>> Stashed changes
+      <section class="cart-content">
+        <div class="container">
+          <div class="cart-layout">
+            <!-- Lista de produtos no carrinho -->
+            <div class="cart-items-section">
+              <div class="cart-header">
+                <h2>Produtos no Carrinho</h2>
+                <button class="clear-cart-btn" id="clear-cart">
+                  <i class="bx bx-trash"></i>
+                  Limpar Carrinho
+                </button>
+              </div>
 
-    // Impedir acesso ao carrinho sem estar logado
-    if (!token) {
-      window.location.href = "login-cadastro.html";
-    }
+              <div id="cart-items" class="cart-items">
+                <!-- Mensagem de carrinho vazio (mostrada via JS se necessário) -->
+                <div class="empty-cart" id="empty-cart-message">
+                  <i class="bx bx-cart-alt"></i>
+                  <h3>Seu carrinho está vazio</h3>
+                  <p>Adicione produtos do nosso catálogo para começar!</p>
+                  <a href="Catalogo.html" class="btn-primary">
+                    Ir para o Catálogo
+                  </a>
+                </div>
+              </div>
+            </div>
 
-    const carrinhoIcone = document.querySelector(".cart-link");
-    const contador = document.getElementById("header-cart-count");
+            <!-- Resumo do pedido -->
+            <aside class="cart-summary">
+              <h2>Resumo do Pedido</h2>
 
-    if (!token) {
-      if (carrinhoIcone) carrinhoIcone.style.display = "none";
-      if (contador) contador.style.display = "none";
-    }
-  </script>
+              <div class="summary-details">
+                <div class="summary-row">
+                  <span>Subtotal:</span>
+                  <span id="subtotal">R$ 0,00</span>
+                </div>
+                <div class="summary-row">
+                  <span>Frete:</span>
+                  <span id="shipping">R$ 0,00</span>
+                </div>
+                <div class="summary-row total">
+                  <span>Total:</span>
+                  <span id="total">R$ 0,00</span>
+                </div>
+              </div>
 
+              <button class="btn-checkout" id="checkout-btn" disabled>
+                <i class="bx bx-check-circle"></i>
+                Finalizar Compra
+              </button>
 
-</body>
+              <a href="Catalogo.html" class="btn-continue">
+                <i class="bx bx-left-arrow-alt"></i>
+                Continuar Comprando
+              </a>
 
+              <div class="payment-methods">
+                <p>Formas de pagamento aceitas:</p>
+                <div class="payment-icons">
+                  <i class="bx bxl-visa"></i>
+                  <i class="bx bxl-mastercard"></i>
+                  <i class="bx bx-money"></i>
+                  <i class="bx bx-barcode"></i>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="footer-container">
+        <div class="footer-left">
+          <p class="copyright">© 2025 DaRoça. Todos os direitos reservados.</p>
+          <div class="social-media">
+            <h4 class="visually-hidden">Redes Sociais</h4>
+            <a
+              href="#"
+              aria-label="Instagram da Da Roça"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="bx bxl-instagram"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook da Da Roça"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="bx bxl-facebook"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="WhatsApp da Da Roça"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="bx bxl-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-right">
+          <nav class="footer-nav" aria-label="Links do rodapé">
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Fale Conosco</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../JS/carrinho.js"></script>
+    <script src="../JS/auth-manager.js"></script>
+
+    <script>
+      const token = localStorage.getItem("token");
+
+      // Impedir acesso ao carrinho sem estar logado
+      if (!token) {
+        window.location.href = "login-cadastro.html";
+      }
+
+      const carrinhoIcone = document.querySelector(".cart-link");
+      const contador = document.getElementById("header-cart-count");
+
+      if (!token) {
+        if (carrinhoIcone) carrinhoIcone.style.display = "none";
+        if (contador) contador.style.display = "none";
+      }
+    </script>
+  </body>
 </html>

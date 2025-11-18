@@ -285,6 +285,5 @@ document.addEventListener("DOMContentLoaded", function () {
         " - " +
         state
     );
-
   });
 });

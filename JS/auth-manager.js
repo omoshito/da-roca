@@ -1,55 +1,55 @@
 // Gerenciador de autenticação e interface do usuário
 
 class AuthManager {
-    constructor() {
-        this.init();
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    document.addEventListener("DOMContentLoaded", () => {
+      this.verificarStatusLogin();
+    });
+  }
+
+  verificarStatusLogin() {
+    const token = localStorage.getItem("token");
+    const userData = localStorage.getItem("userData");
+
+    const navList = document.querySelector(".main-nav ul");
+    if (!navList) return;
+
+    const loginItem = this.findLoginItem(navList);
+
+    if (token && userData) {
+      this.mostrarMenuUsuario(loginItem, userData);
+    } else {
+      this.mostrarLinkLogin(loginItem);
+    }
+  }
+
+  findLoginItem(navList) {
+    // Procura o item que contém o link de login
+    return Array.from(navList.querySelectorAll("li")).find((li) => {
+      const link = li.querySelector('a[href*="login-cadastro"]');
+      return link !== null;
+    });
+  }
+
+  mostrarMenuUsuario(loginItem, userData) {
+    if (!loginItem) return;
+
+    let user;
+    try {
+      user = JSON.parse(userData);
+    } catch (e) {
+      console.error("Erro ao parsear userData:", e);
+      this.logout();
+      return;
     }
 
-    init() {
-        document.addEventListener("DOMContentLoaded", () => {
-            this.verificarStatusLogin();
-        });
-    }
+    const nomeUsuario = user.nome || user.email?.split("@")[0] || "Usuário";
 
-    verificarStatusLogin() {
-        const token = localStorage.getItem("token");
-        const userData = localStorage.getItem("userData");
-        
-        const navList = document.querySelector(".main-nav ul");
-        if (!navList) return;
-        
-        const loginItem = this.findLoginItem(navList);
-        
-        if (token && userData) {
-            this.mostrarMenuUsuario(loginItem, userData);
-        } else {
-            this.mostrarLinkLogin(loginItem);
-        }
-    }
-
-    findLoginItem(navList) {
-        // Procura o item que contém o link de login
-        return Array.from(navList.querySelectorAll('li')).find(li => {
-            const link = li.querySelector('a[href*="login-cadastro"]');
-            return link !== null;
-        });
-    }
-
-    mostrarMenuUsuario(loginItem, userData) {
-        if (!loginItem) return;
-        
-        let user;
-        try {
-            user = JSON.parse(userData);
-        } catch (e) {
-            console.error("Erro ao parsear userData:", e);
-            this.logout();
-            return;
-        }
-        
-        const nomeUsuario = user.nome || user.email?.split('@')[0] || 'Usuário';
-        
-        loginItem.innerHTML = `
+    loginItem.innerHTML = `
             <div class="user-menu">
                 <button class="user-toggle" onclick="authManager.toggleUserMenu()" aria-label="Menu do usuário">
                     <i class='bx bx-user-circle'></i>
@@ -69,110 +69,110 @@ class AuthManager {
                 </div>
             </div>
         `;
-    }
+  }
 
-    mostrarLinkLogin(loginItem) {
-        if (!loginItem) return;
-        
-        loginItem.innerHTML = `<a href="login-cadastro.html">Entrar / Cadastrar</a>`;
-    }
+  mostrarLinkLogin(loginItem) {
+    if (!loginItem) return;
 
-    toggleUserMenu() {
-        const dropdown = document.getElementById("userDropdown");
-        if (!dropdown) return;
-        
-        dropdown.classList.toggle("show");
-        
-        // Fechar o menu se clicar fora dele
-        const closeMenu = (e) => {
-            if (!e.target.closest(".user-menu")) {
-                dropdown.classList.remove("show");
-                document.removeEventListener("click", closeMenu);
-            }
-        };
-        
-        setTimeout(() => {
-            document.addEventListener("click", closeMenu);
-        }, 10);
-    }
+    loginItem.innerHTML = `<a href="login-cadastro.html">Entrar / Cadastrar</a>`;
+  }
 
-    verPerfil() {
-        alert("Funcionalidade de perfil em desenvolvimento!");
-    }
+  toggleUserMenu() {
+    const dropdown = document.getElementById("userDropdown");
+    if (!dropdown) return;
 
-    logout() {
-        if (confirm("Tem certeza que deseja sair?")) {
-            // Limpar todos os dados do usuário
-            this.limparDadosUsuario();
-            
-            // Mostrar mensagem e redirecionar
-            this.mostrarMensagemLogout();
-        }
-    }
+    dropdown.classList.toggle("show");
 
-    limparDadosUsuario() {
-        localStorage.removeItem("token");
-        localStorage.removeItem("userData");
-        localStorage.removeItem("carrinho_daroca");
-    }
+    // Fechar o menu se clicar fora dele
+    const closeMenu = (e) => {
+      if (!e.target.closest(".user-menu")) {
+        dropdown.classList.remove("show");
+        document.removeEventListener("click", closeMenu);
+      }
+    };
 
-    mostrarMensagemLogout() {
-        // Criar notificação de logout
-        const notification = document.createElement("div");
-        notification.className = "logout-notification";
-        notification.innerHTML = `
+    setTimeout(() => {
+      document.addEventListener("click", closeMenu);
+    }, 10);
+  }
+
+  verPerfil() {
+    alert("Funcionalidade de perfil em desenvolvimento!");
+  }
+
+  logout() {
+    if (confirm("Tem certeza que deseja sair?")) {
+      // Limpar todos os dados do usuário
+      this.limparDadosUsuario();
+
+      // Mostrar mensagem e redirecionar
+      this.mostrarMensagemLogout();
+    }
+  }
+
+  limparDadosUsuario() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("carrinho_daroca");
+  }
+
+  mostrarMensagemLogout() {
+    // Criar notificação de logout
+    const notification = document.createElement("div");
+    notification.className = "logout-notification";
+    notification.innerHTML = `
             <div class="notification-content">
                 <i class='bx bx-check-circle'></i>
                 <span>Logout realizado com sucesso!</span>
             </div>
         `;
-        
-        // Estilos da notificação
-        Object.assign(notification.style, {
-            position: "fixed",
-            top: "20px",
-            right: "20px",
-            background: "linear-gradient(135deg, #28a745, #20c997)",
-            color: "white",
-            padding: "16px 20px",
-            borderRadius: "12px",
-            boxShadow: "0 8px 32px rgba(40, 167, 69, 0.3)",
-            zIndex: "10000",
-            animation: "slideInRight 0.4s ease",
-            fontWeight: "500"
-        });
-        
-        document.body.appendChild(notification);
-        
-        // Remover notificação e redirecionar
-        setTimeout(() => {
-            notification.remove();
-            window.location.href = "Inicio.html";
-        }, 2000);
-    }
 
-    // Método para verificar se o usuário está logado
-    isLoggedIn() {
-        return localStorage.getItem("token") !== null;
-    }
+    // Estilos da notificação
+    Object.assign(notification.style, {
+      position: "fixed",
+      top: "20px",
+      right: "20px",
+      background: "linear-gradient(135deg, #28a745, #20c997)",
+      color: "white",
+      padding: "16px 20px",
+      borderRadius: "12px",
+      boxShadow: "0 8px 32px rgba(40, 167, 69, 0.3)",
+      zIndex: "10000",
+      animation: "slideInRight 0.4s ease",
+      fontWeight: "500",
+    });
 
-    // Método para obter dados do usuário
-    getUserData() {
-        const userData = localStorage.getItem("userData");
-        return userData ? JSON.parse(userData) : null;
-    }
+    document.body.appendChild(notification);
 
-    // Atualizar status após login (chamar da página de login)
-    updateLoginStatus() {
-        this.verificarStatusLogin();
-    }
+    // Remover notificação e redirecionar
+    setTimeout(() => {
+      notification.remove();
+      window.location.href = "Inicio.html";
+    }, 2000);
+  }
+
+  // Método para verificar se o usuário está logado
+  isLoggedIn() {
+    return localStorage.getItem("token") !== null;
+  }
+
+  // Método para obter dados do usuário
+  getUserData() {
+    const userData = localStorage.getItem("userData");
+    return userData ? JSON.parse(userData) : null;
+  }
+
+  // Atualizar status após login (chamar da página de login)
+  updateLoginStatus() {
+    this.verificarStatusLogin();
+  }
 }
 
 // Criar instância global
 const authManager = new AuthManager();
 
 // Adicionar estilos CSS para o menu do usuário
-const authStyles = document.createElement('style');
+const authStyles = document.createElement("style");
 authStyles.textContent = `
     /* Estilos do menu do usuário */
     .user-menu {
