@@ -25,9 +25,20 @@ form.addEventListener('submit', async function (event) {
         const usuario = await result.json(); 
 
         if (usuario.token) {
+            // Salvar token e dados do usuário
             localStorage.setItem("token", usuario.token);
-            localStorage.setItem("usuario", email);
-            window.location.href = "../HTML/Inicio.html";
+            localStorage.setItem("userData", JSON.stringify({
+                email: email,
+                nome: usuario.nome || email.split('@')[0],
+                ...usuario
+            }));
+            
+            mostrarMensagem("Login realizado com sucesso! Redirecionando...", "green");
+            
+            // Redirecionar após um breve delay
+            setTimeout(() => {
+                window.location.href = "../HTML/Inicio.html";
+            }, 1500);
         } else {
             mostrarMensagem("Email e/ou senha incorretos!", "red");
         }

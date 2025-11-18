@@ -89,10 +89,13 @@ document.getElementById("register").addEventListener("submit", async function (e
         throw new Error("Erro ao cadastrar cliente")
         }
 
-        const data = await  response.json()
+        const data = await response.json()
         
         console.log("Cliente cadastrado com sucesso:", data)
         alert("Cadastro realizado com sucesso!")
+        
+        // Fazer login automático após cadastro
+        await fazerLoginAutomatico(email, senha)
 
     } 
     catch (error) {
@@ -100,4 +103,41 @@ document.getElementById("register").addEventListener("submit", async function (e
         alert("Não foi possível realizar o cadastro.")
     }
   });
+
+  // Função para fazer login automático após cadastro
+  async function fazerLoginAutomatico(email, senha) {
+    try {
+        const response = await fetch("http://localhost:8090/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email: email,
+                senha: senha
+            })
+        });
+        
+        const usuario = await response.json();
+        
+        if (usuario.token) {
+            // Salvar token e dados do usuário
+            localStorage.setItem("token", usuario.token);
+            localStorage.setItem("userData", JSON.stringify({
+                email: email,
+                nome: usuario.nome || nome, // usar nome do cadastro
+                ...usuario
+            }));
+            
+            alert("Login automático realizado! Redirecionando...");
+            
+            // Redirecionar após um breve delay
+            setTimeout(() => {
+                window.location.href = "../HTML/Inicio.html";
+            }, 1500);
+        }
+    } catch (error) {
+        console.error("Erro no login automático:", error);
+        // Se falhar o login automático, apenas mostra mensagem de sucesso no cadastro
+        alert("Cadastro realizado! Faça login para continuar.");
+    }
+  }
 })
