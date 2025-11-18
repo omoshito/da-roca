@@ -52,6 +52,16 @@ class AuthManager {
     loginItem.innerHTML = `
             <div class="user-menu">
                 <button class="user-toggle" onclick="authManager.toggleUserMenu()" aria-label="Menu do usuário">
+                    <span>Usuário Conectado</span>
+                    <i class='bx bx-chevron-down'></i>
+                </button>
+            </div>
+        `;
+  }
+  /*
+    loginItem.innerHTML = `
+            <div class="user-menu">
+                <button class="user-toggle" onclick="authManager.toggleUserMenu()" aria-label="Menu do usuário">
                     <i class='bx bx-user-circle'></i>
                     <span>Olá, ${nomeUsuario}</span>
                     <i class='bx bx-chevron-down'></i>
@@ -70,7 +80,7 @@ class AuthManager {
             </div>
         `;
   }
-
+*/
   mostrarLinkLogin(loginItem) {
     if (!loginItem) return;
 
