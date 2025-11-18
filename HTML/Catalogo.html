@@ -46,7 +46,11 @@
             <a href="Catalogo.html" class="active" aria-current="page">Catálogo</a>
           </li>
           <li><a href="Inicio.html#sobre">Sobre</a></li>
-          <li><a href="login-cadastro.html">Entrar / Cadastrar</a></li>
+          <li>
+          <li>
+            <a id="btn-login" href="login-cadastro.html">Cadastrar / Entrar</a>
+            <a id="btn-logout" href="#" style="display:none;" onclick="logout()">Sair</a>
+          </li>
           <li>
             <a href="Carrinho.html" class="cart-link" aria-label="Carrinho de compras">
               <i class="bx bx-cart"></i>
@@ -151,15 +155,20 @@
     </div>
   </footer>
 
-  <script src="../JS/catalogo.js"></script>
+  <script src="../js/catalogo.js"></script>
+  <script src="../src/services/auth.js"></script>
 
+
+<<<<<<< Updated upstream
   
+=======
+>>>>>>> Stashed changes
   <script>
     //Caso o usuario nao esteja logado, com esse script ele não add nada no carrinho e vai ser direcionado para o login
     document.addEventListener("click", function (e) {
       const token = localStorage.getItem("token");
 
-     
+
       let botao = e.target.closest(".buy-btn");
       if (!botao) return;
 
@@ -170,6 +179,7 @@
         window.location.href = "login-cadastro.html";
         return;
       }
+      document.addEventListener("DOMContentLoaded", verificarLoginGlobal);
 
     });
   </script>

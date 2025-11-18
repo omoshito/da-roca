@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
- 
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carrinho de Compras - Da Roça</title>
@@ -44,7 +44,9 @@
         <ul>
           <li><a href="Catalogo.html">Catálogo</a></li>
           <li><a href="Inicio.html#sobre">Sobre</a></li>
-          <li><a href="login-cadastro.html">Entrar / Cadastrar</a></li>
+          <li><a id="btn-login" href="login-cadastro.html">Cadastrar / Entrar</a>
+            <a id="btn-logout" href="#" style="display:none;" onclick="logout()">Sair</a>
+          </li>
           <li>
             <a href="Carrinho.html" class="cart-link active" aria-current="page">
               <i class="bx bx-cart"></i>
@@ -165,26 +167,34 @@
   </footer>
 
   <script src="../JS/carrinho.js"></script>
+  <script src="../src/services/auth.js"></script>
 
+<<<<<<< Updated upstream
 <script>
   
   //Leva o usario para logar/cadastrar caso nao esteja logado
   const token = localStorage.getItem("token");
+=======
+  //Leva o usario para logar/cadastrar caso nao esteja logado
+  <script>
+    const token = localStorage.getItem("token");
+>>>>>>> Stashed changes
 
-  // Impedir acesso ao carrinho sem estar logado
-  if (!token) {
-    window.location.href = "login-cadastro.html";
-  }
+    // Impedir acesso ao carrinho sem estar logado
+    if (!token) {
+      window.location.href = "login-cadastro.html";
+    }
 
-  const carrinhoIcone = document.querySelector(".cart-link");
-  const contador = document.getElementById("header-cart-count");
+    const carrinhoIcone = document.querySelector(".cart-link");
+    const contador = document.getElementById("header-cart-count");
 
-  if (!token) {
-    if (carrinhoIcone) carrinhoIcone.style.display = "none";
-    if (contador) contador.style.display = "none";
-  }
-</script>
+    if (!token) {
+      if (carrinhoIcone) carrinhoIcone.style.display = "none";
+      if (contador) contador.style.display = "none";
+    }
+  </script>
 
 
 </body>
+
 </html>

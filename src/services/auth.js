@@ -20,3 +20,31 @@ function autenticar(req, res, next) {
 }
 
 module.exports = { autenticar };
+
+
+function verificaLogin() {
+  const token = localStorage.getItem("token");
+
+  const botaoLogin = document.getElementById("btn-login");
+  const botaoLogout = document.getElementById("btn-logout");
+
+  if (token) {
+    //Quado o usário estiver logado
+    if (botaoLogin) botaoLogin.style.display = "none";
+    if (botaoLogout) botaoLogout.style.display = "block";
+  } 
+  else {
+    //O usuário não logado
+    if (botaoLogin) botaoLogin.style.display = "block";
+    if (botaoLogout) botaoLogout.style.display = "none";
+  }
+
+}
+
+function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "index.html";
+}
+
+
+document.addEventListener("DOMContentLoaded", verificarLoginGlobal);

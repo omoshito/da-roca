@@ -1,4 +1,4 @@
-/*Quando o usário logar vai aparecer o nome dele, e também 
+/*Quando o usário logar vai aparecer uma mensagem de usuario conectado, e também 
 um botão caso o usuário queira sair */
 
 const usuario = localStorage.getItem("usuario");
